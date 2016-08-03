@@ -19,6 +19,10 @@ import KanjiScreen from '../Containers/StartupScreen'
 import NiteirukanjiScreen from '../Containers/StartupScreen'
 import DouonigigoScreen from '../Containers/StartupScreen'
 import SetteiScreen from '../Containers/StartupScreen'
+import SetteiScreen from '../Containers/FlashCardScreen'
+
+// I18n
+import I18n from '../I18n/I18n.js'
 
 /***************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
