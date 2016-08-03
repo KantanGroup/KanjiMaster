@@ -18,7 +18,7 @@ import StartupScreen from '../Containers/StartupScreen'
 import KanjiScreen from '../Containers/StartupScreen'
 import NiteirukanjiScreen from '../Containers/StartupScreen'
 import DouonigigoScreen from '../Containers/StartupScreen'
-import SetteiScreen from '../Containers/StartupScreen'
+import BunpouScreen from '../Containers/StartupScreen'
 import SetteiScreen from '../Containers/FlashCardScreen'
 
 // I18n
@@ -48,6 +48,7 @@ class NavigationRouter extends Component {
             <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} />
             <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} />
             <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
+            <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} />
             <Scene key='settei' component={SetteiScreen} title={I18n.t('settei')} />
           </Scene>
         </Scene>

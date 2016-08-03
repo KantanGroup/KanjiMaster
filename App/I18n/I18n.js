@@ -10,9 +10,11 @@ I18n.fallbacks = true
 I18n.translations = {
   en: {
     kanjimaster: 'Kanji Master',
+    home: 'Home',
     kanji: 'Kanji',
-    niteirukanji: 'Kanji character resembles another',
-    douonigigo: 'Japanese homophones',
+    niteirukanji: 'Resemble Kanji',
+    douonigigo: 'Japanese Homophones',
+    bunpou: 'Japanese Grammar',
     settei: 'Setting',
     signIn: 'Sign In',
     logOut: 'Log Out',
@@ -40,9 +42,11 @@ I18n.translations = {
   },
   ja: {
     kanjimaster: '漢字マスタ',
+    home: 'ホーム',
     kanji: '漢字',
     niteirukanji: '似てる漢字',
     douonigigo: '同音異義語',
+    bunpou: '文法',
     settei: '設定',
     signIn: '登録',
     logOut: 'ログアウト',
@@ -70,9 +74,11 @@ I18n.translations = {
   },
   vi: {
     kanjimaster: 'Bậc thầy Kanji',
+    home: 'Trang chủ',
     kanji: 'Kanji',
     niteirukanji: 'Kanji giống nhau',
     douonigigo: 'Đồng âm khác nghĩa',
+    bunpou: 'Ngữ pháp',
     settei: 'Thiết lập',
     signIn: 'Se connecter',
     logOut: 'Se déconnecter',
