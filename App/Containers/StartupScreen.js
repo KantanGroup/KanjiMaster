@@ -43,19 +43,19 @@ class StartupScreen extends React.Component {
           </View>
 
           <RoundedButton onPress={this.props.kanji}>
-            漢字
+            {I18n.t('kanji')}
           </RoundedButton>
 
           <RoundedButton onPress={this.props.niteirukanji}>
-            似ている漢字
+            {I18n.t('niteirukanji')}
           </RoundedButton>
 
           <RoundedButton onPress={this.props.douonigigo}>
-            同音異義語
+            {I18n.t('douonigigo')}
           </RoundedButton>
 
           <RoundedButton onPress={this.props.settei}>
-            設定
+            {I18n.t('settei')}
           </RoundedButton>
 
           <View style={styles.centered}>

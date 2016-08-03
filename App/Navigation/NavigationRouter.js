@@ -40,11 +40,11 @@ class NavigationRouter extends Component {
             <Scene key='apiTesting' component={APITestingScreen} title='API Testing' />
             <Scene key='theme' component={ThemeScreen} title='Theme' />
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
-            <Scene key='startup' component={StartupScreen} title='漢字マスタ' initial/>
-            <Scene key='kanji' component={KanjiScreen} title='漢字' />
-            <Scene key='niteirukanji' component={NiteirukanjiScreen} title='似ている漢字' />
-            <Scene key='douonigigo' component={DouonigigoScreen} title='同音異義語' />
-            <Scene key='settei' component={SetteiScreen} title='設定' />
+            <Scene key='startup' component={StartupScreen} title={I18n.t('kanjimaster')} initial/>
+            <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} />
+            <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} />
+            <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
+            <Scene key='settei' component={SetteiScreen} title={I18n.t('settei')} />
           </Scene>
         </Scene>
       </Router>
