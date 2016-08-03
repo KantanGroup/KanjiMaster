@@ -5,46 +5,49 @@ import { Images } from '../Themes'
 import DrawerButton from '../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
+// I18n
+import I18n from '../I18n/I18n.js'
+
 class DrawerContent extends Component {
 
   toggleDrawer () {
     this.context.drawer.toggle()
   }
 
-  handlePressComponents = () => {
+  handlePressStartup = () => {
     this.toggleDrawer()
-    NavigationActions.componentExamples()
+    NavigationActions.startup()
   }
 
-  handlePressUsage = () => {
+  handlePressKanji = () => {
     this.toggleDrawer()
-    NavigationActions.usageExamples()
+    NavigationActions.kanji()
   }
 
-  handlePressAPI = () => {
+  handlePressNiteirukanji = () => {
     this.toggleDrawer()
-    NavigationActions.apiTesting()
+    NavigationActions.niteirukanji()
   }
 
-  handlePressTheme = () => {
+  handlePressDouonigigo = () => {
     this.toggleDrawer()
-    NavigationActions.theme()
+    NavigationActions.douonigigo()
   }
 
-  handlePressDevice = () => {
+  handlePressSettei = () => {
     this.toggleDrawer()
-    NavigationActions.deviceInfo()
+    NavigationActions.settei()
   }
 
   render () {
     return (
       <ScrollView style={styles.container}>
         <Image source={Images.logo} style={styles.logo} />
-        <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
-        <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
-        <DrawerButton text='API Testing' onPress={this.handlePressAPI} />
-        <DrawerButton text='Themes' onPress={this.handlePressTheme} />
-        <DrawerButton text='Device Info' onPress={this.handlePressDevice} />
+        <DrawerButton text={I18n.t('kanjimaster')} onPress={this.handlePressStartup} />
+        <DrawerButton text={I18n.t('kanji')} onPress={this.handlePressKanji} />
+        <DrawerButton text={I18n.t('niteirukanji')} onPress={this.handlePressNiteirukanji} />
+        <DrawerButton text={I18n.t('douonigigo')} onPress={this.handlePressDouonigigo} />
+        <DrawerButton text={I18n.t('settei')} onPress={this.handlePressSettei} />
       </ScrollView>
     )
   }
