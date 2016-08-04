@@ -17,6 +17,7 @@ import I18n from '../I18n/I18n.js'
 
 // Components
 import FlashCard from '../Components/FlashCard'
+import Footer from '../Components/Footer'
 
 class FlashCardScreen extends React.Component {
 
@@ -27,6 +28,10 @@ class FlashCardScreen extends React.Component {
 
         <ScrollView style={styles.container}>
 
+          <View style={styles.centered}>
+            <Image source={Images.clearLogo} style={styles.logo} />
+          </View>
+
           <View style={styles.section} >
             <Text style={styles.sectionText} >
               Default screens for development, debugging, and alpha testing
@@ -35,12 +40,10 @@ class FlashCardScreen extends React.Component {
           </View>
 
           <View style={styles.centered}>
-            <FlashCard/>
+            <FlashCard onPress={NavigationActions.flashcardview}/>
           </View>
 
-          <View style={styles.centered}>
-            <Text style={styles.subtitle}>Made with ❤️ by Infinite Red</Text>
-          </View>
+          <Footer />
 
         </ScrollView>
       </View>

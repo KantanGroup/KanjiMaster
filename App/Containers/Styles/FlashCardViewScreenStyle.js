@@ -11,5 +11,5 @@ export default StyleSheet.create({
   centered: {
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
 })

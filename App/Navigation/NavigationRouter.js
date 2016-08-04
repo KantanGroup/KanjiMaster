@@ -20,6 +20,8 @@ import NiteirukanjiScreen from '../Containers/StartupScreen'
 import DouonigigoScreen from '../Containers/StartupScreen'
 import BunpouScreen from '../Containers/StartupScreen'
 import SetteiScreen from '../Containers/FlashCardScreen'
+import FlashCardScreen from '../Containers/FlashCardScreen'
+import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 
 // I18n
 import I18n from '../I18n/I18n.js'
@@ -50,6 +52,8 @@ class NavigationRouter extends Component {
             <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
             <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} />
             <Scene key='settei' component={SetteiScreen} title={I18n.t('settei')} />
+            <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} />
+            <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} />
           </Scene>
         </Scene>
       </Router>
