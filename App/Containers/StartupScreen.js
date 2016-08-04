@@ -5,6 +5,8 @@ import Actions from '../Actions/Creators'
 import { Images } from '../Themes'
 import { Metrics } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
+import Footer from '../Components/Footer'
+
 // external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
@@ -63,9 +65,7 @@ class StartupScreen extends React.Component {
             {I18n.t('settei')}
           </RoundedButton>
 
-          <View style={styles.centered}>
-            <Text style={styles.subtitle}>Made with ❤️ by Infinite Red</Text>
-          </View>
+          <Footer />
 
         </ScrollView>
       </View>
