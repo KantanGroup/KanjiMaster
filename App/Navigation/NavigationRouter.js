@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Scene, Router } from 'react-native-router-flux'
+import { BackAndroid } from 'react-native'
+import { Actions, Scene, Router } from 'react-native-router-flux'
 import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 
@@ -31,6 +33,10 @@ import I18n from '../I18n/I18n.js'
 ***************************/
 
 class NavigationRouter extends Component {
+  componentWillMount = () => {
+    BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+  }
+
   render () {
     return (
       <Router>
