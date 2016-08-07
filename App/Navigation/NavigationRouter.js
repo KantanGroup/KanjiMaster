@@ -52,7 +52,7 @@ class NavigationRouter extends Component {
             <Scene key='apiTesting' component={APITestingScreen} title='API Testing' />
             <Scene key='theme' component={ThemeScreen} title='Theme' />
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
-            <Scene key='startup' component={StartupScreen} title={I18n.t('kanjimaster')} initial/>
+            <Scene initial key='startup' component={StartupScreen} title={I18n.t('kanjimaster')} renderLeftButton={NavItems.hamburgerButton}/>
             <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} />
             <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} />
             <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
