@@ -14,18 +14,9 @@ export default class SetteiGenGo extends React.Component {
 
   renderChoiseLanguage(){
     const options = [
-      {
-        language: 'English',
-        value: 'en'
-      },
-      {
-        language: '日本語',
-        value: 'ja'
-      },
-      {
-        language: 'Tiếng Việt',
-        value: 'vi'
-      }
+      { language: 'English', value: 'en' },
+      { language: '日本語', value: 'ja' },
+      { language: 'Tiếng Việt', value: 'vi' }
     ];
 
     function setSelectedOption(option){

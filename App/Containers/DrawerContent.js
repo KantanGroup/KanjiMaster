@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { ScrollView, Image } from 'react-native'
 import styles from './Styles/DrawerContentStyle'
 import { Images } from '../Themes'
@@ -52,9 +52,6 @@ class DrawerContent extends Component {
     )
   }
 
-}
-
-DrawerContent.propTypes = {
 }
 
 DrawerContent.contextTypes = {
