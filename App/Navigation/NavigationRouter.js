@@ -17,10 +17,12 @@ import APITestingScreen from '../Containers/APITestingScreen'
 import ThemeScreen from '../Containers/ThemeScreen'
 import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
 import StartupScreen from '../Containers/StartupScreen'
-import KanjiScreen from '../Containers/StartupScreen'
-import NiteirukanjiScreen from '../Containers/StartupScreen'
-import DouonigigoScreen from '../Containers/StartupScreen'
-import BunpouScreen from '../Containers/KanjiByJLPTScreen'
+import KanjiScreen from '../Containers/KanjiScreen'
+import KanjiByJLPTScreen from '../Containers/KanjiByJLPTScreen'
+import NiteirukanjiScreen from '../Containers/KanjiScreen'
+import DouonigigoScreen from '../Containers/KanjiScreen'
+import TangoScreen from '../Containers/StartupScreen'
+import BunpouScreen from '../Containers/StartupScreen'
 import SetteiScreen from '../Containers/SetteiScreen'
 import FlashCardScreen from '../Containers/FlashCardScreen'
 import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
@@ -54,8 +56,10 @@ class NavigationRouter extends Component {
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
             <Scene initial key='startup' component={StartupScreen} title={I18n.t('kanjimaster')} renderLeftButton={NavItems.hamburgerButton}/>
             <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} />
+            <Scene key='kanjijlpt' component={KanjiByJLPTScreen} title={I18n.t('kanjijlpt')} />
             <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} />
             <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
+            <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} />
             <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} />
             <Scene key='settei' component={SetteiScreen} title={I18n.t('settei')} />
             <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} />

@@ -24,14 +24,14 @@ class DrawerContent extends Component {
     NavigationActions.kanji()
   }
 
-  handlePressNiteirukanji = () => {
+  handlePressTango = () => {
     this.toggleDrawer()
-    NavigationActions.niteirukanji()
+    NavigationActions.tango()
   }
 
-  handlePressDouonigigo = () => {
+  handlePressBunpou = () => {
     this.toggleDrawer()
-    NavigationActions.douonigigo()
+    NavigationActions.bunpou()
   }
 
   handlePressSettei = () => {
@@ -45,8 +45,8 @@ class DrawerContent extends Component {
         <Image source={Images.logo} style={styles.logo} />
         <DrawerButton text={I18n.t('home')} onPress={this.handlePressStartup} />
         <DrawerButton text={I18n.t('kanji')} onPress={this.handlePressKanji} />
-        <DrawerButton text={I18n.t('niteirukanji')} onPress={this.handlePressNiteirukanji} />
-        <DrawerButton text={I18n.t('douonigigo')} onPress={this.handlePressDouonigigo} />
+        <DrawerButton text={I18n.t('tango')} onPress={this.handlePressTango} />
+        <DrawerButton text={I18n.t('bunpou')} onPress={this.handlePressBunpou} />
         <DrawerButton text={I18n.t('settei')} onPress={this.handlePressSettei} />
       </ScrollView>
     )
