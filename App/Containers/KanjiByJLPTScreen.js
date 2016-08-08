@@ -12,6 +12,7 @@ import styles from './Styles/KanjiByJLPTScreenStyle'
 
 //Components
 import KanjiCard from '../Components/KanjiCard'
+import KanjiCardDraw from '../Components/KanjiCardDraw'
 
 
 class KanjiByJLPTScreen extends React.Component {
@@ -141,6 +142,8 @@ class KanjiByJLPTScreen extends React.Component {
           renderFooter={this.renderFooter}
           enableEmptySections
         />
+
+        <KanjiCardDraw />
       </View>
     )
   }

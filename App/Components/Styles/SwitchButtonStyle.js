@@ -8,6 +8,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'white',
+    alignItems: 'center',
   },
   title: {
     marginLeft: 10,
