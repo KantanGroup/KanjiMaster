@@ -4,7 +4,7 @@ import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    height: 200,
+    height: 115,
     marginBottom: 10,
   },
   box: {
