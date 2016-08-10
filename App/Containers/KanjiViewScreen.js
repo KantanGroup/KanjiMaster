@@ -16,9 +16,9 @@ import styles from './Styles/KanjiViewScreenStyle'
 // I18n
 import I18n from '../I18n/I18n.js'
 
-import KanjiCardDefine from '../Components/KanjiCardDefine'
-import KanjiCardDraw from '../Components/KanjiCardDraw'
-import KanjiCardByTangoListView from '../Components/KanjiCardByTangoListView'
+import KanjiMeaning from '../Components/KanjiMeaning'
+import KanjiDraw from '../Components/KanjiDraw'
+import KanjiMeaningByTango from '../Components/KanjiMeaningByTango'
 import Footer from '../Components/Footer'
 
 class KanjiViewScreen extends React.Component {
@@ -32,11 +32,11 @@ class KanjiViewScreen extends React.Component {
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
 
-          <KanjiCardDefine />
+          <KanjiMeaning />
 
-          <KanjiCardDraw />
+          <KanjiDraw />
 
-          <KanjiCardByTangoListView />
+          <KanjiMeaningByTango />
 
           <Footer type='black'/>
 

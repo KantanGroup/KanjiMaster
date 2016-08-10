@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import styles from './Styles/KanjiCardViewStyle'
+import styles from './Styles/KanjiMeaningByTangoStyle'
 
-export default class KanjiCardView extends React.Component {
+export default class KanjiMeaningByTango extends React.Component {
 
   // // Prop type warnings
   // static propTypes = {
@@ -18,7 +18,11 @@ export default class KanjiCardView extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text>KanjiCardView Component</Text>
+        <View style={styles.box}>
+          <View style={styles.draw}>
+            <Text>Kanji By List Tango</Text>
+          </View>
+        </View>
       </View>
     )
   }

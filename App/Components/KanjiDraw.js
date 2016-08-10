@@ -1,6 +1,6 @@
 import React from 'react'
 import { WebView, View } from 'react-native'
-import styles from './Styles/KanjiCardDrawStyle'
+import styles from './Styles/KanjiDrawStyle'
 
 import Svg,{
     Circle,
@@ -20,7 +20,7 @@ import Svg,{
     Stop
 } from 'react-native-svg';
 
-export default class KanjiCardDraw extends React.Component {
+export default class KanjiDraw extends React.Component {
 
   // // Prop type warnings
   // static propTypes = {

@@ -1,9 +1,9 @@
 import React from 'react'
 import { TouchableOpacity, View, Image, Text } from 'react-native'
-import styles from './Styles/KanjiCardStyle'
+import styles from './Styles/KanjiDefineByRowStyle'
 import { Images } from '../Themes'
 
-export default class KanjiCard extends React.Component {
+export default class KanjiDefineByRow extends React.Component {
 
   constructor (props) {
     super(props)

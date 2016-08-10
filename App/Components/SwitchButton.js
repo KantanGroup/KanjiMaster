@@ -22,7 +22,6 @@ export default class SwitchButton extends React.Component {
         <Text style={styles.title}>{this.props.text}</Text>
         <Switch
           onValueChange={(value) => this.setState({enableHanTu: value})}
-          style={styles.switchbutton}
           value={this.state.enableHanTu} />
       </View>
     );

@@ -11,9 +11,7 @@ import AlertMessage from '../Components/AlertMessageComponent'
 import styles from './Styles/KanjiByJLPTScreenStyle'
 
 //Components
-import KanjiCard from '../Components/KanjiCard'
-import KanjiCardDraw from '../Components/KanjiCardDraw'
-
+import KanjiDefineByRow from '../Components/KanjiDefineByRow'
 
 class KanjiByJLPTScreen extends React.Component {
 
@@ -69,7 +67,7 @@ class KanjiByJLPTScreen extends React.Component {
   *************************************************************/
   _renderRow (rowData) {
     return (
-      <KanjiCard kanjiContent={rowData} onPress={() => NavigationActions.kanjiview({kanjiContent: rowData})}/>
+      <KanjiDefineByRow kanjiContent={rowData} onPress={() => NavigationActions.kanjiview({kanjiContent: rowData})}/>
     )
   }
 

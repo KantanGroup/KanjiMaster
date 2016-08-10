@@ -13,9 +13,4 @@ export default StyleSheet.create({
   title: {
     marginLeft: 10,
   },
-  switchbutton: {
-    height: 20,
-    marginLeft: 10,
-    width: 50,
-  }
 })
