@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, Text } from 'react-native'
+import { TouchableOpacity, View, Image, Text } from 'react-native'
 import styles from './Styles/KanjiCardStyle'
 import { Images } from '../Themes'
 
@@ -23,7 +23,7 @@ export default class KanjiCard extends React.Component {
       );
     }
     return (
-      <View style={styles.kanjiRow}>
+      <TouchableOpacity style={styles.kanjiRow} onPress={this.props.onPress}>
         <View style={styles.card}>
           <Text numberOfLines={1} style={styles.kanjiHanTu}>{this.props.kanjiContent.hantu}</Text>
           <Text style={styles.kanji}>{this.props.kanjiContent.kanji}</Text>
@@ -32,7 +32,7 @@ export default class KanjiCard extends React.Component {
           {onyomi}
           {kunyomi}
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }

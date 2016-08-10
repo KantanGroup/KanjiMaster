@@ -69,7 +69,7 @@ class KanjiByJLPTScreen extends React.Component {
   *************************************************************/
   _renderRow (rowData) {
     return (
-      <KanjiCard kanjiContent={rowData}/>
+      <KanjiCard kanjiContent={rowData} onPress={() => NavigationActions.kanjiview({kanjiContent: rowData})}/>
     )
   }
 
@@ -142,8 +142,6 @@ class KanjiByJLPTScreen extends React.Component {
           renderFooter={this.renderFooter}
           enableEmptySections
         />
-
-        <KanjiCardDraw />
       </View>
     )
   }

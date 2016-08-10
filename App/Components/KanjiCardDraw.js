@@ -126,15 +126,18 @@ export default class KanjiCardDraw extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.draw}>
-          <WebView
-            style={{
-              height: 250,
-              width: 250,
-            }}
-            source={{html: HTML}}
-            scalesPageToFit={true}
-          />
+        <View style={styles.box}>
+          <View style={styles.draw}>
+            <WebView
+              style={{
+                height: 230,
+                width: 250,
+              }}
+              source={{html: HTML}}
+              scalesPageToFit={true}
+              scrollEnabled={false}
+            />
+          </View>
         </View>
       </View>
     )

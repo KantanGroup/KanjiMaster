@@ -18,7 +18,11 @@ export default class KanjiCardDefine extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text>KanjiCardDefine Component</Text>
+        <View style={styles.box}>
+          <View style={styles.draw}>
+            <Text>KanjiCardDefine Component</Text>
+          </View>
+        </View>
       </View>
     )
   }

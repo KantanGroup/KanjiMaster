@@ -19,6 +19,7 @@ import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
 import StartupScreen from '../Containers/StartupScreen'
 import KanjiScreen from '../Containers/KanjiScreen'
 import KanjiByJLPTScreen from '../Containers/KanjiByJLPTScreen'
+import KanjiViewScreen from '../Containers/KanjiViewScreen'
 import NiteirukanjiScreen from '../Containers/KanjiScreen'
 import DouonigigoScreen from '../Containers/KanjiScreen'
 import TangoScreen from '../Containers/StartupScreen'
@@ -57,6 +58,7 @@ class NavigationRouter extends Component {
             <Scene initial key='startup' component={StartupScreen} title={I18n.t('kanjimaster')} renderLeftButton={NavItems.hamburgerButton}/>
             <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} />
             <Scene key='kanjijlpt' component={KanjiByJLPTScreen} title={I18n.t('kanjijlpt')} />
+            <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} />
             <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} />
             <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
             <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} />
