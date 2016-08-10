@@ -5,14 +5,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: 15,
-    ...Platform.select({
-      ios: {
-        marginTop: -10,
-      },
-      android: {
-        marginTop: -5,
-      },
-    }),
   },
   box: {
     margin: 5,

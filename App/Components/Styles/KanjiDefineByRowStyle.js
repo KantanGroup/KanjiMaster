@@ -20,15 +20,12 @@ export default StyleSheet.create({
     width: 60
   },
   kanjiHanTu: {
-    marginBottom: 5,
     fontSize: 16,
-    fontWeight: 'bold',
     alignSelf: 'center',
     color: Colors.snow,
   },
   kanji: {
     fontSize: 42,
-    fontWeight: 'bold',
     alignSelf: 'center',
     color: Colors.snow,
   },
@@ -42,12 +39,12 @@ export default StyleSheet.create({
   onyomi: {
     marginLeft: 3,
     marginBottom: 5,
-    fontSize: 18,
+    fontSize: 16,
     textAlign: 'center',
     color: Colors.snow
   },
   kunyomi: {
-    fontSize: 18,
+    fontSize: 16,
     textAlign: 'center',
     color: Colors.snow
   },

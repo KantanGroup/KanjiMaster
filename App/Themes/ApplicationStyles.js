@@ -23,6 +23,10 @@ const ApplicationStyles = {
       flex: 1,
       paddingTop: Metrics.baseMargin
     },
+    containerCenter: {
+      flex: 1,
+      justifyContent: 'center',
+    },
     section: {
       margin: Metrics.section,
       padding: Metrics.baseMargin,

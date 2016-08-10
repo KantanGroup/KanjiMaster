@@ -31,19 +31,7 @@ class StartupScreen extends React.Component {
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView style={styles.container}>
-
-          <View style={styles.centered}>
-            <Image source={Images.clearLogo} style={styles.logo} />
-          </View>
-
-          <View style={styles.section} >
-            <Text style={styles.sectionText} >
-              Default screens for development, debugging, and alpha testing
-              are available below.
-            </Text>
-          </View>
-
+        <View style={styles.containerCenter}>
           <RoundedButton onPress={this.props.kanji}>
             {I18n.t('kanji')}
           </RoundedButton>
@@ -61,8 +49,7 @@ class StartupScreen extends React.Component {
           </RoundedButton>
 
           <Footer type='black'/>
-
-        </ScrollView>
+        </View>
       </View>
     )
   }
