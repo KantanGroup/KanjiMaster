@@ -22,6 +22,17 @@ import Footer from '../Components/Footer'
 class FlashCardScreen extends React.Component {
 
   render () {
+    var cardDefault = {
+      definition: 'Kanji',
+      kanji: '漢字',
+      hiragana: 'かんじ'
+    }
+
+    var cardSetting = {
+      definition: true,
+      hiragana: true
+    }
+
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
@@ -40,10 +51,9 @@ class FlashCardScreen extends React.Component {
           </View>
 
           <View style={styles.centered}>
-            <FlashCard onPress={NavigationActions.flashcardview}/>
+            <FlashCard card={cardDefault} setting={cardSetting} onPress={NavigationActions.flashcardview}/>
           </View>
 
-          <Footer />
           <Footer type='black'/>
 
         </ScrollView>
