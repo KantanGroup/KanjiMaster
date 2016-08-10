@@ -55,7 +55,7 @@ class KanjiScreen extends React.Component {
             {I18n.t('douonigigo')}
           </RoundedButton>
 
-          <Footer />
+          <Footer type='black'/>
 
         </ScrollView>
       </View>

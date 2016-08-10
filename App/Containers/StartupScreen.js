@@ -60,7 +60,7 @@ class StartupScreen extends React.Component {
             {I18n.t('settei')}
           </RoundedButton>
 
-          <Footer />
+          <Footer type='black'/>
 
         </ScrollView>
       </View>

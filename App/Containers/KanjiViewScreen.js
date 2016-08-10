@@ -38,7 +38,7 @@ class KanjiViewScreen extends React.Component {
 
           <KanjiCardByTangoListView />
 
-          <Footer />
+          <Footer type='black'/>
 
         </ScrollView>
       </View>

@@ -40,7 +40,7 @@ class SetteiScreen extends React.Component {
             <SetteiGenGo　language='en'/>
           </SetteiItem>
 
-          <Footer />
+          <Footer type='black'/>
 
         </ScrollView>
       </View>

@@ -44,6 +44,7 @@ class FlashCardScreen extends React.Component {
           </View>
 
           <Footer />
+          <Footer type='black'/>
 
         </ScrollView>
       </View>

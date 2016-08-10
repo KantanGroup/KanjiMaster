@@ -28,7 +28,7 @@ class FlashCardViewScreen extends React.Component {
 
         <ScrollView animation="bounceIn" duration={500} style={styles.container}>
 
-          <Footer />
+          <Footer type='black'/>
 
         </ScrollView>
       </View>
