@@ -3,9 +3,21 @@ import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  footer: {
+  footerBlack: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 10,
+  },
+  footerWhite: {
+    margin: 5,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    backgroundColor: 'white',
+    borderColor: '#dddddd',
+    borderStyle: null,
+    borderWidth: 0.5,
+    borderRadius: 2
   }
 })
