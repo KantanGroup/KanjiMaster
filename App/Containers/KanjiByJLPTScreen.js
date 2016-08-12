@@ -28,14 +28,14 @@ class KanjiByJLPTScreen extends React.Component {
     * Usually this should come from Redux mapStateToProps
     *************************************************************/
     const dataObjects = [
-      {hantu: 'HAN', kanji: '漢', onyomi: 'カン'},
-      {hantu: 'TU', kanji: '字', onyomi: 'ジ', kunyomi: 'あざ    あざな    -な'},
-      {hantu: 'XẠ, DẠ, DỊCH', kanji: '射', onyomi: 'シャ', kunyomi: 'い.る    さ.す    う.つ'},
-      {hantu: 'KÍCH', kanji: '撃', onyomi: 'ゲキ', kunyomi: 'う.つ'},
-      {hantu: 'HAN', kanji: '漢', onyomi: 'カン'},
-      {hantu: 'TU', kanji: '字', onyomi: 'ジ', kunyomi: 'あざ    あざな    -な'},
-      {hantu: 'XẠ, DẠ, DỊCH', kanji: '射', onyomi: 'シャ', kunyomi: 'い.る    さ.す    う.つ'},
-      {hantu: 'KÍCH', kanji: '撃', onyomi: 'ゲキ', kunyomi: 'う.つ'},
+      {hantu: "HAN", kanji: "漢", onyomi: "カン"},
+      {hantu: "TU", kanji: "字", onyomi: "ジ", kunyomi: "あざ    あざな    -な"},
+      {hantu: "XẠ, DẠ, DỊCH", kanji: "射", onyomi: "シャ", kunyomi: "い.る    さ.す    う.つ"},
+      {hantu: "KÍCH", kanji: "撃", onyomi: "ゲキ", kunyomi: "う.つ"},
+      {hantu: "HAN", kanji: "漢", onyomi: "カン"},
+      {hantu: "TU", kanji: "字", onyomi: "ジ", kunyomi: "あざ    あざな    -な"},
+      {hantu: "XẠ, DẠ, DỊCH", kanji: "射", onyomi: "シャ", kunyomi: "い.る    さ.す    う.つ"},
+      {hantu: "KÍCH", kanji: "撃", onyomi: "ゲキ", kunyomi: "う.つ"},
     ]
 
     const noDataObjects = []

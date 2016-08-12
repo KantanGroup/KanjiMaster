@@ -11,8 +11,8 @@ export default class Tango extends React.Component {
   render () {
     return (
       <View style={styles.row}>
-        <Text style={styles.boldLabel}>{this.props.tango.title}</Text>
-        <Text style={styles.label}>{this.props.tango.description}</Text>
+        <Text style={styles.boldLabel}>{this.props.tango.tango}</Text>
+        <Text style={styles.label}>{this.props.tango.hiragana}</Text>
       </View>
     )
   }
