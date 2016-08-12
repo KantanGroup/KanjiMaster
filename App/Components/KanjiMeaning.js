@@ -17,11 +17,9 @@ export default class KanjiMeaning extends React.Component {
 
   render () {
     return (
-      <View style={styles.container}>
-        <View style={styles.box}>
-          <View style={styles.draw}>
-            <Text>Kanji Meaning Component</Text>
-          </View>
+      <View style={styles.box}>
+        <View style={styles.draw}>
+          <Text>The application generator uses the ignite-base template to provide a fresh application with all the common tech wired up and ready to roll. Base applications come with common development screens, tools, and components. As for now, this is a 'Kitchen Sink' plan of attack. Eventually to be paired down, and adjustable in v2.0</Text>
         </View>
       </View>
     )

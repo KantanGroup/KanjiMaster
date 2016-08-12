@@ -2,10 +2,6 @@ import { Platform, StyleSheet } from 'react-native';
 import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    marginBottom: 15,
-  },
   box: {
     margin: 5,
     padding: 10,
