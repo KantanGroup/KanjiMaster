@@ -147,6 +147,19 @@ class KanjiViewScreen extends React.Component {
       }]
     }];
 
+    let kanjiContent = {
+      hantu: "HAN",
+      kanji: "漢",
+      onyomi: "カン",
+      level: "4",
+      part: "氵 THỦY",
+      setsumei:
+      `Nghĩa:
+      (1) Sông Hán. Sông Thiên Hà (sông Thiên Hà trên trời).
+      (2) Nhà Hán. Nước Tàu.
+      (3) Giống Hán, giống dân làm chủ nước Tàu từ đời vua Hoàng Đế trở xuống gọi là giống Hán.`
+    };
+
     return (
       <View style={styles.mainContainer}>
         <Image
@@ -155,7 +168,7 @@ class KanjiViewScreen extends React.Component {
           resizeMode='stretch' />
         <ScrollView style={styles.container}>
 
-          <KanjiMeaning />
+          <KanjiMeaning kanjiContent={kanjiContent}/>
 
           <KanjiMeaningByTango tangos={tangos}/>
 
