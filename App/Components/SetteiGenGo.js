@@ -28,7 +28,7 @@ export default class SetteiGenGo extends React.Component {
     return (
       <View>
         <SegmentedControls
-          direction={'column'}
+          direction={this.props.direction}
           tint= {'#007AFF'}
           selectedTint= {'white'}
           options={ options }

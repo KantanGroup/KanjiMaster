@@ -37,7 +37,7 @@ class SetteiScreen extends React.Component {
           </SetteiItem>
 
           <SetteiItem title={I18n.t('setteigengo')}>
-            <SetteiGenGo　language='en'/>
+            <SetteiGenGo　language='en' direction='column'/>
           </SetteiItem>
 
           <Footer type='black'/>
