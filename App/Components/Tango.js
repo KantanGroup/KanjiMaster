@@ -1,10 +1,11 @@
 import React from 'react'
-import { TouchableWithoutFeedback, TouchableOpacity, ScrollView, View, Text } from 'react-native'
+import { TouchableOpacity, View, Text } from 'react-native'
 import styles from './Styles/TangoStyle'
 
 import { RadioButtons } from 'react-native-radio-buttons';
 
 import F8Touchable from './f8/F8Touchable'
+import Star from './Star'
 
 var LayoutAnimation = require('LayoutAnimation');
 
@@ -138,6 +139,7 @@ class TangoComponent extends React.Component {
             </Text>
             {hiragana}
             {hanViet}
+            <Star rating={4} />
           </View>
         </F8Touchable>
         {description}

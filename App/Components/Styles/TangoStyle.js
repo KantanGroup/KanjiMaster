@@ -15,9 +15,7 @@ export default StyleSheet.create({
   },
   row: {
     flex: 1,
-    //backgroundColor: Colors.fire,
     marginVertical: Metrics.smallMargin,
-    //justifyContent: 'center',
     paddingVertical: 0,
     paddingHorizontal: 0,
   },
@@ -25,8 +23,7 @@ export default StyleSheet.create({
     marginHorizontal: 20,
   },
   title: {
-    //paddingVertical: 5,
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
     flexDirection: 'row',
     backgroundColor: 'white',
   },
@@ -37,8 +34,6 @@ export default StyleSheet.create({
     color: '#99A7B9',
   },
   description: {
-    //padding: 14,
-    //paddingLeft: 20 + 22,
     flex: 1,
     flexDirection: 'row',
   },
@@ -46,7 +41,6 @@ export default StyleSheet.create({
     fontSize: 15,
     lineHeight: 21,
     color: '#002350',
-    //flex: 1,
   },
   leftItem: {
     //flex: 1,
@@ -64,20 +58,14 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    width: 40,
+    width: 44,
   },
   languageItem: {
     textAlign: 'center',
     padding: 5,
   },
   meaning: {
-    paddingLeft: 10,
     lineHeight: 21,
     color: '#002350',
-  },
-  icon: {
-    width: 300,
-    height: 300,
-    alignSelf: 'center',
-  },
+  }
 })
