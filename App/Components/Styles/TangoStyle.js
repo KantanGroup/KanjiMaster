@@ -26,6 +26,7 @@ export default StyleSheet.create({
     paddingHorizontal: 18,
     flexDirection: 'row',
     backgroundColor: 'white',
+    alignItems: 'center',
   },
   symbol: {
     fontSize: 15,
@@ -65,6 +66,7 @@ export default StyleSheet.create({
     padding: 5,
   },
   meaning: {
+    paddingTop: 5,
     lineHeight: 21,
     color: '#002350',
   }
