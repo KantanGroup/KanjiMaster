@@ -3,6 +3,8 @@ import { TouchableOpacity, View, Image, Text } from 'react-native'
 import styles from './Styles/KanjiDefineByRowStyle'
 import { Images } from '../Themes'
 
+import Star from './Star'
+
 export default class KanjiDefineByRow extends React.Component {
 
   constructor (props) {
@@ -13,13 +15,13 @@ export default class KanjiDefineByRow extends React.Component {
     let onyomi;
     if (this.props.kanjiContent.onyomi) {
       onyomi = (
-        <Text numberOfLines={1} style={styles.onyomi}>訓読み：{this.props.kanjiContent.onyomi}</Text>
+        <Text numberOfLines={1} style={styles.onyomi}>訓：{this.props.kanjiContent.onyomi}</Text>
       );
     }
     let kunyomi;
     if (this.props.kanjiContent.kunyomi) {
       kunyomi = (
-        <Text numberOfLines={1} style={styles.kunyomi}>音読み：{this.props.kanjiContent.kunyomi}</Text>
+        <Text numberOfLines={1} style={styles.kunyomi}>音：{this.props.kanjiContent.kunyomi}</Text>
       );
     }
     return (
@@ -29,6 +31,7 @@ export default class KanjiDefineByRow extends React.Component {
           <Text style={styles.kanji}>{this.props.kanjiContent.kanji}</Text>
         </View>
         <View style={styles.content}>
+          <Star rating={this.props.kanjiContent.level} />
           {onyomi}
           {kunyomi}
         </View>

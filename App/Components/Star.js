@@ -18,7 +18,7 @@ export default class Star extends React.Component {
     }
     const stars = ratings.map(
       (value) => (
-        <Image style={styles.star} source={Images.fullStar} />
+        <Image key={value} style={styles.star} source={Images.fullStar} />
       )
     );
     return (
