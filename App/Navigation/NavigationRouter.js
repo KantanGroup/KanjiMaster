@@ -27,6 +27,7 @@ import BunpouScreen from '../Containers/AutocompleteExample'
 import SetteiScreen from '../Containers/SetteiScreen'
 import FlashCardScreen from '../Containers/FlashCardScreen'
 import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
+import SearchScreen from '../Containers/SearchScreen'
 
 // I18n
 import I18n from '../I18n/I18n.js'
@@ -66,6 +67,7 @@ class NavigationRouter extends Component {
             <Scene key='settei' component={SetteiScreen} title={I18n.t('settei')} />
             <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} />
             <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} />
+            <Scene key='search' component={SearchScreen} title='Search' />
           </Scene>
         </Scene>
       </Router>

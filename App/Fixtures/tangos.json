@@ -1,0 +1,118 @@
+[{
+	"tango": "実際",
+	"hiragana": "じっさい",
+	"hanViet": "SỰ THỰC",
+	"meanings": [{
+		"language": "en",
+		"en": [{
+			"meaning": "practicality; practical",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 11
+		}, {
+			"meaning": "reality; actuality; actual conditions",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 12
+		}, {
+			"meaning": "bhutakoti (limit of reality)",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 13
+		}]
+	}, {
+		"language": "ja",
+		"ja": [{
+			"meaning": "物事のあるがままの状態。「老人医療の実際に目を向ける」「実際は経営が苦しい」",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 21
+		}, {
+			"meaning": "想像や理論でなく、実地の場合。「実際に応用する」「実際にあった話」「実際問題」",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 22
+		}, {
+			"meaning": "仏語。真如、または無余涅槃(むよねはん)のこと。存在の究極的な姿。",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 23
+		}]
+	}, {
+		"language": "vi",
+		"vi": [{
+			"meaning": "Sự thực",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 21
+		}, {
+			"meaning": "Thật",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 22
+		}, {
+			"meaning": "Thực tế",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 23
+		}]
+	}]
+}, {
+	"tango": "じっさい",
+	"hiragana": "じっさい",
+	"meanings": [{
+		"language": "en",
+		"en": [{
+			"meaning": "practicality; practical",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 11
+		}, {
+			"meaning": "reality; actuality; actual conditions",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 12
+		}, {
+			"meaning": "bhutakoti (limit of reality)",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 13
+		}]
+	}, {
+		"language": "ja",
+		"ja": [{
+			"meaning": "物事のあるがままの状態。「老人医療の実際に目を向ける」「実際は経営が苦しい」",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 21
+		}, {
+			"meaning": "想像や理論でなく、実地の場合。「実際に応用する」「実際にあった話」「実際問題」",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 22
+		}, {
+			"meaning": "仏語。真如、または無余涅槃(むよねはん)のこと。存在の究極的な姿。",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 23
+		}]
+	}, {
+		"language": "vi",
+		"vi": [{
+			"meaning": "Sự thực",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 21
+		}, {
+			"meaning": "Thật",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 22
+		}, {
+			"meaning": "Thực tế",
+			"level": 5,
+			"author": "tuanta17",
+			"mid": 23
+		}]
+	}]
+}]

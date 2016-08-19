@@ -11,7 +11,7 @@ import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 // Styles
-import styles from './Styles/KanjiViewScreenStyle'
+import styles from './Styles/SearchScreenStyle'
 
 // I18n
 import I18n from '../I18n/I18n.js'
@@ -21,12 +21,18 @@ import KanjiDraw from '../Components/KanjiDraw'
 import KanjiMeaningByTango from '../Components/KanjiMeaningByTango'
 import Footer from '../Components/Footer'
 
-class KanjiViewScreen extends React.Component {
+class SearchScreen extends React.Component {
   constructor (props) {
     super(props)
   }
 
+  componentDidMount() {
+    //console.log(this.props.data);
+    console.log(this.props.title);
+  }
+
   render () {
+
     let tangos = require('../Fixtures/tangos.json');
 
     let kanjiContent = {
@@ -80,4 +86,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(KanjiViewScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen)
