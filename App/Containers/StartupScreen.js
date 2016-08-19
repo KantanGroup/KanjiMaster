@@ -6,6 +6,7 @@ import { Images } from '../Themes'
 import { Metrics } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
 import Footer from '../Components/Footer'
+import SearchBox from '../Components/SearchBox'
 
 // external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -32,6 +33,8 @@ class StartupScreen extends React.Component {
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <View style={styles.containerCenter}>
+          <SearchBox />
+
           <RoundedButton onPress={this.props.kanji}>
             {I18n.t('kanji')}
           </RoundedButton>
