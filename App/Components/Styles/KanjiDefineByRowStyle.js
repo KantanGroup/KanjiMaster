@@ -17,7 +17,7 @@ export default StyleSheet.create({
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 60
+    width: 80
   },
   kanjiHanTu: {
     fontSize: 16,
@@ -32,18 +32,19 @@ export default StyleSheet.create({
   content: {
     flex: 1,
     flexDirection: 'column',
-    margin: 5,
+    marginHorizontal: 5,
+    marginTop: 5,
     alignItems: 'flex-start',
-    justifyContent: 'center',
   },
   onyomi: {
-    marginLeft: 3,
-    marginBottom: 5,
+    marginTop: 3,
+    marginBottom: 3,
     fontSize: 16,
     textAlign: 'center',
     color: Colors.snow
   },
   kunyomi: {
+    marginBottom: 3,
     fontSize: 16,
     textAlign: 'center',
     color: Colors.snow
