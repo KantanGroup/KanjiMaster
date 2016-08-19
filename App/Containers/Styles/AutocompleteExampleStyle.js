@@ -22,16 +22,11 @@ export default StyleSheet.create({
     fontSize: 15,
     margin: 5
   },
+  box: {
+    flex: 4,
+  },
   info: {
-    //flex: 1,
-    //paddingTop: 60,
-    //flex: 4,
-    //backgroundColor: '#F5FCFF',
-    //marginBottom: -10,
-    //borderColor: '#dddddd',
-    //borderStyle: null,
-    //borderWidth: 0.5,
-    //borderRadius: 2,
+    paddingTop: 60,
   },
   infoText: {
     textAlign: 'center'
@@ -39,8 +34,6 @@ export default StyleSheet.create({
   titleText: {
     fontSize: 18,
     fontWeight: '500',
-    //marginBottom: 10,
-    //marginTop: 10,
     textAlign: 'center'
   },
   directorText: {

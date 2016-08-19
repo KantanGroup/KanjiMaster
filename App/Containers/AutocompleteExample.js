@@ -28,7 +28,7 @@ class AutocompleteExample extends Component {
   }
 
   componentDidMount() {
-    const json = require('../Fixtures/films.json');
+    const json = require('../Fixtures/inputDatas.json');
     const { results: films } = json;
     this.setState({ films });
   }
@@ -40,16 +40,16 @@ class AutocompleteExample extends Component {
 
     const { films } = this.state;
     const regex = new RegExp(`${query.trim()}`, 'i');
-    return films.filter(film => film.title.search(regex) >= 0);
+    return films.filter(film => film.define.search(regex) >= 0);
   }
 
   _renderFilm(films) {
     if (films.length > 0) {
-      const { title, director, opening_crawl, episode_id } = films[0];
+      const { define, director, opening_crawl, episode_id } = films[0];
       const roman = episode_id < ROMAN.length ? ROMAN[episode_id] : episode_id;
       return (
         <View style={styles.info}>
-          <Text style={styles.titleText}>{roman}. {title}</Text>
+          <Text style={styles.titleText}>{roman}. {define}</Text>
           <Text style={styles.directorText}>({director})</Text>
           <Text style={styles.openingText}>{opening_crawl}</Text>
         </View>
@@ -58,7 +58,7 @@ class AutocompleteExample extends Component {
 
     return (
       <View style={styles.info}>
-        <Text style={styles.infoText}>Enter Title of a Star Wars movie</Text>
+        <Text style={styles.infoText}>Enter define of a Star Wars movie</Text>
       </View>
     );
   }
@@ -73,29 +73,29 @@ class AutocompleteExample extends Component {
           source={Images.background}
           style={styles.backgroundImage}
           resizeMode='stretch' />
-        <ScrollView>
+        <View>
+          {this._renderFilm(films)}
           <Autocomplete
             autoCapitalize="none"
             autoCorrect={false}
-            containerStyle={styles.container}
-            inputContainerStyle={{margin: 0, marginTop: -10}}
-            listStyle={{margin: 0}}
-            style={{backgroundColor: 'red'}}
-            data={films.length === 1 && comp(query, films[0].title) ? [] : films}
+            containerStyle={styles.autocompleteContainer}
+            //inputContainerStyle={{margin: 0, marginTop: -10}}
+            //listStyle={{margin: 0}}
+            //style={{backgroundColor: 'red'}}
+            data={films.length === 1 && comp(query, films[0].define) ? [] : films}
             defaultValue={query}
             onChangeText={text => this.setState({ query: text })}
-            placeholder="Enter Star Wars film title"
-            renderItem={({ title, release_date }) => (
-              <TouchableOpacity onPress={() => this.setState({ query: title })}>
+            placeholder="Enter Star Wars film define"
+            renderItem={({ define, release_date }) => (
+              <TouchableOpacity onPress={() => this.setState({ query: define })}>
                 <Text style={styles.itemText}>
-                  {title} ({release_date.split('-')[0]})
+                  {define} ({release_date.split('-')[0]})
                 </Text>
                 <Footer />
               </TouchableOpacity>
             )}
           />
-          {this._renderFilm(films)}
-        </ScrollView>
+        </View>
       </View>
     );
   }
