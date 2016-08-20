@@ -50,24 +50,19 @@ class SearchScreen extends React.Component {
       (3) Giống Hán, giống dân làm chủ nước Tàu từ đời vua Hoàng Đế trở xuống gọi là giống Hán.`
     };
 
-    do {
-      Database.write(() => {
-        // optional properties can be set to null or undefined at creation
-        let charlie = Database.create('Person', {
-          name: 'Charlie',
-          birthday: new Date(1995, 11, 25),
-          car: null,
-        });
-
-        // optional properties can be set to `null`, `undefined`,
-        // or to a new non-null value
-        charlie.birthday = undefined;
-        charlie.car = {make: 'Honda', model: 'Accord', miles: 10000};
+    Database.write(() => {
+      // optional properties can be set to null or undefined at creation
+      let charlie = Database.create('Person', {
+        name: 'Charlie',
+        birthday: new Date(1995, 11, 25),
+        car: null,
       });
-    } catch {
-        console.log("Something went wrong!")
-    }
 
+      // optional properties can be set to `null`, `undefined`,
+      // or to a new non-null value
+      charlie.birthday = undefined;
+      charlie.car = {make: 'Honda', model: 'Accord', miles: 10000};
+    });
 
     let allPerson = Database.objects('Person');
     let allCar = Database.objects('Car');
