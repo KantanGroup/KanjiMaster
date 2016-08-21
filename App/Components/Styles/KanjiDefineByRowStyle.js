@@ -23,6 +23,7 @@ export default StyleSheet.create({
     fontSize: 16,
     alignSelf: 'center',
     color: Colors.snow,
+    marginBottom: -5,
   },
   kanji: {
     fontSize: 42,

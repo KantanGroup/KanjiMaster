@@ -1,6 +1,9 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { WebView, View, Text } from 'react-native'
 import styles from './Styles/KanjiMeaningStyle'
+import { Metrics } from '../Themes/'
+
+import HtmlText from './HtmlText'
 
 export default class KanjiMeaning extends React.Component {
 
@@ -9,6 +12,14 @@ export default class KanjiMeaning extends React.Component {
   }
 
   render () {
+    console.log(this.props.kanjiContent);
+    
+    let keyword;
+    if (this.props.kanjiContent.keyword) {
+      keyword = this.props.kanjiContent.keyword;
+    } else {
+      keyword = '漢';
+    }
     let onyomi;
     if (this.props.kanjiContent.onyomi) {
       onyomi = (
@@ -23,12 +34,11 @@ export default class KanjiMeaning extends React.Component {
     }
     let setsumei;
     if (this.props.kanjiContent.setsumei) {
+      const firstHtml = '<html><body><div>'
+      const lastHtml = '</div></body></html>'
       setsumei = (
-        <View>
-          <Text style={[styles.text]}>
-            {this.props.kanjiContent.setsumei}
-          </Text>
-        </View>
+        <HtmlText html={`${firstHtml}${this.props.kanjiContent.setsumei}${lastHtml}`}/>
+
       );
     }
     return (
@@ -36,21 +46,21 @@ export default class KanjiMeaning extends React.Component {
         <View style={styles.row}>
           <View style={styles.card}>
             <Text style={styles.kanji}>
-              漢
+              {keyword}
             </Text>
           </View>
           <View style={styles.content}>
             <View style={styles.content}>
               <Text style={[styles.text]}>
-                Bộ: 漢 - HÁN
+                {this.props.kanjiContent.hantu}
               </Text>
               {onyomi}
               {kunyomi}
               <Text style={[styles.text]}>
-                JLPT: 4
+                JLPT: {this.props.kanjiContent.level}
               </Text>
               <Text style={[styles.text]}>
-                Bộ thành phần: 氵 THỦY
+                Bộ thành phần: {this.props.kanjiContent.part}
               </Text>
             </View>
           </View>

@@ -28,7 +28,7 @@ export default class KanjiDefineByRow extends React.Component {
       <TouchableOpacity style={styles.kanjiRow} onPress={this.props.onPress}>
         <View style={styles.card}>
           <Text numberOfLines={1} style={styles.kanjiHanTu}>{this.props.kanjiContent.hantu}</Text>
-          <Text style={styles.kanji}>{this.props.kanjiContent.kanji}</Text>
+          <Text style={styles.kanji}>{this.props.kanjiContent.keyword}</Text>
         </View>
         <View style={styles.content}>
           <Star rating={this.props.kanjiContent.level} />

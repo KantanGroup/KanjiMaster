@@ -27,6 +27,7 @@ class KanjiByJLPTScreen extends React.Component {
     * This is an array of objects with the properties you desire
     * Usually this should come from Redux mapStateToProps
     *************************************************************/
+    /*
     const dataObjects = [
       {hantu: "HAN", level: 3,kanji: "漢", onyomi: "カン"},
       {hantu: "TU", level: 5,kanji: "字", onyomi: "ジ", kunyomi: "あざ    あざな    -な"},
@@ -37,7 +38,8 @@ class KanjiByJLPTScreen extends React.Component {
       {hantu: "XẠ, DẠ, DỊCH", level: 4,kanji: "射", onyomi: "シャ", kunyomi: "い.る    さ.す    う.つ"},
       {hantu: "KÍCH", level: 5, kanji: "撃", onyomi: "ゲキ", kunyomi: "う.つ"},
     ]
-
+    */
+    const dataObjects = require('../Fixtures/hantus.json');
     const noDataObjects = []
 
     /* ***********************************************************
