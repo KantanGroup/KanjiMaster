@@ -56,7 +56,7 @@ class SearchScreen extends React.Component {
         name: 'Charlie',
         birthday: new Date(1995, 11, 25),
         car: null,
-      });
+      }, true);
 
       // optional properties can be set to `null`, `undefined`,
       // or to a new non-null value

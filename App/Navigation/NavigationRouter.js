@@ -27,7 +27,7 @@ import BunpouScreen from '../Containers/AutocompleteExample'
 import SetteiScreen from '../Containers/SetteiScreen'
 import FlashCardScreen from '../Containers/FlashCardScreen'
 import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
-import SearchScreen from '../Containers/AutocompleteExample'
+import SearchScreen from '../Containers/SearchScreen'
 
 // I18n
 import I18n from '../I18n/I18n.js'
