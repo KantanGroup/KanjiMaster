@@ -1,159 +1,122 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * The examples provided by Facebook are for non-commercial testing and
- * evaluation purposes only.
- *
- * Facebook reserves all rights not expressly granted.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL
- * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
- * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- * @flow
- */
-'use strict';
+import React from 'react'
+import { View, Text, ListView } from 'react-native'
+import { connect } from 'react-redux'
 
-var React = require('react');
-var ReactNative = require('react-native');
-var {
-  Image,
-  ListView,
-  TouchableHighlight,
-  StyleSheet,
-  RecyclerViewBackedScrollView,
-  Text,
-  View,
-} = ReactNative;
+// For empty lists
+import AlertMessage from '../Components/AlertMessageComponent'
 
-//var UIExplorerPage = require('./UIExplorerPage');
+// Styles
+import styles from './Styles/ListviewExampleStyle'
 
-var ListviewExample = React.createClass({
-  statics: {
-    title: '<ListView>',
-    description: 'Performant, scrollable list of data.'
-  },
+class ListviewExample extends React.Component {
 
-  getInitialState: function() {
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    return {
-      dataSource: ds.cloneWithRows(this._genRows({})),
-    };
-  },
+  constructor (props) {
+    super(props)
+    /* ***********************************************************
+    * STEP 1
+    * This is an array of objects with the properties you desire
+    * Usually this should come from Redux mapStateToProps
+    *************************************************************/
+    const dataObjects = [
+      {title: 'First Title', description: 'First Description'},
+      {title: 'Second Title', description: 'Second Description'},
+      {title: 'Third Title', description: 'Third Description'},
+      {title: 'Fourth Title', description: 'Fourth Description'},
+      {title: 'Fifth Title', description: 'Fifth Description'},
+      {title: 'Sixth Title', description: 'Sixth Description'},
+      {title: 'Seventh Title', description: 'Seventh Description'},
+      {title: 'First Title', description: 'First Description'},
+      {title: 'Second Title', description: 'Second Description'},
+      {title: 'Third Title', description: 'Third Description'},
+      {title: 'Fourth Title', description: 'Fourth Description'},
+      {title: 'Fifth Title', description: 'Fifth Description'},
+      {title: 'Sixth Title', description: 'Sixth Description'},
+      {title: 'Seventh Title', description: 'Seventh Description'},
+      {title: 'First Title', description: 'First Description'},
+      {title: 'Second Title', description: 'Second Description'},
+      {title: 'Third Title', description: 'Third Description'},
+      {title: 'Fourth Title', description: 'Fourth Description'},
+      {title: 'Fifth Title', description: 'Fifth Description'},
+      {title: 'Sixth Title', description: 'Sixth Description'},
+      {title: 'Seventh Title', description: 'Seventh Description'}
+    ]
 
-  _pressData: ({}: {[key: number]: boolean}),
+    /* ***********************************************************
+    * STEP 2
+    * Teach datasource how to detect if rows are different
+    * Make this function fast!  Perhaps something like:
+    *   (r1, r2) => r1.id !== r2.id}
+    *************************************************************/
+    const rowHasChanged = (r1, r2) => r1 !== r2
 
-  componentWillMount: function() {
-    this._pressData = {};
-  },
+    // DataSource configured
+    const ds = new ListView.DataSource({rowHasChanged})
 
-  render: function() {
+    // Datasource is always in state
+    this.state = {
+      dataSource: ds.cloneWithRows(dataObjects)
+    }
+  }
+
+  /* ***********************************************************
+  * STEP 3
+  * `_renderRow` function -How each cell/row should be rendered
+  * It's our best practice to place a single component here:
+  *
+  * e.g.
+    return <MyCustomCell title={rowData.title} description={rowData.description} />
+  *************************************************************/
+  _renderRow (rowData) {
     return (
+      <View style={styles.row}>
+        <Text style={styles.boldLabel}>{rowData.title}</Text>
+        <Text style={styles.label}>{rowData.description}</Text>
+      </View>
+    )
+  }
+
+  /* ***********************************************************
+  * STEP 4
+  * If your datasource is driven by Redux, you'll need to
+  * reset it when new data arrives.
+  * DO NOT! place `cloneWithRows` inside of render, since render
+  * is called very often, and should remain fast!  Just replace
+  * state's datasource on newProps.
+  *
+  * e.g.
+    componentWillReceiveProps (newProps) {
+      if (newProps.someData) {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(newProps.someData)
+        })
+      }
+    }
+  *************************************************************/
+
+  // Used for friendly AlertMessage
+  // returns true if the dataSource is empty
+  _noRowData () {
+    return this.state.dataSource.getRowCount() === 0
+  }
+
+  render () {
+    return (
+      <View style={styles.container}>
+        <AlertMessage title='Nothing to See Here, Move Along' show={this._noRowData()} />
         <ListView
+          contentContainerStyle={styles.listContent}
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
-          renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
-          renderSeparator={this._renderSeparator}
         />
-    );
-  },
-
-  _renderRow: function(rowData: string, sectionID: number, rowID: number, highlightRow: (sectionID: number, rowID: number) => void) {
-    var rowHash = Math.abs(hashCode(rowData));
-    var imgSource = THUMB_URLS[rowHash % THUMB_URLS.length];
-    return (
-      <TouchableHighlight onPress={() => {
-          this._pressRow(rowID);
-          highlightRow(sectionID, rowID);
-        }}>
-        <View>
-          <View style={styles.row}>
-            <Image style={styles.thumb} source={imgSource} />
-            <Text style={styles.text}>
-              {rowData + ' - ' + LOREM_IPSUM.substr(0, rowHash % 301 + 10)}
-            </Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    );
-  },
-
-  _genRows: function(pressData: {[key: number]: boolean}): Array<string> {
-    var dataBlob = [];
-    for (var ii = 0; ii < 100; ii++) {
-      var pressedText = pressData[ii] ? ' (pressed)' : '';
-      dataBlob.push('Row ' + ii + pressedText);
-    }
-    return dataBlob;
-  },
-
-  _pressRow: function(rowID: number) {
-    this._pressData[rowID] = !this._pressData[rowID];
-    this.setState({dataSource: this.state.dataSource.cloneWithRows(
-      this._genRows(this._pressData)
-    )});
-  },
-
-  _renderSeparator: function(sectionID: number, rowID: number, adjacentRowHighlighted: bool) {
-    return (
-      <View
-        key={`${sectionID}-${rowID}`}
-        style={{
-          height: adjacentRowHighlighted ? 4 : 1,
-          backgroundColor: adjacentRowHighlighted ? '#3B5998' : '#CCCCCC',
-        }}
-      />
-    );
+      </View>
+    )
   }
-});
+}
 
-var THUMB_URLS = [
-  require('./Thumbnails/like.png'),
-  require('./Thumbnails/dislike.png'),
-  require('./Thumbnails/call.png'),
-  require('./Thumbnails/fist.png'),
-  require('./Thumbnails/bandaged.png'),
-  require('./Thumbnails/flowers.png'),
-  require('./Thumbnails/heart.png'),
-  require('./Thumbnails/liking.png'),
-  require('./Thumbnails/party.png'),
-  require('./Thumbnails/poke.png'),
-  require('./Thumbnails/superlike.png'),
-  require('./Thumbnails/victory.png'),
-  ];
-var LOREM_IPSUM = 'Lorem ipsum dolor sit amet, ius ad pertinax oportere accommodare, an vix civibus corrumpit referrentur. Te nam case ludus inciderint, te mea facilisi adipiscing. Sea id integre luptatum. In tota sale consequuntur nec. Erat ocurreret mei ei. Eu paulo sapientem vulputate est, vel an accusam intellegam interesset. Nam eu stet pericula reprimique, ea vim illud modus, putant invidunt reprehendunt ne qui.';
-
-/* eslint no-bitwise: 0 */
-var hashCode = function(str) {
-  var hash = 15;
-  for (var ii = str.length - 1; ii >= 0; ii--) {
-    hash = ((hash << 5) - hash) + str.charCodeAt(ii);
+const mapStateToProps = (state) => {
+  return {
+    // ...redux state to props here
   }
-  return hash;
-};
+}
 
-var styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    padding: 10,
-    backgroundColor: '#F6F6F6',
-  },
-  thumb: {
-    width: 64,
-    height: 64,
-  },
-  text: {
-    flex: 1,
-  },
-});
-
-module.exports = ListviewExample;
+export default connect(mapStateToProps)(ListviewExample)
