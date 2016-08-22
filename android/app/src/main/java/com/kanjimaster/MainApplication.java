@@ -15,6 +15,8 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.List;
 
+import io.realm.react.RealmReactPackage; // ADD THIS
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -26,10 +28,11 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
+            new MainReactPackage(),
             new VectorIconsPackage(),
             new ReactNativeI18n(),
-            new RNDeviceInfo()
+            new RNDeviceInfo(),
+            new RealmReactPackage() // ADD THIS
       );
     }
   };
