@@ -7,20 +7,17 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    shadowColor: "black",
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    shadowOffset: {
-      height: 0,
-      width: 0
-    },
-    width: 290,
-    height: 290,
+    borderColor: '#dddddd',
+    borderStyle: null,
+    borderWidth: 0.5,
+    borderRadius: 3,
+    width: 350,
+    height: 350,
   },
   definition: {
     fontSize: 30,
     textAlign: 'center',
-    marginTop: 10
+    //marginTop: 10
   },
   kanji: {
     fontSize: 80,
@@ -28,6 +25,6 @@ export default StyleSheet.create({
   },
   hiragana: {
     fontSize: 40,
-    marginBottom: 10
+    //marginBottom: 10
   }
 })
