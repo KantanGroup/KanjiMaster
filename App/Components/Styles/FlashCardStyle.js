@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native'
 import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
+  ...ApplicationStyles.screen,
   card: {
     flexDirection: 'column',
     justifyContent: 'center',
@@ -26,5 +27,9 @@ export default StyleSheet.create({
   hiragana: {
     fontSize: 40,
     //marginBottom: 10
+  },
+  centered: {
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })

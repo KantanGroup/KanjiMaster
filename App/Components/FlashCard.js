@@ -1,8 +1,15 @@
 import React from 'react'
-import { ScrollView, TouchableOpacity, Text } from 'react-native'
+import { ScrollView, View, Image, TouchableOpacity, Text } from 'react-native'
 import styles from './Styles/FlashCardStyle'
 
 import * as Animatable from 'react-native-animatable'
+
+import { Images } from '../Themes'
+
+import KanjiMeaning from '../Components/KanjiMeaning'
+import KanjiDraw from '../Components/KanjiDraw'
+import KanjiMeaningByTango from '../Components/KanjiMeaningByTango'
+import Footer from '../Components/Footer'
 
 var cardDefinition = {
   definition: 'Kanji',
@@ -36,55 +43,90 @@ export default class FlashCard extends React.Component {
   };
 
   render () {
-    let definition;
-    if (this.state.showData.definition) {
-      definition = (
-        <Text numberOfLines={2} style={styles.definition}>{this.state.showData.definition}</Text>
-      );
-    }
-    let hiragana;
-    if (this.state.showData.hiragana) {
-      hiragana = (
-        <Text numberOfLines={1} style={styles.hiragana}>{this.state.showData.hiragana}</Text>
-      );
-    }
     let meaning;
     if (this.state.showDefinition) {
       meaning = (
-        <TouchableOpacity style={styles.card} onPress={this.switchFlashCard}>
-          {definition}
-          <Text numberOfLines={1} style={styles.kanji}>{this.state.showData.kanji}</Text>
-          {hiragana}
-        </TouchableOpacity>
+        <FlasCardDefine showData={this.state.showData} onPress={this.switchFlashCard}/>
       )
     } else {
       meaning = (
-        <ScrollView style={{flex: 1}}>
-          <TouchableOpacity style={styles.card} onPress={this.switchFlashCard}>
-            {definition}
-            <Text numberOfLines={1} style={styles.kanji}>{this.state.showData.kanji}</Text>
-            {hiragana}
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.card} onPress={this.switchFlashCard}>
-            {definition}
-            <Text numberOfLines={1} style={styles.kanji}>{this.state.showData.kanji}</Text>
-            {hiragana}
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.card} onPress={this.switchFlashCard}>
-            {definition}
-            <Text numberOfLines={1} style={styles.kanji}>{this.state.showData.kanji}</Text>
-            {hiragana}
-          </TouchableOpacity>
-        </ScrollView>
+        <FlasCardMeaning showData={this.state.showData} onPress={this.switchFlashCard}/>
       )
     }
     return (
-      <Animatable.View
-        delay={this.props.delay ? this.props.delay: 500}
-        animation={this.state.showDefinition ? 'pulse' : 'flipInY'}
-      >
+      <View style={styles.mainContainer}>
+        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+
         {meaning}
-      </Animatable.View>
+
+      </View>
+    )
+  }
+}
+
+class FlasCardDefine extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let definition;
+    if (this.props.showData.definition) {
+      definition = (
+        <Text numberOfLines={2} style={styles.definition}>{this.props.showData.definition}</Text>
+      );
+    }
+    let hiragana;
+    if (this.props.showData.hiragana) {
+      hiragana = (
+        <Text numberOfLines={1} style={styles.hiragana}>{this.props.showData.hiragana}</Text>
+      );
+    }
+    return (
+      <View style={styles.containerCenter}>
+        <View style={styles.centered}>
+          <TouchableOpacity style={styles.card} onPress={this.props.onPress}>
+            {definition}
+            <Text numberOfLines={1} style={styles.kanji}>{this.props.showData.kanji}</Text>
+            {hiragana}
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
+}
+
+class FlasCardMeaning extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let tangos = require('../Fixtures/tangos.json');
+
+    let kanjiContent = {
+      hantu: "HAN",
+      kanji: "漢",
+      onyomi: "カン",
+      level: "4",
+      part: "氵 THỦY",
+      setsumei:
+      `Nghĩa:
+      (1) Sông Hán. Sông Thiên Hà (sông Thiên Hà trên trời).
+      (2) Nhà Hán. Nước Tàu.
+      (3) Giống Hán, giống dân làm chủ nước Tàu từ đời vua Hoàng Đế trở xuống gọi là giống Hán.`
+    };
+
+    return (
+      <ScrollView style={styles.container}>
+        <TouchableOpacity onPress={this.props.onPress}>
+
+          <KanjiMeaning kanjiContent={kanjiContent}/>
+
+          <KanjiMeaningByTango tangos={tangos}/>
+
+        </TouchableOpacity>
+      </ScrollView>
     )
   }
 }

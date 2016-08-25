@@ -17,7 +17,6 @@ import I18n from '../I18n/I18n.js'
 
 // Components
 import FlashCard from '../Components/FlashCard'
-import Footer from '../Components/Footer'
 
 var cardDefinition = {
   definition: 'Kanji',
@@ -50,17 +49,8 @@ class FlashCardScreen extends React.Component {
     }
 
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <View style={styles.containerCenter}>
-
-          <View style={styles.centered}>
-            <FlashCard card={this.state.showData} setting={cardSetting}/>
-          </View>
-
-          <Footer type='black'/>
-
-        </View>
+      <View style={{flex: 1}}>
+        <FlashCard card={this.state.showData} setting={cardSetting}/>
       </View>
     )
   }
