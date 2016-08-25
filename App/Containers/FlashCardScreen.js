@@ -17,46 +17,40 @@ import I18n from '../I18n/I18n.js'
 
 // Components
 import FlashCard from '../Components/FlashCard'
-import Footer from '../Components/Footer'
+
+var cardDefinition = {
+  definition: 'Kanji',
+  kanji: '漢字',
+  hiragana: 'かんじ'
+}
+
+var cardMeaning = {
+  definition: 'Chữ hán',
+  kanji: '漢字',
+  hiragana: '漢字は難しい'
+}
 
 class FlashCardScreen extends React.Component {
 
-  render () {
-    var cardDefault = {
-      definition: 'Kanji',
-      kanji: '漢字',
-      hiragana: 'かんじ'
-    }
+  constructor (props) {
+    super(props)
 
+    // Datasource is always in state
+    this.state = {
+      showDefinition: true,
+      showData: cardDefinition
+    }
+  }
+
+  render () {
     var cardSetting = {
       definition: true,
       hiragana: true
     }
 
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-
-        <ScrollView style={styles.container}>
-
-          <View style={styles.centered}>
-            <Image source={Images.clearLogo} style={styles.logo} />
-          </View>
-
-          <View style={styles.section} >
-            <Text style={styles.sectionText} >
-              Default screens for development, debugging, and alpha testing
-              are available below.
-            </Text>
-          </View>
-
-          <View style={styles.centered}>
-            <FlashCard card={cardDefault} setting={cardSetting} onPress={NavigationActions.flashcardview}/>
-          </View>
-
-          <Footer type='black'/>
-
-        </ScrollView>
+      <View style={{flex: 1}}>
+        <FlashCard card={this.state.showData} setting={cardSetting}/>
       </View>
     )
   }

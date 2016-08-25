@@ -1,39 +1,132 @@
 import React from 'react'
-import { TouchableOpacity, Text } from 'react-native'
+import { ScrollView, View, Image, TouchableOpacity, Text } from 'react-native'
 import styles from './Styles/FlashCardStyle'
 
 import * as Animatable from 'react-native-animatable'
+
+import { Images } from '../Themes'
+
+import KanjiMeaning from '../Components/KanjiMeaning'
+import KanjiDraw from '../Components/KanjiDraw'
+import KanjiMeaningByTango from '../Components/KanjiMeaningByTango'
+import Footer from '../Components/Footer'
+
+var cardDefinition = {
+  definition: 'Kanji',
+  kanji: '漢字',
+  hiragana: 'かんじ'
+}
+
+var cardMeaning = {
+  definition: 'Chữ hán',
+  kanji: '漢字',
+  hiragana: '漢字は難しい'
+}
 
 export default class FlashCard extends React.Component {
 
   constructor (props) {
     super(props)
+
+    // Datasource is always in state
+    this.state = {
+      showDefinition: true,
+      showData: cardDefinition
+    }
   }
 
+  switchFlashCard = () => {
+      this.setState({
+        showDefinition: !this.state.showDefinition,
+        showData: this.state.showDefinition ? cardDefinition : cardMeaning
+      });
+  };
+
   render () {
+    let meaning;
+    if (this.state.showDefinition) {
+      meaning = (
+        <FlasCardDefine showData={this.state.showData} onPress={this.switchFlashCard}/>
+      )
+    } else {
+      meaning = (
+        <FlasCardMeaning showData={this.state.showData} onPress={this.switchFlashCard}/>
+      )
+    }
+    return (
+      <View style={styles.mainContainer}>
+        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+
+        {meaning}
+
+      </View>
+    )
+  }
+}
+
+class FlasCardDefine extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
     let definition;
-    if (this.props.card.definition) {
+    if (this.props.showData.definition) {
       definition = (
-        <Text numberOfLines={2} style={styles.definition}>{this.props.card.definition}</Text>
+        <Text numberOfLines={2} style={styles.definition}>{this.props.showData.definition}</Text>
       );
     }
     let hiragana;
-    if (this.props.card.hiragana) {
+    if (this.props.showData.hiragana) {
       hiragana = (
-        <Text numberOfLines={1} style={styles.hiragana}>{this.props.card.hiragana}</Text>
+        <Text numberOfLines={1} style={styles.hiragana}>{this.props.showData.hiragana}</Text>
       );
     }
     return (
-      <Animatable.View
-        delay={this.props.delay ? this.props.delay: 500}
-        animation={this.props.animation ? this.props.animation : 'bounceIn'}
-      >
-        <TouchableOpacity style={styles.card} onPress={this.props.onPress}>
-          {definition}
-          <Text numberOfLines={1} style={styles.kanji}>{this.props.card.kanji}</Text>
-          {hiragana}
+      <View style={styles.containerCenter}>
+        <View style={styles.centered}>
+          <TouchableOpacity style={styles.card} onPress={this.props.onPress}>
+            {definition}
+            <Text numberOfLines={1} style={styles.kanji}>{this.props.showData.kanji}</Text>
+            {hiragana}
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
+}
+
+class FlasCardMeaning extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let tangos = require('../Fixtures/tangos.json');
+
+    let kanjiContent = {
+      hantu: "HAN",
+      kanji: "漢",
+      onyomi: "カン",
+      level: "4",
+      part: "氵 THỦY",
+      setsumei:
+      `Nghĩa:
+      (1) Sông Hán. Sông Thiên Hà (sông Thiên Hà trên trời).
+      (2) Nhà Hán. Nước Tàu.
+      (3) Giống Hán, giống dân làm chủ nước Tàu từ đời vua Hoàng Đế trở xuống gọi là giống Hán.`
+    };
+
+    return (
+      <ScrollView style={styles.container}>
+        <TouchableOpacity onPress={this.props.onPress}>
+
+          <KanjiMeaning kanjiContent={kanjiContent}/>
+
+          <KanjiMeaningByTango tangos={tangos}/>
+
         </TouchableOpacity>
-      </Animatable.View>
+      </ScrollView>
     )
   }
 }
