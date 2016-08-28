@@ -32,6 +32,7 @@
     "react-native-collapsible": "^0.7.0",
     "react-native-device-info": "^0.9.3",
     "react-native-drawer": "^2.2.6",
+    "react-native-htmlview": "^0.5.0",
     "react-native-i18n": "0.0.8",
     "react-native-radio-buttons": "^0.12.1",
     "react-native-router-flux": "^3.30.6",
