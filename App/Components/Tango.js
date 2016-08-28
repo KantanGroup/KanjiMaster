@@ -6,8 +6,27 @@ import { RadioButtons } from 'react-native-radio-buttons';
 
 import F8Touchable from './f8/F8Touchable'
 import Star from './Star'
+import HtmlText from './HtmlText'
 
 var LayoutAnimation = require('LayoutAnimation');
+
+function getMeaningByLanguage(meanings, language) {
+  let data;
+  meanings.map((meaning) => {
+    if (meaning.language === language) {
+      data = meaning.meaning;
+    }
+  })
+  return data;
+}
+
+function getLanguageInTango(tango) {
+  let languages = [];
+  tango.meanings.map((meaning) => {
+    languages.push(meaning.language);
+  })
+  return languages;
+}
 
 export default class Tango extends React.Component {
 
@@ -16,22 +35,10 @@ export default class Tango extends React.Component {
   }
 
   render () {
-    let languages = [];
     let meanings =  [];
-
-    this.props.tango.meanings.map((meaning) => {
-      languages.push(meaning.language);
-      meanings[meaning.language] = meaning[meaning.language];
-    })
-
     return (
       <View>
-        <TangoComponent
-          languages={languages}
-          tango={this.props.tango.tango}
-          hiragana={this.props.tango.hiragana}
-          hanViet={this.props.tango.hanViet}
-          meanings={meanings}/>
+        <TangoComponent tango={this.props.tango}/>
       </View>
     )
   }
@@ -45,10 +52,12 @@ class TangoComponent extends React.Component {
     };
   }
 
-  componentWillMount(){
+  componentDidMount() {
+    let languages = getLanguageInTango(this.props.tango);
     this.setState({
-      selectedOption: this.props.languages[1] || 'ja',
-      selectedMeaning: this.props.meanings[this.props.languages[1] || 'ja']
+      languages: languages,
+      selectedOption: languages[0] || 'ja',
+      selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, languages[0] || 'ja'),
     });
   }
 
@@ -56,7 +65,7 @@ class TangoComponent extends React.Component {
     function setSelectedOption(selectedOption){
       this.setState({
         selectedOption,
-        selectedMeaning: this.props.meanings[selectedOption]
+        selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, this.state.selectedOption)
       });
     }
 
@@ -77,7 +86,7 @@ class TangoComponent extends React.Component {
     return (
       <View>
         <RadioButtons
-          options={ this.props.languages }
+          options={ this.state.languages }
           onSelection={ setSelectedOption.bind(this) }
           selectedOption={this.state.selectedOption }
           renderOption={ renderOption }
@@ -90,40 +99,39 @@ class TangoComponent extends React.Component {
   switchLanguage(selectedlanguage) {
     function setSelectedOption(selectedlanguage){
       this.setState({
-        selectedMeaning: this.props.meanings[selectedlanguage]
+        selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, this.state.selectedOption)
       });
     }
   }
 
   render() {
     var description;
+    const firstHtml = '<html><body><div>'
+    const lastHtml = '</div></body></html>'
     if (this.state.expanded) {
       description = (
         <View style={styles.description}>
           {this.renderChoiseLanguage()}
           <View style={styles.rightItem}>
-            <Text style={styles.meaning}>
-              {
-                this.state.selectedMeaning[0].meaning
-              }
-            </Text>
+            <HtmlText html={`${firstHtml}${this.state.selectedMeaning}${lastHtml}`}/>
           </View>
         </View>
       );
     }
+
     var hiragana;
-    if (this.props.tango !== this.props.hiragana) {
+    if (this.props.tango.hiragana) {
       hiragana = (
         <Text style={styles.text}>
-          [{this.props.hiragana}]
+          [{this.props.tango.hiragana}]
         </Text>
       )
     }
     var hanViet;
-    if (this.props.hanViet) {
+    if (this.props.tango.hanViet) {
       hanViet = (
         <Text style={styles.text}>
-          [{this.props.hanViet}]
+          [{this.props.tango.hanViet}]
         </Text>
       )
     }
@@ -135,7 +143,7 @@ class TangoComponent extends React.Component {
               {this.state.expanded ? '\u2212' : '+'}
             </Text>
             <Text style={styles.text}>
-              {this.props.tango}
+              {this.props.tango.tango}
             </Text>
             {hiragana}
             {hanViet}
