@@ -2,6 +2,17 @@ import { StyleSheet } from 'react-native'
 import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10
+  },
+  innerContainer: {
+    borderRadius: 5,
+    marginTop: -7,
+    //alignItems: 'center',
+    maxHeight: 400
+  },
   boldLabel: {
     fontWeight: 'bold',
     alignSelf: 'center',

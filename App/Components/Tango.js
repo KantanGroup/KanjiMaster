@@ -1,8 +1,12 @@
 import React from 'react'
-import { TouchableOpacity, View, Text } from 'react-native'
+import { Modal, ScrollView, Image, TouchableHighlight, TouchableOpacity, View, Text } from 'react-native'
 import styles from './Styles/TangoStyle'
 
 import { RadioButtons } from 'react-native-radio-buttons';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import HTMLView from 'react-native-htmlview';
+
+import { Images } from '../Themes'
 
 import F8Touchable from './f8/F8Touchable'
 import Star from './Star'
@@ -49,6 +53,8 @@ class TangoComponent extends React.Component {
     super(props);
     this.state = {
       expanded: false,
+      modalVisible: false,
+      transparent: true
     };
   }
 
@@ -61,65 +67,21 @@ class TangoComponent extends React.Component {
     });
   }
 
-  renderChoiseLanguage() {
-    function setSelectedOption(selectedOption){
-      this.setState({
-        selectedOption,
-        selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, this.state.selectedOption)
-      });
-    }
-
-    function renderOption(option, selected, onSelect, index){
-      const style = selected ? { fontWeight: 'bold', color: 'blue'} : {};
-
-      return (
-        <TouchableOpacity onPress={onSelect} key={index}>
-          <Text style={[styles.languageItem, style]}>{option}</Text>
-        </TouchableOpacity>
-      );
-    }
-
-    function renderContainer(optionNodes){
-      return <View style={[styles.language, { flexDirection: 'column', justifyContent: 'space-between'}]}>{optionNodes}</View>;
-    }
-
-    return (
-      <View>
-        <RadioButtons
-          options={ this.state.languages }
-          onSelection={ setSelectedOption.bind(this) }
-          selectedOption={this.state.selectedOption }
-          renderOption={ renderOption }
-          renderContainer={ renderContainer }
-          onSelect={ this.switchLanguage(this.state.selectedOption)}
-        />
-      </View>);
+  switchLanguage(selectedlanguage) {
+    this.setState({
+      selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, selectedlanguage)
+    });
   }
 
-  switchLanguage(selectedlanguage) {
-    function setSelectedOption(selectedlanguage){
-      this.setState({
-        selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, this.state.selectedOption)
-      });
-    }
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
 
   render() {
-    var description;
     const firstHtml = '<html><body><div>'
     const lastHtml = '</div></body></html>'
-    if (this.state.expanded) {
-      description = (
-        <View style={styles.description}>
-          {this.renderChoiseLanguage()}
-          <View style={styles.rightItem}>
-            <HtmlText html={`${firstHtml}${this.state.selectedMeaning}${lastHtml}`}/>
-          </View>
-        </View>
-      );
-    }
 
-    var hiragana;
+    let hiragana;
     if (this.props.tango.hiragana) {
       hiragana = (
         <Text style={styles.text}>
@@ -127,7 +89,7 @@ class TangoComponent extends React.Component {
         </Text>
       )
     }
-    var hanViet;
+    let hanViet;
     if (this.props.tango.hanViet) {
       hanViet = (
         <Text style={styles.text}>
@@ -135,9 +97,82 @@ class TangoComponent extends React.Component {
         </Text>
       )
     }
+
+    let modalBackgroundStyle = {
+      backgroundColor: this.state.transparent ? 'rgba(0, 0, 0, 0.5)' : '#f5fcff',
+    };
+    let innerContainerTransparentStyle = this.state.transparent
+      ? {backgroundColor: '#fff', padding: 15}
+      : null;
+    let activeButtonStyle = {
+      backgroundColor: '#ddd'
+    };
+
+    const myButton = (
+      <Icon.Button name="close" color="red"
+        iconStyle={{justifyContent: 'center'}}
+        backgroundColor="#FFFFFF" onPress={() => {
+          this.setModalVisible(false)
+        }}/>
+    );
+
+    let languagItem = [];
+    let languages = getLanguageInTango(this.props.tango);
+    languages.map((langage) => {
+      if (langage === 'ja') {
+        languagItem.push(
+          <TouchableHighlight onPress={() => {
+            this.switchLanguage('ja')
+            }} >
+            <Text style={{ fontWeight: 'bold', color: 'blue', margin: 10}}>Japanese</Text>
+          </TouchableHighlight>
+        )
+      }
+      if (langage === 'en') {
+        languagItem.push(
+          <TouchableHighlight onPress={() => {
+            this.switchLanguage('en')
+            }} >
+            <Text style={{ fontWeight: 'bold', color: 'blue', margin: 10}}>English</Text>
+          </TouchableHighlight>
+        )
+      }
+      if (langage === 'vi') {
+        languagItem.push(
+          <TouchableHighlight onPress={() => {
+            this.switchLanguage('vi')
+            }} >
+            <Text style={{ fontWeight: 'bold', color: 'blue', margin: 10}}>Vietnamese</Text>
+          </TouchableHighlight>
+        )
+      }
+    })
+
     return (
       <View style={styles.row}>
-        <F8Touchable onPress={() => this.toggle()}>
+        <Modal
+          animationType={"slide"}
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {this.setModalVisible(false)}}
+          >
+          <View style={[styles.container, modalBackgroundStyle]}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', backgroundColor: "#FFFFFF", borderTopLeftRadius: 5, borderTopRightRadius: 5}}>
+              {languagItem}
+              {myButton}
+            </View>
+             <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
+               <ScrollView>
+                 <HTMLView
+                   value={`${firstHtml}${this.state.selectedMeaning}${lastHtml}`}
+                 />
+               </ScrollView>
+             </View>
+           </View>
+        </Modal>
+        <TouchableHighlight onPress={() => {
+          this.setModalVisible(true)
+        }}>
           <View style={styles.title} >
             <Text style={styles.symbol}>
               {this.state.expanded ? '\u2212' : '+'}
@@ -149,14 +184,8 @@ class TangoComponent extends React.Component {
             {hanViet}
             <Star rating={4} />
           </View>
-        </F8Touchable>
-        {description}
+        </TouchableHighlight>
       </View>
     );
-  }
-
-  toggle() {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    this.setState({expanded: !this.state.expanded});
   }
 }
