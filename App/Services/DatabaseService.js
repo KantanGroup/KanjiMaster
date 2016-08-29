@@ -51,9 +51,51 @@ export default {
 
   },
 
-  createKanjiMatome(data) {
+  createKanjiMatome: (data) => {
+    //*
     Database.write(() => {
-      // Find desk by id
+      Database.create('KanjiMatome', data , true);
+    });
+    //*/
+    /*
+    Database.write(() => {
+      Database.create('KanjiMatome', {
+        keyword: data.keyword,
+        onyomi: data.onyomi,
+        kunyomi: data.kunyomi,
+        radical: data.radical,
+        strokes: data.strokes,
+        grade: data.grade,
+        jlpt: data.jlpt,
+        jouyou: data.jouyou,
+        rtk6th: data.rtk6th,
+        rank: data.rank,
+      }, true);
+    });
+    //*/
+  },
+
+  createKanjiMatomes: (datas) => {
+    Database.write(() => {
+      datas.map((data) => {
+        Database.create('KanjiMatome', {
+          keyword: data.keyword,
+          onyomi: data.onyomi,
+          kunyomi: data.kunyomi,
+          radical: data.radical,
+          strokes: data.strokes,
+          grade: data.grade,
+          jlpt: data.jlpt,
+          jouyou: data.jouyou,
+          rtk6th: data.rtk6th,
+          rank: data.rank
+        }, true);
+      })
+    });
+  },
+
+  getKanjiMatome: (data) => {
+    Database.write(() => {
       Database.create('KanjiMatome', {
         keyword: data.keyword,
         onyomi: data.onyomi,
@@ -65,16 +107,18 @@ export default {
     });
   },
 
-  getKanjiMatome(data) {
+  getSetting: (key_) => {
+    let setting = Database.objects('Setting').filtered('key == $0', key_);
+    return {
+      setting
+    }
+  },
+
+  setSetting: (key_, value_) => {
     Database.write(() => {
-      // Find desk by id
-      Database.create('KanjiMatome', {
-        keyword: data.keyword,
-        onyomi: data.onyomi,
-        kunyomi: data.kunyomi,
-        jlpt: data.jlpt,
-        jouyou: data.jouyou,
-        rtk: data.rtk6th
+      Database.create('Setting', {
+        key: key_,
+        value: value_
       });
     });
   },

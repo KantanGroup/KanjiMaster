@@ -8,9 +8,13 @@ const KanjiMatomeSchema = {
     hanViet:      {type: 'string', optional: true},
     onyomi:       {type: 'string', optional: true},
     kunyomi:      {type: 'string', optional: true},
+    radical:      {type: 'int', optional: true},
+    strokes:      {type: 'int', optional: true},
+    grade:        {type: 'int', optional: true},
     jlpt:         {type: 'int', optional: true},
     jouyou:       {type: 'int', optional: true},
-    rtk:          {type: 'int', optional: true}
+    rtk6th:       {type: 'int', optional: true},
+    rank:         {type: 'int', optional: true}
   }
 };
 
@@ -49,4 +53,13 @@ const CardSchema = {
   }
 }
 
-export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, DeskSchema, CardSchema], schemaVersion: 0});
+const SettingSchema = {
+  name: "Setting",
+  primaryKey: "key",
+  properties: {
+    key:          {type: 'string'},
+    value:        {type: 'bool', default: false}
+  }
+}
+
+export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
