@@ -15,7 +15,7 @@ const ScrollView = createAnimatableComponent(ReactNative.ScrollView);
 import styles from './Styles/FlashCardViewScreenStyle'
 
 // I18n
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 import Footer from '../Components/Footer'
 

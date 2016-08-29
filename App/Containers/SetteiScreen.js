@@ -14,7 +14,7 @@ import { SegmentedControls } from 'react-native-radio-buttons'
 import styles from './Styles/SetteiScreenStyle'
 
 // I18n
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 // Components
 import FlashCard from '../Components/FlashCard'

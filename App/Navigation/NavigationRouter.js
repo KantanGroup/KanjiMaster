@@ -30,7 +30,7 @@ import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 import SearchScreen from '../Containers/SearchScreen'
 
 // I18n
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 /***************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
