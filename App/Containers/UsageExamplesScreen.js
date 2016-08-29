@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import * as Animatable from 'react-native-animatable'
 // Enable when you have configured Xcode
 // import PushNotification from 'react-native-push-notification'
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 // Styles
 import styles from './Styles/UsageExamplesScreenStyle'
@@ -20,19 +20,6 @@ class UsageExamplesScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
-  }
-
-  static propTypes = {
-    loggedIn: PropTypes.bool,
-    dispatch: PropTypes.func,
-    temperature: PropTypes.number,
-    city: PropTypes.string,
-    login: PropTypes.func,
-    logout: PropTypes.func,
-    requestTemperature: PropTypes.func,
-    listviewExample: PropTypes.func,
-    listviewGridExample: PropTypes.func,
-    mapviewExample: PropTypes.func
   }
 
   componentWillReceiveProps (nextProps) {
@@ -155,6 +142,19 @@ class UsageExamplesScreen extends React.Component {
       </View>
     )
   }
+}
+
+UsageExamplesScreen.propTypes = {
+  loggedIn: PropTypes.bool,
+  dispatch: PropTypes.func,
+  temperature: PropTypes.number,
+  city: PropTypes.string,
+  login: PropTypes.func,
+  logout: PropTypes.func,
+  requestTemperature: PropTypes.func,
+  listviewExample: PropTypes.func,
+  listviewGridExample: PropTypes.func,
+  mapviewExample: PropTypes.func
 }
 
 const mapStateToProps = (state) => {

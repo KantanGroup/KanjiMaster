@@ -10,10 +10,6 @@ import Styles from './Styles/NavigationDrawerStyle'
 ********************/
 
 class NavigationDrawer extends Component {
-  static propTypes = {
-    navigationState: PropTypes.object
-  }
-
   render () {
     const state = this.props.navigationState
     const children = state.children
@@ -38,6 +34,10 @@ class NavigationDrawer extends Component {
       </Drawer>
     )
   }
+}
+
+NavigationDrawer.propTypes = {
+  navigationState: PropTypes.object
 }
 
 const mapStateToProps = (state) => {

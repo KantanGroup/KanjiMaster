@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import io.realm.react.RealmReactPackage; // ADD THIS
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new ReactNativeI18n(),
             new RNDeviceInfo(),
+            new ReactNativeConfigPackage(),
             new RealmReactPackage() // ADD THIS
       );
     }
