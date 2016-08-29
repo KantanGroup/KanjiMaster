@@ -5,11 +5,23 @@ const KanjiMatomeSchema = {
   primaryKey: 'keyword',
   properties: {
     keyword:      {type: 'string'},
+    hanViet:      {type: 'string', optional: true},
     onyomi:       {type: 'string', optional: true},
     kunyomi:      {type: 'string', optional: true},
     jlpt:         {type: 'int', optional: true},
-    jouyou:       {type: 'string', optional: true},
-    rtk:          {type: 'string', optional: true}
+    jouyou:       {type: 'int', optional: true},
+    rtk:          {type: 'int', optional: true}
+  }
+};
+
+const KanjiMatomeMeaningSchema = {
+  name: 'KanjiMatomeMeaning',
+  primaryKey: 'keyword',
+  properties: {
+    keyword:      {type: 'string'},
+    type:         {type: 'int'},
+    language:     {type: 'string'},
+    meaning:      {type: 'string'}
   }
 };
 
