@@ -30,7 +30,7 @@ import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 import SearchScreen from '../Containers/SearchScreen'
 
 // I18n
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 /***************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -44,7 +44,7 @@ class NavigationRouter extends Component {
   render () {
     return (
       <Router>
-        <Scene key='drawer' component={NavigationDrawer}>
+        <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
             <Scene key='presentationScreen' component={PresentationScreen} title='Ignite' renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='componentExamples' component={AllComponentsScreen} title='Components' />

@@ -2,7 +2,7 @@ import {take, call, put} from 'redux-saga/effects'
 import R from 'ramda'
 import Types from '../Actions/Types'
 import Actions from '../Actions/Creators'
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 // This style of Saga is a common pattern.  It has a
 // worker and a watcher.
@@ -25,7 +25,7 @@ export default (api) => {
 
     // success?
     if (response.ok) {
-      const kelvin = R.path(['list', 0, 'main', 'temp'], response.data)
+      const kelvin = R.path(['main', 'temp_max'], response.data)
       const celcius = kelvin - 273.15
       const farenheit = (celcius * 1.8000) + 32
 

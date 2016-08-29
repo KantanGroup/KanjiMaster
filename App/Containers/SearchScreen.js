@@ -14,9 +14,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './Styles/SearchScreenStyle'
 
 // I18n
-import I18n from '../I18n/I18n.js'
-
-import Database from '../Components/Database'
+import I18n from 'react-native-i18n'
 
 import KanjiMeaning from '../Components/KanjiMeaning'
 import KanjiDraw from '../Components/KanjiDraw'
@@ -49,33 +47,6 @@ class SearchScreen extends React.Component {
       (2) Nhà Hán. Nước Tàu.
       (3) Giống Hán, giống dân làm chủ nước Tàu từ đời vua Hoàng Đế trở xuống gọi là giống Hán.`
     };
-
-    Database.write(() => {
-      // optional properties can be set to null or undefined at creation
-      let charlie = Database.create('Person', {
-        name: 'Charlie',
-        birthday: new Date(1995, 11, 25),
-        car: null,
-      }, true);
-
-      // optional properties can be set to `null`, `undefined`,
-      // or to a new non-null value
-      charlie.birthday = undefined;
-      charlie.car = {make: 'Honda', model: 'Accord', miles: 10000};
-    });
-
-    let allPerson = Database.objects('Person');
-    let allCar = Database.objects('Car');
-
-    console.log(allPerson);
-    console.log(allCar);
-    console.log(Database.schemaVersion);
-    console.log(Database.defaultPath);
-
-    Database.write(() => {
-      //Database.delete(allPerson);
-      //Database.delete(allCar);
-    });
 
     return (
       <View style={styles.mainContainer}>
