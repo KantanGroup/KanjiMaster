@@ -17,6 +17,7 @@ import I18n from 'react-native-i18n'
 
 // Components
 import FlashCard from '../Components/FlashCard'
+import DatabaseService from '../Services/DatabaseService'
 
 var cardDefinition = {
   definition: 'Kanji',
@@ -47,6 +48,12 @@ class FlashCardScreen extends React.Component {
       definition: true,
       hiragana: true
     }
+
+    let settings = DatabaseService.getSetting("importDatabaseKanji");
+    console.log(settings)
+    settings.map((setting) => {
+      console.log(">>>>>>>>>>>>>>>>>>>>>" + setting)
+    })
 
     return (
       <View style={{flex: 1}}>

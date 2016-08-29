@@ -8,7 +8,7 @@ const KanjiMatomeSchema = {
     hanViet:      {type: 'string', optional: true},
     onyomi:       {type: 'string', optional: true},
     kunyomi:      {type: 'string', optional: true},
-    radical:      {type: 'int', optional: true},
+    radical:      {type: 'string', optional: true},
     strokes:      {type: 'int', optional: true},
     grade:        {type: 'int', optional: true},
     jlpt:         {type: 'int', optional: true},
@@ -62,4 +62,4 @@ const SettingSchema = {
   }
 }
 
-export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
+export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 2});

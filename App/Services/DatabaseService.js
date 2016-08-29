@@ -18,7 +18,6 @@ export default {
   },
 
   getDesk: (id) => {
-    console.log("ID "  + id);
     let desk = Database.objects('Desk').filtered('id == $0', id);
     return {
       desk
@@ -52,12 +51,6 @@ export default {
   },
 
   createKanjiMatome: (data) => {
-    //*
-    Database.write(() => {
-      Database.create('KanjiMatome', data , true);
-    });
-    //*/
-    /*
     Database.write(() => {
       Database.create('KanjiMatome', {
         keyword: data.keyword,
@@ -72,7 +65,6 @@ export default {
         rank: data.rank,
       }, true);
     });
-    //*/
   },
 
   createKanjiMatomes: (datas) => {
@@ -94,23 +86,24 @@ export default {
     });
   },
 
-  getKanjiMatome: (data) => {
-    Database.write(() => {
-      Database.create('KanjiMatome', {
-        keyword: data.keyword,
-        onyomi: data.onyomi,
-        kunyomi: data.kunyomi,
-        jlpt: data.jlpt,
-        jouyou: data.jouyou,
-        rtk: data.rtk6th
-      });
-    });
+  getKanjiMatome: (keyword) => {
+    let kanji = Database.objects('KanjiMatome').filtered('keyword == $0', keyword);
+    return {
+      kanji
+    }
   },
 
-  getSetting: (key_) => {
-    let setting = Database.objects('Setting').filtered('key == $0', key_);
+  getKanjiMatomes: () => {
+    let allKanji = Database.objects('KanjiMatome');
     return {
-      setting
+      allKanji
+    }
+  },
+
+  getSetting: (key) => {
+    let settings = Database.objects('Setting').filtered('key == $0', key);
+    return {
+      settings
     }
   },
 
@@ -119,7 +112,7 @@ export default {
       Database.create('Setting', {
         key: key_,
         value: value_
-      });
+      }, true);
     });
   },
 }

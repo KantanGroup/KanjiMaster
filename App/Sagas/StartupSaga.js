@@ -13,16 +13,9 @@ export function * watchStartup () {
   let setting = DatabaseService.getSetting("importDatabaseKanji");
   if (setting) {
     const kanjimatomes = require('../Fixtures/kanjimatome_export.json')
-    //console.log(kanjimatomes[0])
-    DatabaseService.createKanjiMatome(kanjimatomes[0]);
-    /*
-    kanjimatomes.map((kanjimatome) => {
-      DatabaseService.createKanjiMatome(kanjimatome);
-    })
-    //*/
-    //DatabaseService.createKanjiMatomes(kanjimatomes);
+    DatabaseService.createKanjiMatomes(kanjimatomes);
+    DatabaseService.setSetting("importDatabaseKanji", true);
   } else {
-
   }
 
   // only fetch new temps when we don't have one yet
