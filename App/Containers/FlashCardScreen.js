@@ -49,12 +49,6 @@ class FlashCardScreen extends React.Component {
       hiragana: true
     }
 
-    let settings = DatabaseService.getSetting("importDatabaseKanji");
-    console.log(settings)
-    settings.map((setting) => {
-      console.log(">>>>>>>>>>>>>>>>>>>>>" + setting)
-    })
-
     return (
       <View style={{flex: 1}}>
         <FlashCard card={this.state.showData} setting={cardSetting}/>
