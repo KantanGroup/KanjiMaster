@@ -38,7 +38,16 @@ import I18n from 'react-native-i18n'
 
 class NavigationRouter extends Component {
   componentWillMount = () => {
-    BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+        try {
+            Actions.pop();
+            return true;
+        }
+        catch (err) {
+            console.log("Cannot pop. Exiting the app...");
+            return true;
+        }
+    });
   }
 
   render () {
