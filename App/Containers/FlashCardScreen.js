@@ -17,6 +17,7 @@ import I18n from 'react-native-i18n'
 
 // Components
 import FlashCard from '../Components/FlashCard'
+import DatabaseService from '../Services/DatabaseService'
 
 var cardDefinition = {
   definition: 'Kanji',
