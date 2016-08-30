@@ -31,7 +31,7 @@ export default class KanjiDefineByRow extends React.Component {
           <Text style={styles.kanji}>{this.props.kanjiContent.keyword}</Text>
         </View>
         <View style={styles.content}>
-          <Star rating={this.props.kanjiContent.level} />
+          <Star rating={this.props.kanjiContent.jlpt} />
           {onyomi}
           {kunyomi}
         </View>
