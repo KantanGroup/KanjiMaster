@@ -12,16 +12,12 @@ export default {
 
   getDesks: () => {
     let allDesk = Database.objects('Desk');
-    return {
-      allDesk
-    }
+    return allDesk;
   },
 
   getDesk: (id) => {
     let desk = Database.objects('Desk').filtered('id == $0', id);
-    return {
-      desk
-    }
+    return desk;
   },
 
   deleteDesk: (id) => {
@@ -88,23 +84,37 @@ export default {
 
   getKanjiMatome: (keyword) => {
     let kanji = Database.objects('KanjiMatome').filtered('keyword == $0', keyword);
-    return {
-      kanji
-    }
+    return kanji;
   },
 
   getKanjiMatomes: () => {
-    let allKanji = Database.objects('KanjiMatome');
-    return {
-      allKanji
-    }
+    let sortProperties = [];
+    sortProperties.push(["jlpt", true]);
+    sortProperties.push(["rtk6th", false]);
+    sortProperties.push(["rank", false]);
+    let allKanji = Database.objects('KanjiMatome').sorted(sortProperties);
+    let firstKanji = allKanji.slice(200,300);
+    firstKanji.map((kanji) => {
+      console.log(kanji);
+      //i++;
+      //if (i > 5) break;
+    })
+    return allKanji;
+  },
+
+  getKanjiMatomes: (startIndex, endIndex) => {
+    let sortProperties = [];
+    sortProperties.push(["jlpt", true]);
+    sortProperties.push(["rtk6th", false]);
+    sortProperties.push(["rank", false]);
+    let allKanji = Database.objects('KanjiMatome').sorted(sortProperties);
+    let rangeKanji = allKanji.slice(startIndex,endIndex);
+    return rangeKanji;
   },
 
   getSetting: (key) => {
     let settings = Database.objects('Setting').filtered('key == $0', key);
-    return {
-      settings
-    }
+    return settings;
   },
 
   setSetting: (key_, value_) => {
