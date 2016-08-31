@@ -31,5 +31,32 @@ export default StyleSheet.create({
   centered: {
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  footer: {
+    position: 'absolute',
+    flex:0.1,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    flexDirection:'row',
+    alignItems:'center',
+  },
+  bottomButtons: {
+    height:50,
+    backgroundColor:'green',
+    alignItems:'center',
+    justifyContent: 'center',
+    borderColor: '#dddddd',
+    borderStyle: null,
+    borderWidth: 0.5,
+    borderRadius: 10,
+    margin: 1,
+    flex:1,
+  },
+  footerText: {
+    color:'white',
+    fontWeight:'bold',
+    alignItems:'center',
+    fontSize:18,
+  },
 })

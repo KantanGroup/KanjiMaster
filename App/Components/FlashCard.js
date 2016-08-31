@@ -83,13 +83,26 @@ class FlasCardDefine extends React.Component {
       );
     }
     return (
-      <View style={styles.containerCenter}>
-        <View style={styles.centered}>
-          <TouchableOpacity style={styles.card} onPress={this.props.onPress}>
-            {definition}
-            <Text numberOfLines={1} style={styles.kanji}>{this.props.showData.kanji}</Text>
-            {hiragana}
-          </TouchableOpacity>
+      <View style={{flex: 1}}>
+        <View style={styles.containerCenter}>
+          <View style={styles.centered}>
+            <TouchableOpacity style={styles.card} onPress={this.props.onPress}>
+              {definition}
+              <Text numberOfLines={1} style={styles.kanji}>{this.props.showData.kanji}</Text>
+              {hiragana}
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.footer}>
+           <TouchableOpacity style={styles.bottomButtons}>
+              <Text style={styles.footerText}>A</Text>
+           </TouchableOpacity>
+           <TouchableOpacity style={styles.bottomButtons}>
+              <Text style={styles.footerText}>B</Text>
+           </TouchableOpacity>
+           <TouchableOpacity style={styles.bottomButtons}>
+              <Text style={styles.footerText}>C</Text>
+           </TouchableOpacity>
         </View>
       </View>
     )
