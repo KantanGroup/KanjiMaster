@@ -40,10 +40,53 @@ export default {
     });
   },
 
-  addCard: (id, keyword) => {
-    let desk = getDesk(id);
-    //let tango = get
+  addCard: (deskId, keyword, type) => {
+    Database.write(() => {
+      Database.create('Card', {
+        id: Date.now(),
+        deskId: deskId,
+        keyword: keyword,
+        type: type
+      });
+    });
+  },
 
+  getCardInDesk: (deskId, startIndex, endIndex) => {
+    let sortProperties = [];
+    sortProperties.push(["createTime", false]);
+    let cardByDesk = Database.objects('Card').filtered('deskId == $0', deskId).sorted(sortProperties);
+    return cardByDesk.slice(startIndex, endIndex);
+  },
+
+  getCardInDeskByNewCard: (deskId, numberCard) => {
+    let sortProperties = [];
+    sortProperties.push(["nextTime", false]);
+    let cardByDesk = Database.objects('Card').filtered('deskId == $0 and boxIndex == 1 and nextTime == $1', deskId, new Date()).sorted(sortProperties);
+    if (numberCard === -1) {
+      return cardByDesk;
+    } else {
+      return cardByDesk.slice(0, numberCard);
+    }
+  },
+
+  getCardInDeskByReviewCard: (deskId, numberCard) => {
+    let sortProperties = [];
+    sortProperties.push(["nextTime", false]);
+    let cardByDesk = Database.objects('Card').filtered('deskId == $0 and boxIndex != 1 and nextTime == $1', deskId, new Date()).sorted(sortProperties);
+    if (numberCard === -1) {
+      return cardByDesk;
+    } else {
+      return cardByDesk.slice(0, numberCard);
+    }
+  },
+
+  answerCard: (id, nextTime, boxIndex) => {
+    let cardByDesk = Database.objects('Card').filtered('id == $0', id);
+    Database.write(() => {
+      cardByDesk.answerTime = new Date(),
+      cardByDesk.nextTime = nextTime,
+      cardByDesk.boxIndex = boxIndex
+    });
   },
 
   createKanjiMatome: (data) => {
