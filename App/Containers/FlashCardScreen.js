@@ -13,10 +13,11 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './Styles/FlashCardScreenStyle'
 
 // I18n
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 // Components
 import FlashCard from '../Components/FlashCard'
+import DatabaseService from '../Services/DatabaseService'
 
 var cardDefinition = {
   definition: 'Kanji',

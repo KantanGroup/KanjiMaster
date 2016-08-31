@@ -20,7 +20,7 @@ import StartupScreen from '../Containers/StartupScreen'
 import KanjiScreen from '../Containers/KanjiScreen'
 import KanjiByJLPTScreen from '../Containers/KanjiByJLPTScreen'
 import KanjiViewScreen from '../Containers/KanjiViewScreen'
-import NiteirukanjiScreen from '../Containers/KanjiScreen'
+import NiteirukanjiScreen from '../Containers/ListviewExample'
 import DouonigigoScreen from '../Containers/KanjiScreen'
 import TangoScreen from '../Containers/FlashCardScreen'
 import BunpouScreen from '../Containers/AutocompleteExample'
@@ -30,7 +30,7 @@ import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 import SearchScreen from '../Containers/SearchScreen'
 
 // I18n
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 /***************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -38,13 +38,22 @@ import I18n from '../I18n/I18n.js'
 
 class NavigationRouter extends Component {
   componentWillMount = () => {
-    BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+        try {
+            Actions.pop();
+            return true;
+        }
+        catch (err) {
+            console.log("Cannot pop. Exiting the app...");
+            return true;
+        }
+    });
   }
 
   render () {
     return (
       <Router>
-        <Scene key='drawer' component={NavigationDrawer}>
+        <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
             <Scene key='presentationScreen' component={PresentationScreen} title='Ignite' renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='componentExamples' component={AllComponentsScreen} title='Components' />

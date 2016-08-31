@@ -9,7 +9,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.background
   },
   listContent: {
-    flex: 1,
+    //flex: 1,
     marginTop: Metrics.baseMargin
   }
 })

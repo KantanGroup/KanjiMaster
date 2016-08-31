@@ -12,6 +12,7 @@ import styles from './Styles/KanjiByJLPTScreenStyle'
 
 //Components
 import KanjiDefineByRow from '../Components/KanjiDefineByRow'
+import DatabaseService from '../Services/DatabaseService'
 
 class KanjiByJLPTScreen extends React.Component {
 
@@ -21,12 +22,17 @@ class KanjiByJLPTScreen extends React.Component {
     // Set up our two placeholder values for scrollToBottom()
     this.listHeight = 0
     this.footerY = 0
+    this.offset = 0
+    this.startIndex = 0
+    this.endIndex = 20
+    this.stepIndex = 20
 
     /* ***********************************************************
     * STEP 1
     * This is an array of objects with the properties you desire
     * Usually this should come from Redux mapStateToProps
     *************************************************************/
+    /*
     const dataObjects = [
       {hantu: "HAN", level: 3,kanji: "漢", onyomi: "カン"},
       {hantu: "TU", level: 5,kanji: "字", onyomi: "ジ", kunyomi: "あざ    あざな    -な"},
@@ -37,7 +43,9 @@ class KanjiByJLPTScreen extends React.Component {
       {hantu: "XẠ, DẠ, DỊCH", level: 4,kanji: "射", onyomi: "シャ", kunyomi: "い.る    さ.す    う.つ"},
       {hantu: "KÍCH", level: 5, kanji: "撃", onyomi: "ゲキ", kunyomi: "う.つ"},
     ]
-
+    */
+    //const dataObjects = require('../Fixtures/hantus.json');
+    const dataObjects = DatabaseService.getKanjiMatomes(this.startIndex, this.endIndex);
     const noDataObjects = []
 
     /* ***********************************************************
@@ -95,6 +103,18 @@ class KanjiByJLPTScreen extends React.Component {
     return this.state.dataSource.getRowCount() === 0
   }
 
+  refreshContent = (startIndex, endIndex) => {
+    const dataObjects = DatabaseService.getKanjiMatomes(startIndex, endIndex);
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(dataObjects)
+    })
+  }
+
+  fetchNextData = () => {
+    this.endIndex += this.stepIndex
+    this.refreshContent(this.startIndex, this.endIndex)
+  }
+
   // Magical helper function that can scroll your ListView to the bottom
   scrollToBottom(animated = true) {
     if (this.listHeight && this.footerY && this.footerY > this.listHeight) {
@@ -106,6 +126,7 @@ class KanjiByJLPTScreen extends React.Component {
         y: scrollTo,
         animated: animated,
       })
+
     }
   }
 
@@ -138,6 +159,8 @@ class KanjiByJLPTScreen extends React.Component {
           onLayout={this.onLayout}
           renderRow={this._renderRow}
           renderFooter={this.renderFooter}
+          onEndReached={this.fetchNextData}
+          onEndReachedThreshold={10}
           enableEmptySections
         />
       </View>

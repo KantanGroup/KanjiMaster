@@ -17,7 +17,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './Styles/KanjiScreenStyle'
 
 // I18n
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 class KanjiScreen extends React.Component {
 
@@ -33,7 +33,7 @@ class KanjiScreen extends React.Component {
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <View style={styles.containerCenter}>
           <SearchBox />
-          
+
           <RoundedButton onPress={this.props.kanjijlpt}>
             {I18n.t('kanjijlpt')}
           </RoundedButton>

@@ -14,7 +14,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './Styles/KanjiViewScreenStyle'
 
 // I18n
-import I18n from '../I18n/I18n.js'
+import I18n from 'react-native-i18n'
 
 import KanjiMeaning from '../Components/KanjiMeaning'
 import KanjiDraw from '../Components/KanjiDraw'
@@ -29,19 +29,6 @@ class KanjiViewScreen extends React.Component {
   render () {
     let tangos = require('../Fixtures/tangos.json');
 
-    let kanjiContent = {
-      hantu: "HAN",
-      kanji: "漢",
-      onyomi: "カン",
-      level: "4",
-      part: "氵 THỦY",
-      setsumei:
-      `Nghĩa:
-      (1) Sông Hán. Sông Thiên Hà (sông Thiên Hà trên trời).
-      (2) Nhà Hán. Nước Tàu.
-      (3) Giống Hán, giống dân làm chủ nước Tàu từ đời vua Hoàng Đế trở xuống gọi là giống Hán.`
-    };
-
     return (
       <View style={styles.mainContainer}>
         <Image
@@ -50,15 +37,7 @@ class KanjiViewScreen extends React.Component {
           resizeMode='stretch' />
         <ScrollView style={styles.container}>
 
-          <KanjiMeaning kanjiContent={kanjiContent}/>
-
-          <KanjiMeaningByTango tangos={tangos}/>
-
-          <KanjiMeaning kanjiContent={kanjiContent}/>
-
-          <KanjiMeaningByTango tangos={tangos}/>
-
-          <KanjiMeaning kanjiContent={kanjiContent}/>
+          <KanjiMeaning kanjiContent={this.props.kanjiContent}/>
 
           <KanjiMeaningByTango tangos={tangos}/>
 

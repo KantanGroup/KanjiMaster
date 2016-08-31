@@ -52,9 +52,9 @@ export default class SearchBox extends React.Component {
         <Autocomplete
           autoCapitalize="none"
           autoCorrect={false}
-          containerStyle={styles.autocompleteContainer}
-          inputContainerStyle={{margin: 5, marginTop: -15}}
-          listStyle={{margin: 5}}
+          //containerStyle={styles.autocompleteContainer}
+          //inputContainerStyle={{margin: 5, marginTop: -15}}
+          listStyle={{margin: 10}}
           //style={{backgroundColor: 'red'}}
           data={inputDatas.length === 1 && comp(query, inputDatas[0].define) ? [] : inputDatas}
           defaultValue={query}
