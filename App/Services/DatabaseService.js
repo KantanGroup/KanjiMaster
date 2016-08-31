@@ -125,6 +125,30 @@ export default {
     });
   },
 
+  createKanjiMatomeTangos: (datas) => {
+    Database.write(() => {
+      datas.map((data) => {
+        let tango  = Database.create('KanjiMatomeTango', {
+          keyword: data.keyword,
+          tango: data.tango,
+          hiragana: data.hiragana,
+          hanViet: data.hanViet,
+          meanings: data.meanings
+        }, true);
+      })
+    });
+  },
+
+  deleteKanjiMatomeTangos: () => {
+    Database.write(() => {
+      // Find desk by id
+      let allTango = Database.objects('KanjiMatomeTango');
+
+      // Delete the tango
+      Database.delete(allTango);
+    });
+  },
+
   getKanjiMatome: (keyword) => {
     let kanji = Database.objects('KanjiMatome').filtered('keyword == $0', keyword);
     return kanji;
@@ -136,12 +160,6 @@ export default {
     sortProperties.push(["rtk6th", false]);
     sortProperties.push(["rank", false]);
     let allKanji = Database.objects('KanjiMatome').sorted(sortProperties);
-    let firstKanji = allKanji.slice(200,300);
-    firstKanji.map((kanji) => {
-      console.log(kanji);
-      //i++;
-      //if (i > 5) break;
-    })
     return allKanji;
   },
 
@@ -151,6 +169,16 @@ export default {
     sortProperties.push(["rtk6th", false]);
     sortProperties.push(["rank", false]);
     let allKanji = Database.objects('KanjiMatome').sorted(sortProperties);
+    let rangeKanji = allKanji.slice(startIndex,endIndex);
+    return rangeKanji;
+  },
+
+  getKanjiMatomeTangos: () => {
+    return Database.objects('KanjiMatomeTango');
+  },
+
+  getKanjiMatomeTangos: (startIndex, endIndex) => {
+    let allKanji = Database.objects('KanjiMatomeTango');
     let rangeKanji = allKanji.slice(startIndex,endIndex);
     return rangeKanji;
   },

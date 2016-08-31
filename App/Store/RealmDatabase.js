@@ -36,9 +36,17 @@ const KanjiMatomeTangoSchema = {
     tango:        {type: 'string', indexed: true},
     hiragana:     {type: 'string', indexed: true},
     hanViet:      {type: 'string', indexed: true},
-    meaning:      {type: 'string'}
+    meanings:     {type: 'list', objectType: 'MeaningByLanguage'}
   }
 };
+
+const MeaningByLanguageSchema = {
+  name: 'MeaningByLanguage',
+  properties: {
+    language:     {type: 'string', indexed: true},
+    meaning:      {type: 'string'}
+  }
+}
 
 const DeskSchema = {
   name: "Desk",
@@ -72,4 +80,4 @@ const SettingSchema = {
   }
 }
 
-export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 5});
+export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, KanjiMatomeTangoSchema, MeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
