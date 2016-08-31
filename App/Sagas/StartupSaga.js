@@ -20,7 +20,7 @@ export function * watchStartup () {
 
 function importDatabase() {
   let setting = DatabaseService.getSetting("importDatabaseKanji");
-  if (!setting || (setting && !setting[0].value)) {
+  if (!setting || (setting && (!setting[0] || !setting[0].value))) {
     console.log("Do import database")
     const kanjimatomes = require('../Fixtures/kanjimatome_export.json')
     DatabaseService.createKanjiMatomes(kanjimatomes);
