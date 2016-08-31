@@ -45,7 +45,7 @@ const DeskSchema = {
   primaryKey: "id",
   properties: {
     id:           {type: 'int'},
-    name:         {type: 'string'},
+    name:         {type: 'string', indexed: true},
     description:  {type: 'string'}
   }
 }
@@ -53,13 +53,13 @@ const DeskSchema = {
 const CardSchema = {
   name: "Card",
   properties: {
-    deskId:       {type: 'int'},
-    keyword:      {type: 'string'},
-    type:         {type: 'int'},
-    createTime:   {type: 'date', default: new Date()},
+    deskId:       {type: 'int', indexed: true},
+    keyword:      {type: 'string', indexed: true},
+    type:         {type: 'int', indexed: true},
+    createTime:   {type: 'date', default: new Date(), indexed: true},
     answerTime:   {type: 'date', default: new Date()},
-    nextTime:     {type: 'date', default: new Date()},
-    boxIndex:     {type: 'int', default: 1}
+    nextTime:     {type: 'date', default: new Date(), indexed: true},
+    boxIndex:     {type: 'int', default: 1, indexed: true}
   }
 }
 
@@ -67,9 +67,9 @@ const SettingSchema = {
   name: "Setting",
   primaryKey: "key",
   properties: {
-    key:          {type: 'string'},
+    key:          {type: 'string', indexed: true},
     value:        {type: 'bool', default: false}
   }
 }
 
-export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 3});
+export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 5});
