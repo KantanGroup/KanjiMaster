@@ -41,14 +41,6 @@ function importDatabaseKanjiTango() {
     DatabaseService.createKanjiMatomeTangos(kanjiMatomeTangos);
     kanjiMatomeTangos = require('../Fixtures/kanjimatome_meanings_1000.json')
     DatabaseService.createKanjiMatomeTangos(kanjiMatomeTangos);
-    kanjiMatomeTangos = require('../Fixtures/kanjimatome_meanings_1500.json')
-    DatabaseService.createKanjiMatomeTangos(kanjiMatomeTangos);
-    kanjiMatomeTangos = require('../Fixtures/kanjimatome_meanings_2000.json')
-    DatabaseService.createKanjiMatomeTangos(kanjiMatomeTangos);
-    kanjiMatomeTangos = require('../Fixtures/kanjimatome_meanings_2500.json')
-    DatabaseService.createKanjiMatomeTangos(kanjiMatomeTangos);
-    kanjiMatomeTangos = require('../Fixtures/kanjimatome_meanings_3000.json')
-    DatabaseService.createKanjiMatomeTangos(kanjiMatomeTangos);
     DatabaseService.setSetting("importDatabaseKanjiTango", true);
   } else {
     console.log("Kanji tango have been imported")
