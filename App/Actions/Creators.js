@@ -17,6 +17,11 @@ const requestTemperature = (city) => ({ type: Types.TEMPERATURE_REQUEST, city })
 const receiveTemperature = (temperature) => ({ type: Types.TEMPERATURE_RECEIVE, temperature })
 const receiveTemperatureFailure = () => ({ type: Types.TEMPERATURE_FAILURE })
 
+const initiativeDatabase = () => ({ type: Types.INITIATIVE_DATABASE})
+
+const searchKanji = (keyword) =>
+  ({ type: Types.SEARCH_KANJI, keyword})
+
 /**
  Makes available all the action creators we've created.
  */
@@ -28,5 +33,7 @@ export default {
   startup,
   requestTemperature,
   receiveTemperature,
-  receiveTemperatureFailure
+  receiveTemperatureFailure,
+  initiativeDatabase,
+  searchKanji
 }

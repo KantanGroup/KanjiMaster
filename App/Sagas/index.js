@@ -1,7 +1,7 @@
 import { fork } from 'redux-saga/effects'
 import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
-import { watchStartup } from './StartupSaga'
+import { watchStartup, watchInitiativeDatabase } from './StartupSaga'
 import { watchLoginAttempt } from './LoginSaga'
 import getCityWeather from './GetCityWeatherSaga'
 import DebugSettings from '../Config/DebugSettings'
@@ -16,5 +16,6 @@ const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 export default function * root () {
   yield fork(watchStartup)
   yield fork(watchLoginAttempt)
+  yield fork(watchInitiativeDatabase)
   yield fork(getCityWeather(api).watcher)
 }

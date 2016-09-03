@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { BackAndroid } from 'react-native'
 import { ToastAndroid, BackAndroid, View } from 'react-native'
 import { Actions, Scene, Router } from 'react-native-router-flux'
 import Styles from './Styles/NavigationContainerStyle'
