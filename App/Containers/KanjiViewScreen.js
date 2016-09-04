@@ -26,6 +26,10 @@ class KanjiViewScreen extends React.Component {
     super(props)
   }
 
+  componentWillMount() {
+    this.props.searchKanji(this.props.kanjiContent.keyword)
+  }
+
   render () {
     let tangos = require('../Fixtures/tangos.json');
 
@@ -56,6 +60,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    searchKanji: (keyword) => dispatch(Actions.searchKanji(keyword))
   }
 }
 

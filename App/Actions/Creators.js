@@ -19,8 +19,9 @@ const receiveTemperatureFailure = () => ({ type: Types.TEMPERATURE_FAILURE })
 
 const initiativeDatabase = () => ({ type: Types.INITIATIVE_DATABASE})
 
-const searchKanji = (keyword) =>
-  ({ type: Types.SEARCH_KANJI, keyword})
+const searchKanji = (keyword) =>  ({ type: Types.KANJI_SEARCH, keyword })
+const receiveKanji = (kanji) =>　({ type: Types.KANJI_RECEIVE, kanji })
+const receiveKanjiNotFound = () =>　({ type: type.KANJI_NOT_FOUND })
 
 /**
  Makes available all the action creators we've created.
@@ -35,5 +36,7 @@ export default {
   receiveTemperature,
   receiveTemperatureFailure,
   initiativeDatabase,
-  searchKanji
+  searchKanji,
+  receiveKanji,
+  receiveKanjiNotFound
 }

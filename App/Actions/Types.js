@@ -16,5 +16,7 @@ export default createTypes(`
 
   INITIATIVE_DATABASE
 
-  SEARCH_KANJI
+  KANJI_SEARCH
+  KANJI_RECEIVE
+  KANJI_NOT_FOUND
 `)

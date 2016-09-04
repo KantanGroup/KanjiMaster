@@ -32,7 +32,7 @@ import SearchScreen from '../Containers/SearchScreen'
 // I18n
 import I18n from 'react-native-i18n'
 
-import HeaderOptions from '../Components/HeaderOptions'
+import KanjiOptions from '../Components/KanjiOptions'
 /***************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/
@@ -78,7 +78,7 @@ class NavigationRouter extends Component {
             <Scene initial key='startup' component={StartupScreen} renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} />
             <Scene key='kanjijlpt' component={KanjiByJLPTScreen} title={I18n.t('kanjijlpt')} />
-            <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} />
+            <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} renderRightButton={() => <KanjiOptions />}/>
             <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} />
             <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
             <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} hideNavBar/>

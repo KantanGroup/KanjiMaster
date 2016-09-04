@@ -11,9 +11,7 @@ export default class KanjiMeaning extends React.Component {
     super(props)
   }
 
-  render () {
-    console.log(this.props.kanjiContent);
-    
+  render () {    
     let keyword;
     if (this.props.kanjiContent.keyword) {
       keyword = this.props.kanjiContent.keyword;

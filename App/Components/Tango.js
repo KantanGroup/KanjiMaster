@@ -121,27 +121,21 @@ class TangoComponent extends React.Component {
     languages.map((langage) => {
       if (langage === 'ja') {
         languagItem.push(
-          <TouchableHighlight onPress={() => {
-            this.switchLanguage('ja')
-            }} >
+          <TouchableHighlight key="touch_ja" onPress={() => {this.switchLanguage('ja')}} >
             <Text style={{ fontWeight: 'bold', color: 'blue', margin: 10}}>Japanese</Text>
           </TouchableHighlight>
         )
       }
       if (langage === 'en') {
         languagItem.push(
-          <TouchableHighlight onPress={() => {
-            this.switchLanguage('en')
-            }} >
+          <TouchableHighlight key="touch_en" onPress={() => {this.switchLanguage('en')}} >
             <Text style={{ fontWeight: 'bold', color: 'blue', margin: 10}}>English</Text>
           </TouchableHighlight>
         )
       }
       if (langage === 'vi') {
         languagItem.push(
-          <TouchableHighlight onPress={() => {
-            this.switchLanguage('vi')
-            }} >
+          <TouchableHighlight key="touch_vi" onPress={() => {this.switchLanguage('vi')}} >
             <Text style={{ fontWeight: 'bold', color: 'blue', margin: 10}}>Vietnamese</Text>
           </TouchableHighlight>
         )
