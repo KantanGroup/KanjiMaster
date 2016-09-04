@@ -6,10 +6,13 @@ import * as Animatable from 'react-native-animatable'
 
 import { Images } from '../Themes'
 
+import HeaderOptions from '../Components/HeaderOptions'
 import KanjiMeaning from '../Components/KanjiMeaning'
 import KanjiDraw from '../Components/KanjiDraw'
 import KanjiMeaningByTango from '../Components/KanjiMeaningByTango'
 import Footer from '../Components/Footer'
+
+
 
 var cardDefinition = {
   definition: 'Kanji',
@@ -54,7 +57,7 @@ export default class FlashCard extends React.Component {
       )
     }
     return (
-      <View style={styles.mainContainer}>
+      <View style={styles.container}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
 
         {meaning}
@@ -84,6 +87,8 @@ class FlasCardDefine extends React.Component {
     }
     return (
       <View style={{flex: 1}}>
+        <HeaderOptions pressBack={() => alert("Menu back")} pressOptions={() => alert("Menu options")}/>
+
         <View style={styles.containerCenter}>
           <View style={styles.centered}>
             <TouchableOpacity style={styles.card} onPress={this.props.onPress}>
@@ -93,6 +98,7 @@ class FlasCardDefine extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
+
         <View style={styles.footer}>
            <TouchableOpacity style={styles.bottomButtons}>
               <Text style={styles.footerText}>A</Text>
@@ -131,7 +137,9 @@ class FlasCardMeaning extends React.Component {
     };
 
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView>
+        <HeaderOptions pressBack={this.props.onPress} pressOptions={() => alert("Menu options")}/>
+
         <TouchableOpacity onPress={this.props.onPress}>
 
           <KanjiMeaning kanjiContent={kanjiContent}/>

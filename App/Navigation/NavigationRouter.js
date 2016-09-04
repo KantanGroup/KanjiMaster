@@ -32,12 +32,12 @@ import SearchScreen from '../Containers/SearchScreen'
 // I18n
 import I18n from 'react-native-i18n'
 
-import FlashCardOptions from '../Components/FlashCardOptions'
+import HeaderOptions from '../Components/HeaderOptions'
 /***************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/
 
-backButtonPressedOnceToExit = false;
+var backButtonPressedOnceToExit = false;
 
 class NavigationRouter extends Component {
   componentWillMount = () => {
@@ -75,18 +75,18 @@ class NavigationRouter extends Component {
             <Scene key='apiTesting' component={APITestingScreen} title='API Testing' />
             <Scene key='theme' component={ThemeScreen} title='Theme' />
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
-            <Scene initial key='startup' component={StartupScreen} renderLeftButton={NavItems.hamburgerButton} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='kanjijlpt' component={KanjiByJLPTScreen} title={I18n.t('kanjijlpt')} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='settei' component={SetteiScreen} title={I18n.t('settei')} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} renderRightButton={() => <FlashCardOptions />} onRight={() => alert('Right button')}/>
-            <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} renderRightButton={() => <FlashCardOptions />}/>
-            <Scene key='search' component={SearchScreen} title='Search' renderRightButton={() => <FlashCardOptions />}/>
+            <Scene initial key='startup' component={StartupScreen} renderLeftButton={NavItems.hamburgerButton} />
+            <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} />
+            <Scene key='kanjijlpt' component={KanjiByJLPTScreen} title={I18n.t('kanjijlpt')} />
+            <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} />
+            <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} />
+            <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
+            <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} hideNavBar/>
+            <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} />
+            <Scene key='settei' component={SetteiScreen} title={I18n.t('settei')} />
+            <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} hideNavBar />
+            <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} hideNavBar />
+            <Scene key='search' component={SearchScreen} title='Search' hideNavBar />
           </Scene>
         </Scene>
       </Router>
