@@ -5,7 +5,7 @@ export default StyleSheet.create({
   box: {
     flex: 1,
     margin: 5,
-    padding: 10,
+    padding: 5,
     flexDirection: 'column',
     backgroundColor: 'white',
     borderColor: '#dddddd',

@@ -31,7 +31,7 @@ class KanjiViewScreen extends React.Component {
     let tangos = require('../Fixtures/tangos.json');
 
     return (
-      <View style={styles.mainContainer}>
+      <View style={[styles.container], {marginTop: 35}}>
         <Image
           source={Images.background}
           style={styles.backgroundImage}
@@ -39,7 +39,7 @@ class KanjiViewScreen extends React.Component {
         <ScrollView style={styles.container}>
 
           <KanjiComponent kanjiContent={this.props.kanjiContent} tangos={tangos}/>
-          
+
         </ScrollView>
       </View>
     )
