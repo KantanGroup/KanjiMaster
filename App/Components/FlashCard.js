@@ -4,15 +4,11 @@ import styles from './Styles/FlashCardStyle'
 
 import * as Animatable from 'react-native-animatable'
 
+import { Actions as NavigationActions } from 'react-native-router-flux'
 import { Images } from '../Themes'
 
 import HeaderOptions from '../Components/HeaderOptions'
-import KanjiMeaning from '../Components/KanjiMeaning'
-import KanjiDraw from '../Components/KanjiDraw'
-import KanjiMeaningByTango from '../Components/KanjiMeaningByTango'
-import Footer from '../Components/Footer'
-
-
+import KanjiComponent from '../Components/KanjiComponent'
 
 var cardDefinition = {
   definition: 'Kanji',
@@ -87,7 +83,7 @@ class FlasCardDefine extends React.Component {
     }
     return (
       <View style={{flex: 1}}>
-        <HeaderOptions pressBack={() => alert("Menu back")} pressOptions={() => alert("Menu options")}/>
+        <HeaderOptions pressBack={() => NavigationActions.pop()} pressOptions={() => alert("Menu options")}/>
 
         <View style={styles.containerCenter}>
           <View style={styles.centered}>
@@ -142,9 +138,7 @@ class FlasCardMeaning extends React.Component {
 
         <TouchableOpacity onPress={this.props.onPress}>
 
-          <KanjiMeaning kanjiContent={kanjiContent}/>
-
-          <KanjiMeaningByTango tangos={tangos}/>
+          <KanjiComponent kanjiContent={kanjiContent} tangos={tangos}/>
 
         </TouchableOpacity>
       </ScrollView>

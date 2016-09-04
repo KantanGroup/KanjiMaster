@@ -16,10 +16,7 @@ import styles from './Styles/KanjiViewScreenStyle'
 // I18n
 import I18n from 'react-native-i18n'
 
-import KanjiMeaning from '../Components/KanjiMeaning'
-import KanjiDraw from '../Components/KanjiDraw'
-import KanjiMeaningByTango from '../Components/KanjiMeaningByTango'
-import Footer from '../Components/Footer'
+import KanjiComponent from '../Components/KanjiComponent'
 
 class KanjiViewScreen extends React.Component {
   constructor (props) {
@@ -41,12 +38,8 @@ class KanjiViewScreen extends React.Component {
           resizeMode='stretch' />
         <ScrollView style={styles.container}>
 
-          <KanjiMeaning kanjiContent={this.props.kanjiContent}/>
-
-          <KanjiMeaningByTango tangos={tangos}/>
-
-          <Footer type='black'/>
-
+          <KanjiComponent kanjiContent={this.props.kanjiContent} tangos={tangos}/>
+          
         </ScrollView>
       </View>
     )
