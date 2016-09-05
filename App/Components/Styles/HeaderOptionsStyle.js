@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Platform, StyleSheet } from 'react-native';
 import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
@@ -7,11 +7,14 @@ export default StyleSheet.create({
     paddingTop: Metrics.titlePadding
   },
   navButtonLeft: {
-    marginTop: -10,
-    marginLeft: -5,
+    marginTop: (Platform.OS === 'ios') ? 10 : -5,
+    marginLeft: (Platform.OS === 'ios') ? 0 : -5,
+    backgroundColor: Colors.transparent
   },
   navButtonRight: {
     flexDirection:'row',
+    marginTop: (Platform.OS === 'ios') ? 15 : 0,
     marginRight: 5,
+    backgroundColor: Colors.transparent
   }
 })

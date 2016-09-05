@@ -15,7 +15,7 @@ export default class HeaderOptions extends React.Component {
       <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
         <View style={styles.navButtonLeft}>
           <TouchableOpacity onPress={this.props.pressBack}>
-            <Icon name="navigate-before" color='#fff' size={42} style={{}} />
+            <Icon name="navigate-before" color='#dddddd' size={42} />
           </TouchableOpacity>
         </View>
         <View style={styles.navButtonRight}>
