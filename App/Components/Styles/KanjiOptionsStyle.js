@@ -22,6 +22,21 @@ export default StyleSheet.create({
   },
   title: {
     margin: 10,
-    marginLeft: 15
+    marginLeft: 15,
+    fontWeight: 'bold',
+    color: 'green'
+  },
+  desk: {
+    height: 45,
+    borderRadius: 5,
+    marginVertical: 5,
+    borderColor: 'green',
+    borderWidth: 0.8,
+    justifyContent: 'center'
+  },
+  deskText: {
+    fontWeight: 'bold',
+    color: 'green',
+    marginLeft: 20
   }
 })

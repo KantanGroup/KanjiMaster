@@ -26,6 +26,10 @@ class KanjiOptions extends React.Component {
     });
   }
 
+  addToDesk (deskid, keyword, type) {
+    alert(deskid + " - " + keyword)
+  }
+
   render () {
     let modal;
 
@@ -34,6 +38,8 @@ class KanjiOptions extends React.Component {
     );
 
     if (this.state.type === 'addDesk') {
+      let desks;
+      
       modal  = (
         <View>
           <View style={styles.bar}>
@@ -41,11 +47,15 @@ class KanjiOptions extends React.Component {
             {myButton}
           </View>
            <View style={styles.innerContainer}>
-             <Text>Desk 01</Text>
-             <Text>Desk 01</Text>
+             <TouchableOpacity key="desk_01" style={styles.desk} onPress={() => {this.addToDesk('Desk 01', 'Keyword', 0)}}>
+               <Text style={styles.deskText}>Desk 01</Text>
+             </TouchableOpacity>
+             <TouchableOpacity key="desk_02" style={styles.desk} onPress={() => {this.addToDesk('Desk 02', 'Keyword', 0)}}>
+               <Text style={styles.deskText}>Desk 02</Text>
+             </TouchableOpacity>
            </View>
         </View>
-      )
+      );
     }
     if (this.state.type === 'addOptions') {
       modal  = (
