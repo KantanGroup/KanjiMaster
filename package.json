@@ -39,6 +39,7 @@
     "react-native-radio-buttons": "^0.12.1",
     "react-native-root-toast": "^1.0.3",
     "react-native-router-flux": "^3.35.0",
+    "react-native-tableview-simple": "^0.12.0",
     "react-native-vector-icons": "^2.1.0",
     "react-redux": "^4.4.2",
     "realm": "^0.14.3",
