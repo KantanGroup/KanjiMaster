@@ -23,6 +23,12 @@ const searchKanji = (keyword) =>  ({ type: Types.KANJI_SEARCH, keyword })
 const receiveKanji = (kanji) =>　({ type: Types.KANJI_RECEIVE, kanji })
 const receiveKanjiNotFound = () =>　({ type: type.KANJI_NOT_FOUND })
 
+const searchDesk = (id) =>  ({ type: Types.DESK_SEARCH, id })
+const receiveDesk = (desk) =>　({ type: Types.DESK_RECEIVE, desk })
+const searchDesks = () =>　({ type: Types.DESKS_SEARCH })
+const receiveDesks = (desks) =>　({ type: Types.DESKS_RECEIVE, desks })
+const receiveDeskNotFound = () =>　({ type: type.DESK_NOT_FOUND })
+
 /**
  Makes available all the action creators we've created.
  */
@@ -38,5 +44,10 @@ export default {
   initiativeDatabase,
   searchKanji,
   receiveKanji,
-  receiveKanjiNotFound
+  receiveKanjiNotFound,
+  searchDesk,
+  receiveDesk,
+  searchDesks,
+  receiveDesks,
+  receiveDeskNotFound
 }

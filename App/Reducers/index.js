@@ -2,12 +2,14 @@ import { combineReducers } from 'redux'
 import LoginReducer from './LoginReducer'
 import WeatherReducer from './WeatherReducer'
 import KanjiReducer from './KanjiReducer'
+import DeskReducer from './DeskReducer'
 
 // glue all the reducers together into 1 root reducer
 export default combineReducers({
   login: LoginReducer,
   weather: WeatherReducer,
-  kanji: KanjiReducer
+  kanji: KanjiReducer,
+  desk: DeskReducer
 })
 
 // Put reducer keys that you do NOT want stored to persistence here

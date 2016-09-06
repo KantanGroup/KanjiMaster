@@ -25,7 +25,6 @@ export default () => {
     try {
       // make the call to the api
       const kanjis = yield call(DatabaseService.getKanjiMatome, keyword)
-      console.log("[Worker]" + kanjis[0].keyword);
       if (kanjis) {
         yield put(Actions.receiveKanji(kanjis[0]))
       } else {
@@ -33,6 +32,7 @@ export default () => {
       }
     } catch (error) {
       console.log(error)
+      yield put(Actions.receiveKanjiNotFound())
     }
   }
 
