@@ -28,6 +28,8 @@ import SetteiScreen from '../Containers/SetteiScreen'
 import FlashCardScreen from '../Containers/FlashCardScreen'
 import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 import SearchScreen from '../Containers/SearchScreen'
+import DeskViewScreen from '../Containers/DeskViewScreen'
+import DeskCreateScreen from '../Containers/DeskCreateScreen'
 
 // I18n
 import I18n from 'react-native-i18n'
@@ -87,6 +89,8 @@ class NavigationRouter extends Component {
             <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} hideNavBar />
             <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} hideNavBar />
             <Scene key='search' component={SearchScreen} title='Search' hideNavBar />
+            <Scene key='desk' component={DeskViewScreen} title='Desk' />
+            <Scene key='deskCreation' component={DeskCreateScreen} title='Create Desk' />
           </Scene>
         </Scene>
       </Router>

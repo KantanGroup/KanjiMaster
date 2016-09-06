@@ -25,6 +25,7 @@ class StartupScreen extends React.Component {
     kanji: PropTypes.func,
     tango: PropTypes.func,
     bunpou: PropTypes.func,
+    desk: PropTypes.func,
     settei: PropTypes.func
   }
 
@@ -45,6 +46,10 @@ class StartupScreen extends React.Component {
 
           <RoundedButton onPress={this.props.bunpou}>
             {I18n.t('bunpou')}
+          </RoundedButton>
+
+          <RoundedButton onPress={this.props.desk}>
+            学習
           </RoundedButton>
 
           <RoundedButton onPress={this.props.settei}>
@@ -68,6 +73,7 @@ const mapDispatchToProps = (dispatch) => {
     kanji: NavigationActions.kanji,
     tango: NavigationActions.tango,
     bunpou: NavigationActions.bunpou,
+    desk: NavigationActions.desk,
     settei: NavigationActions.settei
   }
 }
