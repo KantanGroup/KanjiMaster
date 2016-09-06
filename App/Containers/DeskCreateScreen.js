@@ -4,7 +4,7 @@ import {
   AppRegistry,
   ScrollView,
   StyleSheet,
-  SwitchIOS,
+  Switch,
   Text,
   View
 } from 'react-native';
@@ -30,6 +30,13 @@ import styles from './Styles/DeskAddContentScreenStyle'
 import I18n from 'react-native-i18n'
 
 class DeskCreateScreen extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      switchIsOn: true
+    }
+  }
 
   render () {
     return (
@@ -63,7 +70,9 @@ class DeskCreateScreen extends React.Component {
             </CustomCell>
             <CustomCell>
               <Text style={{flex: 1, fontSize: 16}}>Switch</Text>
-              <SwitchIOS/>
+              <Switch
+                onValueChange={(value) => this.setState({switchIsOn: value})}
+                value={this.state.switchIsOn} />
             </CustomCell>
             <CustomCell contentContainerStyle={{ height: 60 }}>
               <Text style={{ flex: 1, fontSize: 16 }}>Custom height</Text>
