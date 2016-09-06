@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ScrollView, Image, TouchableHighlight, TouchableOpacity, View, Text } from 'react-native'
+import { StyleSheet, Modal, ScrollView, Image, TouchableHighlight, TouchableOpacity, View, Text } from 'react-native'
 import styles from './Styles/TangoStyle'
 
 import { RadioButtons } from 'react-native-radio-buttons';
@@ -157,7 +157,7 @@ class TangoComponent extends React.Component {
             </View>
              <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
                <ScrollView>
-                 <HTMLView
+                 <HTMLView stylesheet={htmlStyles}
                    value={`${firstHtml}${this.state.selectedMeaning}${lastHtml}`}
                  />
                </ScrollView>
@@ -183,3 +183,9 @@ class TangoComponent extends React.Component {
     );
   }
 }
+
+var htmlStyles = StyleSheet.create({
+  font: {
+    fontSize: 12 //Change font size
+  },
+})
