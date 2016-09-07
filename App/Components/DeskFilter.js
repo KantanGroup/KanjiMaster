@@ -83,25 +83,29 @@ export default class DeskFilter extends React.Component {
       });
     }
 
-    let subOptions = (
-      <View>
-        <SegmentedControls
-          direction={this.props.direction}
-          tint= {'#007AFF'}
-          selectedTint= {'white'}
-          options={ this.state.subOptions }
-          onSelection={ setSelectedSubOption.bind(this) }
-          selectedOption={ this.state.selectedSubItem }
-          extractText={ (option) => option.label }
-          testOptionEqual={ (a, b) => {
-            if (!a || !b) {
-              return false;
-            }
-            return a.label === b.label
-          }}
-        />
-      </View>
-    )
+    let subOptions;
+    if (this.state.subOptions.length != 0) {
+      subOptions = (
+        <View>
+          <Text style={{marginTop: 10, marginBottom: 10}}> Select subitem </Text>
+          <SegmentedControls
+            direction={this.props.direction}
+            tint= {'#007AFF'}
+            selectedTint= {'white'}
+            options={ this.state.subOptions }
+            onSelection={ setSelectedSubOption.bind(this) }
+            selectedOption={ this.state.selectedSubItem }
+            extractText={ (option) => option.label }
+            testOptionEqual={ (a, b) => {
+              if (!a || !b) {
+                return false;
+              }
+              return a.label === b.label
+            }}
+          />
+        </View>
+      )
+    }
 
     return (
       <View>
@@ -120,7 +124,6 @@ export default class DeskFilter extends React.Component {
             return a.label === b.label
           }}
         />
-        <Text style={{marginTop: 10, marginBottom: 10}}> Selected subitem </Text>
         {subOptions}
       </View>);
   }
