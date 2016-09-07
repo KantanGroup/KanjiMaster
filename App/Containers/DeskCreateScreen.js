@@ -5,6 +5,9 @@ import {
   ScrollView,
   StyleSheet,
   Switch,
+  Image,
+  TouchableOpacity,
+  TextInput,
   Text,
   View
 } from 'react-native';
@@ -17,6 +20,7 @@ import {
 
 import { connect } from 'react-redux'
 import Actions from '../Actions/Creators'
+import { Images } from '../Themes'
 import { Metrics } from '../Themes'
 // external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -24,10 +28,17 @@ import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 // Styles
-import styles from './Styles/DeskAddContentScreenStyle'
+import styles from './Styles/DeskCreateScreenStyle'
 
 // I18n
 import I18n from 'react-native-i18n'
+
+import DeskAddButton from '../Components/DeskAddButton'
+import ImputButton from '../Components/ImputButton'
+import SwitchButton from '../Components/SwitchButton'
+import SettingItem from '../Components/SettingItem'
+import DeskFilter from '../Components/DeskFilter'
+import Footer from '../Components/Footer'
 
 class DeskCreateScreen extends React.Component {
 
@@ -38,48 +49,41 @@ class DeskCreateScreen extends React.Component {
     }
   }
 
+  createDesk() {
+    console.log(this._deskFilter.state.selectedItem)
+    console.log(this._deskFilter.state.selectedSubItem)
+    console.log(this._deskName.state)
+  }
+
   render () {
     return (
-      <ScrollView style={styles.mainContainer}>
-        <TableView>
-          <Section header="STANDARD" footer="A Footer">
-            <Cell cellStyle="Basic" title="Basic"/>
-            <Cell cellStyle="RightDetail" title="RightDetail" detail="Detail" />
-            <Cell cellStyle="LeftDetail" title="LeftDetail" detail="Detail"/>
-            <Cell cellStyle="Subtitle" title="Subtitle" detail="No linebreakkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"/>
-            <Cell cellStyle="Basic" title="Pressable w/ accessory" accessory="DisclosureIndicator" onPress={() => console.log('Heyho!')}/>
-          </Section>
-          <Section header="DISABLED">
-            <Cell cellStyle="Basic" isDisabled={true} title="Basic"/>
-            <Cell cellStyle="RightDetail" isDisabled={true} title="RightDetail" detail="Detail" />
-            <Cell cellStyle="LeftDetail" isDisabled={true} title="LeftDetail" detail="Detail"/>
-            <Cell cellStyle="Subtitle" isDisabled={true} title="Subtitle" detail="No linebreakkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"/>
-            <Cell cellStyle="Basic" isDisabled={true} title="Pressable w/ accessory" accessory="DisclosureIndicator" onPress={() => {console.log('Heyho!')}}/>
-          </Section>
-          <Section header="ACCESSORY">
-            <Cell cellStyle="Basic" accessory="DisclosureIndicator" title="Basic"/>
-            <Cell cellStyle="RightDetail" accessory="DetailDisclosure" title="RightDetail" detail="Detail" />
-            <Cell cellStyle="LeftDetail" accessory="Detail" title="LeftDetail" detail="Detail"/>
-            <Cell cellStyle="Subtitle" accessory="Checkmark" title="Subtitle" detail="No linebreakkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"/>
-            <Cell cellStyle="Basic" accessory="Detail" title="Pressable w/ accessory" onPress={() => console.log('Heyho!')}/>
-          </Section>
-          <Section header="CUSTOMCELLS">
-            <CustomCell>
-              <Text style={{flex: 1, fontSize: 16}}>Loading</Text>
-              <ActivityIndicator/>
-            </CustomCell>
-            <CustomCell>
-              <Text style={{flex: 1, fontSize: 16}}>Switch</Text>
-              <Switch
-                onValueChange={(value) => this.setState({switchIsOn: value})}
-                value={this.state.switchIsOn} />
-            </CustomCell>
-            <CustomCell contentContainerStyle={{ height: 60 }}>
-              <Text style={{ flex: 1, fontSize: 16 }}>Custom height</Text>
-            </CustomCell>
-          </Section>
-        </TableView>
-      </ScrollView>
+      <View style={styles.mainContainer}>
+        <Image
+          source={Images.background}
+          style={styles.backgroundImage}
+          resizeMode='stretch' />
+        <ScrollView style={styles.container}>
+          <SettingItem title="Desk name">
+            <ImputButton ref={component => this._deskName = component}/>
+          </SettingItem>
+
+          <SettingItem title="Filter by">
+            <DeskFilter ref={component => this._deskFilter = component} onPress={this.deskDilter}/>
+          </SettingItem>
+
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems:'center', marginLeft: 10, marginRight: 10}}>
+            <TouchableOpacity style={styles.bottomButtons} onPress={() => this.createDesk()}>
+              <Text style={styles.footerText}>Create Desk</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.bottomButtons} onPress={() => NavigationActions.pop()}>
+              <Text style={styles.footerText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Footer type='black'/>
+
+        </ScrollView>
+      </View>
     )
   }
 }

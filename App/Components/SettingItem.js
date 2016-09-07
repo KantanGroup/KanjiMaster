@@ -10,13 +10,19 @@ export default class SettingItem extends React.Component {
   }
 
   render () {
-    return (
-      <View style={styles.container}>
+    let title;
+    if (this.props.title) {
+      title = (
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>
             {this.props.title}
           </Text>
         </View>
+      )
+    }
+    return (
+      <View style={styles.container}>
+        {title}
         <View style={styles.children}>
           {this.props.children}
         </View>

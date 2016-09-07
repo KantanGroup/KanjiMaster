@@ -7,22 +7,17 @@ export default class SwitchButton extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      enableHanTu: false
+      switchIsOn: false
     }
-  }
-
-  // Prop type warnings
-  static propTypes = {
-    text: React.PropTypes.string,
   }
 
   render() {
     return (
       <View style={styles.row}>
-        <Text style={styles.title}>{this.props.text}</Text>
+        <Text style={styles.title}>{this.props.label}</Text>
         <Switch
-          onValueChange={(value) => this.setState({enableHanTu: value})}
-          value={this.state.enableHanTu} />
+          onValueChange={(value) => this.setState({switchIsOn: value})}
+          value={this.state.switchIsOn} />
       </View>
     );
   }

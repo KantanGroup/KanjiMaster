@@ -31,7 +31,7 @@ class KanjiViewScreen extends React.Component {
     let tangos = require('../Fixtures/tangos.json');
 
     return (
-      <View style={[styles.container], {marginTop: 35}}>
+      <View style={styles.mainContainer}>
         <Image
           source={Images.background}
           style={styles.backgroundImage}
