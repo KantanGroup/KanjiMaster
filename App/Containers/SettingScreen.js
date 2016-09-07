@@ -11,7 +11,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import { SegmentedControls } from 'react-native-radio-buttons'
 
 // Styles
-import styles from './Styles/SetteiScreenStyle'
+import styles from './Styles/SettingScreenStyle'
 
 // I18n
 import I18n from 'react-native-i18n'
@@ -20,10 +20,10 @@ import I18n from 'react-native-i18n'
 import FlashCard from '../Components/FlashCard'
 import Footer from '../Components/Footer'
 import SwitchButton from '../Components/SwitchButton'
-import SetteiItem from '../Components/SetteiItem'
-import SetteiGenGo from '../Components/SetteiGenGo'
+import SettingItem from '../Components/SettingItem'
+import SettingLanguage from '../Components/SettingLanguage'
 
-class SetteiScreen extends React.Component {
+class SettingScreen extends React.Component {
 
   render () {
     return (
@@ -32,13 +32,13 @@ class SetteiScreen extends React.Component {
 
         <ScrollView style={styles.container}>
 
-          <SetteiItem title={I18n.t('setteiHanTu')}>
-            <SwitchButton ref='setteiHanTu' text='Hiển thị hỗ trợ Hán Tự'/>
-          </SetteiItem>
+          <SettingItem title={I18n.t('setteiHanTu')}>
+            <SwitchButton ref='setteiHanTu' label='Hiển thị hỗ trợ Hán Tự'/>
+          </SettingItem>
 
-          <SetteiItem title={I18n.t('setteigengo')}>
-            <SetteiGenGo　language='en' direction='column'/>
-          </SetteiItem>
+          <SettingItem title={I18n.t('settingLanguage')}>
+            <SettingLanguage　language='en' direction='column'/>
+          </SettingItem>
 
           <Footer type='black'/>
 
@@ -58,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SetteiScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingScreen)

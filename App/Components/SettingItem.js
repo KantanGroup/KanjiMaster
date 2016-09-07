@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import styles from './Styles/SetteiItemStyle'
+import styles from './Styles/SettingItemStyle'
 
-export default class SetteiItem extends React.Component {
+export default class SettingItem extends React.Component {
 
   // Prop type warnings
   static propTypes = {
