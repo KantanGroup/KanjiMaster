@@ -21,6 +21,9 @@ export default function * root () {
   yield fork(watchInitiativeDatabase)
   yield fork(getCityWeather(api).watcher)
   yield fork(searchKanjiSaga().watcher)
+  yield fork(managementDeskSaga().createDesk)
+  yield fork(managementDeskSaga().addCardToDesk)
+  yield fork(managementDeskSaga().addCardsToDesk)
   yield fork(managementDeskSaga().searchDesk)
   yield fork(managementDeskSaga().searchDesks)
 }

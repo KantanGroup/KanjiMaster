@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react'
 import {
   ActivityIndicator,
   AppRegistry,
@@ -53,6 +53,22 @@ class DeskCreateScreen extends React.Component {
     console.log(this._deskFilter.state.selectedItem)
     console.log(this._deskFilter.state.selectedSubItem)
     console.log(this._deskName.state)
+    if(this._deskName.state.text === '') {
+      alert("Input desk name")
+      return
+    } else {
+      this.props.createDesk(this._deskName.state.text);
+    }
+
+    if ((!this._deskFilter.state.selectedItem || (this._deskFilter.state.selectedItem && this._deskFilter.state.selectedItem.value !== ''))
+      && (this._deskFilter.state.selectedSubItem && this._deskFilter.state.selectedSubItem.length === 0)) {
+      alert("Select a item")
+      return
+    }
+
+    console.log("Add card to desk")
+    NavigationActions.desk()
+    //Actions.createDesk();
   }
 
   render () {
@@ -67,7 +83,7 @@ class DeskCreateScreen extends React.Component {
             <ImputButton ref={component => this._deskName = component}/>
           </SettingItem>
 
-          <SettingItem title="Filter by">
+          <SettingItem title="Add more data by category">
             <DeskFilter ref={component => this._deskFilter = component} onPress={this.deskDilter}/>
           </SettingItem>
 
@@ -88,6 +104,11 @@ class DeskCreateScreen extends React.Component {
   }
 }
 
+DeskCreateScreen.propTypes = {
+  dispatch: PropTypes.func,
+  createDesk: PropTypes.func
+}
+
 const mapStateToProps = (state) => {
   return {
   }
@@ -95,6 +116,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    createDesk: (name) => dispatch(Actions.createDesk(name))
   }
 }
 

@@ -54,7 +54,7 @@ const DeskSchema = {
   properties: {
     id:           {type: 'int'},
     name:         {type: 'string', indexed: true},
-    description:  {type: 'string'}
+    description:  {type: 'string', optional: true}
   }
 }
 

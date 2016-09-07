@@ -66,6 +66,12 @@ class DeskViewScreen extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(this.props.desks)
+    })
+  }
+
   /* ***********************************************************
   * STEP 3
   * `_renderRow` function -How each cell/row should be rendered
@@ -76,7 +82,7 @@ class DeskViewScreen extends React.Component {
   *************************************************************/
   _renderRow (rowData) {
     return (
-      <DeskItem text={rowData.title}/>
+      <DeskItem text={rowData.name}/>
     )
   }
 
@@ -138,7 +144,6 @@ class DeskViewScreen extends React.Component {
   }
 
   render () {
-    console.log(this.props.desks)
     return (
       <View style={styles.container}>
         <DeskAddButton />
@@ -168,6 +173,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    searchKanji: (keyword) => dispatch(Actions.searchKanji(keyword))
   }
 }
 

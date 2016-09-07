@@ -5,13 +5,15 @@ export default {
     Database.write(() => {
       Database.create('Desk', {
         id: Date.now(),
-        name: name,
+        name: name
       });
     });
   },
 
   getDesks: () => {
-    let allDesk = Database.objects('Desk');
+    let sortProperties = [];
+    sortProperties.push(["id", true]);
+    let allDesk = Database.objects('Desk').sorted(sortProperties);
     return allDesk;
   },
 
@@ -48,6 +50,19 @@ export default {
         keyword: keyword,
         type: type
       });
+    });
+  },
+
+  addCards: (deskId, keywords, type) => {
+    Database.write(() => {
+      keywords.map((keyword) => {
+        Database.create('Card', {
+          id: Date.now(),
+          deskId: deskId,
+          keyword: keyword,
+          type: type
+        });
+      })
     });
   },
 
@@ -101,7 +116,7 @@ export default {
         jlpt: data.jlpt,
         jouyou: data.jouyou,
         rtk6th: data.rtk6th,
-        rank: data.rank,
+        rank: data.rank
       }, true);
     });
   },
