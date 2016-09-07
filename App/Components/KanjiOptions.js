@@ -1,10 +1,13 @@
 import React, {PropTypes} from 'react'
-import { Modal, TouchableOpacity, View, Text } from 'react-native'
+import { ListView, Modal, TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import Actions from '../Actions/Creators'
 import styles from './Styles/KanjiOptionsStyle'
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import DeskAddButton from '../Components/DeskAddButton'
+import DeskKanjiItem from '../Components/DeskKanjiItem'
 
 class KanjiOptions extends React.Component {
 
@@ -17,6 +20,17 @@ class KanjiOptions extends React.Component {
 
   componentDidMount() {
     console.log("KanjiOptions " + this.props.keyword);
+    const rowHasChanged = (r1, r2) => r1 !== r2
+    const ds = new ListView.DataSource({rowHasChanged})
+    this.setState({
+      dataSource: ds.cloneWithRows(this.props.desks)
+    })
+  }
+
+  _renderRow (rowData) {
+    return (
+      <DeskKanjiItem desk={rowData}/>
+    )
   }
 
   setModalVisible(type, visible) {
@@ -24,10 +38,6 @@ class KanjiOptions extends React.Component {
       modalVisible: visible,
       type: type
     });
-  }
-
-  addToDesk (deskid, keyword, type) {
-    alert(deskid + " - " + keyword)
   }
 
   render () {
@@ -38,21 +48,18 @@ class KanjiOptions extends React.Component {
     );
 
     if (this.state.type === 'addDesk') {
-      let desks;
-      
-      modal  = (
+      modal = (
         <View>
           <View style={styles.bar}>
             <View><Text style={styles.title}>Add to desk</Text></View>
             {myButton}
           </View>
            <View style={styles.innerContainer}>
-             <TouchableOpacity key="desk_01" style={styles.desk} onPress={() => {this.addToDesk('Desk 01', 'Keyword', 0)}}>
-               <Text style={styles.deskText}>Desk 01</Text>
-             </TouchableOpacity>
-             <TouchableOpacity key="desk_02" style={styles.desk} onPress={() => {this.addToDesk('Desk 02', 'Keyword', 0)}}>
-               <Text style={styles.deskText}>Desk 02</Text>
-             </TouchableOpacity>
+             <ListView
+               dataSource={this.state.dataSource}
+               renderRow={this._renderRow}
+               enableEmptySections
+             />
            </View>
         </View>
       );
@@ -100,12 +107,14 @@ class KanjiOptions extends React.Component {
 
 KanjiOptions.propTypes = {
   keyword: PropTypes.string,
+  desks: PropTypes.object,
   kanjiContent: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
   return {
     keyword: state.kanji.keyword,
+    desks: state.desk.desks,
     kanjiContent: state.kanji.kanji
   }
 }

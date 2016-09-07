@@ -66,6 +66,11 @@ export default {
     });
   },
 
+  checkCardInDesk: (deskId, keyword, type) => {
+    let card = Database.objects('Card').filtered('deskId == $0 and keyword == $1 and type == $2', deskId, keyword, type);
+    return card;
+  },
+
   getCardInDesk: (deskId, startIndex, endIndex) => {
     let sortProperties = [];
     sortProperties.push(["createTime", false]);

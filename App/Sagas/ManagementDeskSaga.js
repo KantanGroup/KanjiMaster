@@ -4,6 +4,8 @@ import Types from '../Actions/Types'
 import Actions from '../Actions/Creators'
 import I18n from 'react-native-i18n'
 
+import Toast from 'react-native-root-toast';
+
 import DatabaseService from '../Services/DatabaseService'
 
 export default () => {
@@ -77,7 +79,21 @@ export default () => {
   }
 
   function * requestAddCardToDesk (deskId, keyword, type) {
-    yield call(DatabaseService.addCard, deskId, keyword, type)
+    try {
+      //const card = yield call(DatabaseService.checkCardInDesk, deskId, keyword, type)
+      yield call(DatabaseService.addCard, deskId, keyword, type)
+      const cards = yield call(DatabaseService.getCardInDesk, deskId, 0, 5)
+      yield put(Actions.receiveCard(cards))
+      /*
+      if (!card) {
+        yield call(DatabaseService.addCard, deskId, keyword, type)
+      } else {
+        Toast.show('Sample database is importing ....', {duration: 1000});
+      }
+      */
+    } catch (error) {
+      Toast.show(error)
+    }
   }
 
   function * addCardToDesk () {

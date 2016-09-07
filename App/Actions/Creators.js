@@ -24,8 +24,10 @@ const receiveKanji = (kanji) =>　({ type: Types.KANJI_RECEIVE, kanji })
 const receiveKanjiNotFound = () =>　({ type: type.KANJI_NOT_FOUND })
 
 const createDesk = (name) =>  ({ type: Types.DESK_CREATE, name })
-const addCardToDesk = (deskId, keyword, type) =>  ({ type: Types.DESK_ADD_CARDS, deskId, keyword, type })
+const addCardToDesk = (deskId, keyword, type) =>  ({ type: Types.DESK_ADD_CARD, deskId, keyword, type })
 const addCardsToDesk = (deskId, keywords, type) =>  ({ type: Types.DESK_ADD_CARDS, deskId, keywords, type })
+const receiveCard = (card) =>　({ type: Types.CARD_RECEIVE, card })
+const receiveCards = (cards) =>　({ type: Types.CARDS_RECEIVE, cards })
 const searchDesk = (id) =>  ({ type: Types.DESK_SEARCH, id })
 const receiveDesk = (desk) =>　({ type: Types.DESK_RECEIVE, desk })
 const searchDesks = () =>　({ type: Types.DESKS_SEARCH })
@@ -51,6 +53,8 @@ export default {
   createDesk,
   addCardToDesk,
   addCardsToDesk,
+  receiveCard,
+  receiveCards,
   searchDesk,
   receiveDesk,
   searchDesks,
