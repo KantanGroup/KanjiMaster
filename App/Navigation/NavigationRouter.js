@@ -24,7 +24,7 @@ import NiteirukanjiScreen from '../Containers/ListviewExample'
 import DouonigigoScreen from '../Containers/KanjiScreen'
 import TangoScreen from '../Containers/FlashCardScreen'
 import BunpouScreen from '../Containers/AutocompleteExample'
-import SetteiScreen from '../Containers/SetteiScreen'
+import SettingScreen from '../Containers/SettingScreen'
 import FlashCardScreen from '../Containers/FlashCardScreen'
 import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 import SearchScreen from '../Containers/SearchScreen'
@@ -85,7 +85,7 @@ class NavigationRouter extends Component {
             <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
             <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} hideNavBar/>
             <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} />
-            <Scene key='settei' component={SetteiScreen} title={I18n.t('settei')} />
+            <Scene key='settei' component={SettingScreen} title={I18n.t('settei')} />
             <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} hideNavBar />
             <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} hideNavBar />
             <Scene key='search' component={SearchScreen} title='Search' hideNavBar />

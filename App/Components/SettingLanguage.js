@@ -1,11 +1,11 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 
-//import styles from './Styles/SetteiGenGoStyle'
+//import styles from './Styles/SettingLanguageStyle'
 
 import { RadioButtons, SegmentedControls } from 'react-native-radio-buttons';
 
-export default class SetteiGenGo extends React.Component {
+export default class SettingLanguage extends React.Component {
 
   constructor(props){
     super(props);
