@@ -7,6 +7,7 @@ export default StyleSheet.create({
     paddingTop: Metrics.titlePadding
   },
   navButtonLeft: {
+    flexDirection:'row',
     marginTop: (Platform.OS === 'ios') ? 10 : -5,
     marginLeft: (Platform.OS === 'ios') ? 0 : -5,
     backgroundColor: Colors.transparent

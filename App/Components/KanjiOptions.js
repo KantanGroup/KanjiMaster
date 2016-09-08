@@ -55,6 +55,7 @@ class KanjiOptions extends React.Component {
             {myButton}
           </View>
            <View style={styles.innerContainer}>
+             <DeskAddButton />
              <ListView
                dataSource={this.state.dataSource}
                renderRow={this._renderRow}

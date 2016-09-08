@@ -77,20 +77,20 @@ class NavigationRouter extends Component {
             <Scene key='apiTesting' component={APITestingScreen} title='API Testing' />
             <Scene key='theme' component={ThemeScreen} title='Theme' />
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
-            <Scene initial key='startup' component={StartupScreen} renderLeftButton={NavItems.hamburgerButton} />
-            <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} />
-            <Scene key='kanjijlpt' component={KanjiByJLPTScreen} title={I18n.t('kanjijlpt')} />
-            <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} renderRightButton={() => <KanjiOptions />}/>
-            <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} />
-            <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} />
-            <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} hideNavBar/>
-            <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} />
-            <Scene key='settei' component={SettingScreen} title={I18n.t('settei')} />
-            <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} hideNavBar />
-            <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} hideNavBar />
+            <Scene initial key='startup' component={StartupScreen} renderLeftButton={NavItems.hamburgerButton} hideNavBar={false}/>
+            <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} hideNavBar={false}/>
+            <Scene key='kanjijlpt' component={KanjiByJLPTScreen} title={I18n.t('kanjijlpt')} hideNavBar={false}/>
+            <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} hideNavBar={false} renderRightButton={() => <KanjiOptions />}/>
+            <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} hideNavBar={false}/>
+            <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} hideNavBar={false}/>
+            <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} hideNavBar={true}/>
+            <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} hideNavBar={false}/>
+            <Scene key='settei' component={SettingScreen} title={I18n.t('settei')} hideNavBar={false}/>
+            <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} hideNavBar={true} />
+            <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} hideNavBar={true} />
             <Scene key='search' component={SearchScreen} title='Search' hideNavBar />
-            <Scene key='desk' component={DeskListScreen} title='Desk' />
-            <Scene key='deskCreation' component={DeskCreateScreen} title='Create Desk' />
+            <Scene key='desk' component={DeskListScreen} title='Desk' hideNavBar={false}/>
+            <Scene key='deskCreation' component={DeskCreateScreen} title='Create Desk' hideNavBar={false}/>
           </Scene>
         </Scene>
       </Router>

@@ -67,7 +67,7 @@ class DeskCreateScreen extends React.Component {
     }
 
     console.log("Add card to desk")
-    NavigationActions.desk()
+    NavigationActions.pop()
     //Actions.createDesk();
   }
 
