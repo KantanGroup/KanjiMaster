@@ -23,11 +23,13 @@ const searchKanji = (keyword) =>  ({ type: Types.KANJI_SEARCH, keyword })
 const receiveKanji = (kanji) =>　({ type: Types.KANJI_RECEIVE, kanji })
 const receiveKanjiNotFound = () =>　({ type: type.KANJI_NOT_FOUND })
 
-const createDesk = (name) =>  ({ type: Types.DESK_CREATE, name })
-const addCardToDesk = (deskId, keyword, type) =>  ({ type: Types.DESK_ADD_CARD, deskId, keyword, type })
-const addCardsToDesk = (deskId, keywords, type) =>  ({ type: Types.DESK_ADD_CARDS, deskId, keywords, type })
+const addCardToDesk = (deskId, keyword, type) =>  ({ type: Types.CARD_ADD_TO_DESK, deskId, keyword, type })
+const addCardsToDesk = (deskId, keywords, type) =>  ({ type: Types.CARDS_ADD_TO_DESK, deskId, keywords, type })
 const receiveCard = (card) =>　({ type: Types.CARD_RECEIVE, card })
 const receiveCards = (cards) =>　({ type: Types.CARDS_RECEIVE, cards })
+const getStudyCards = (deskId) =>　({ type: Types.CARD_STUDY, deskId })
+
+const createDesk = (name) =>  ({ type: Types.DESK_CREATE, name })
 const searchDesk = (id) =>  ({ type: Types.DESK_SEARCH, id })
 const receiveDesk = (desk) =>　({ type: Types.DESK_RECEIVE, desk })
 const searchDesks = () =>　({ type: Types.DESKS_SEARCH })
@@ -55,6 +57,7 @@ export default {
   addCardsToDesk,
   receiveCard,
   receiveCards,
+  getStudyCards,
   searchDesk,
   receiveDesk,
   searchDesks,

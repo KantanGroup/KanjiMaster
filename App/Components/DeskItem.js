@@ -1,31 +1,35 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
+import { connect } from 'react-redux'
+import Actions from '../Actions/Creators'
 import styles from './Styles/DeskItemStyle'
 
-export default class DeskItem extends React.Component {
+class DeskItem extends React.Component {
 
-  addToDesk (deskid, keyword, type) {
-    alert(deskid + " - " + keyword)
+  gotoStudy () {
+    this.props.getStudyCards(this.props.desk.id);
   }
 
   render () {
     return (
       <View>
-        <TouchableOpacity key="desk_01" style={styles.desk} onPress={() => {this.addToDesk('Desk 01', 'Keyword', 0)}}>
-          <Text style={styles.deskText}>{this.props.text}</Text>
+        <TouchableOpacity key="desk_01" style={styles.desk} onPress={() => {this.gotoStudy()}}>
+          <Text style={styles.deskText}>{this.props.desk.name}</Text>
         </TouchableOpacity>
       </View>
     )
   }
 }
 
-// // Prop type warnings
-// DeskItem.propTypes = {
-//   someProperty: React.PropTypes.object,
-//   someSetting: React.PropTypes.bool.isRequired
-// }
-//
-// // Defaults for props
-// DeskItem.defaultProps = {
-//   someSetting: false
-// }
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getStudyCards: (deskId) => dispatch(Actions.getStudyCards(deskId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeskItem)
