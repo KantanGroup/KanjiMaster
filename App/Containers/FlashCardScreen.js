@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import { ScrollView, Image, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import Actions from '../Actions/Creators'
@@ -55,6 +55,11 @@ class FlashCardScreen extends React.Component {
       </View>
     )
   }
+}
+
+FlashCardScreen.propTypes = {
+  dispatch: PropTypes.func,
+  createDesk: PropTypes.func
 }
 
 const mapStateToProps = (state) => {

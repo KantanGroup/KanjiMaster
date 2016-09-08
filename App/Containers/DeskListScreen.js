@@ -55,21 +55,15 @@ class DeskListScreen extends React.Component {
     * Make this function fast!  Perhaps something like:
     *   (r1, r2) => r1.id !== r2.id}
     *************************************************************/
-    const rowHasChanged = (r1, r2) => r1 !== r2
+    const rowHasChanged = (r1, r2) => r1.id !== r2.id
 
     // DataSource configured
     const ds = new ListView.DataSource({rowHasChanged})
 
     // Datasource is always in state
     this.state = {
-      dataSource: ds.cloneWithRows(dataObjects)
+      dataSource: ds.cloneWithRows(this.props.desks)
     }
-  }
-
-  componentDidMount () {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.desks)
-    })
   }
 
   /* ***********************************************************

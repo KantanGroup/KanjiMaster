@@ -67,8 +67,11 @@ class DeskCreateScreen extends React.Component {
     }
 
     console.log("Add card to desk")
-    NavigationActions.pop()
-    //Actions.createDesk();
+    NavigationActions.pop();
+    setTimeout(() => {
+      NavigationActions.refresh({name:'zzzzar'});
+      console.log("zzzz");
+    }, 100);
   }
 
   render () {

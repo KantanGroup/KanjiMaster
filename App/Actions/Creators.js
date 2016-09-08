@@ -27,6 +27,8 @@ const addCardToDesk = (deskId, keyword, type) =>  ({ type: Types.CARD_ADD_TO_DES
 const addCardsToDesk = (deskId, keywords, type) =>  ({ type: Types.CARDS_ADD_TO_DESK, deskId, keywords, type })
 const receiveCard = (card) =>　({ type: Types.CARD_RECEIVE, card })
 const receiveCards = (cards) =>　({ type: Types.CARDS_RECEIVE, cards })
+const receiveNewCardInDay = (cards, date) =>　({ type: Types.CARD_NEW_INDDAY_RECEIVE, cards , date})
+const receiveReviewCardInDay = (cards, date) =>　({ type: Types.CARD_REVIEW_INDDAY_RECEIVE, cards , date})
 const getStudyCards = (deskId) =>　({ type: Types.CARD_STUDY, deskId })
 
 const createDesk = (name) =>  ({ type: Types.DESK_CREATE, name })
@@ -57,6 +59,8 @@ export default {
   addCardsToDesk,
   receiveCard,
   receiveCards,
+  receiveNewCardInDay,
+  receiveReviewCardInDay,
   getStudyCards,
   searchDesk,
   receiveDesk,
