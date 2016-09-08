@@ -18,14 +18,14 @@ export default {
   },
 
   getDesk: (id) => {
-    let desk = Database.objects('Desk').filtered('id == $0', id);
+    let desk = Database.objects('Desk').filtered('id = $0', id);
     return desk;
   },
 
   deleteDesk: (id) => {
     Database.write(() => {
       // Find desk by id
-      let desk = Database.objects('Desk').filtered('id == $0', id);
+      let desk = Database.objects('Desk').filtered('id = $0', id);
 
       // Delete the desk
       Database.delete(desk);
@@ -66,23 +66,34 @@ export default {
     });
   },
 
-  checkCardInDesk: (deskId, keyword, type) => {
-    let card = Database.objects('Card').filtered('deskId == $0 and keyword == $1 and type == $2', deskId, keyword, type);
-    return card;
+  hasCardInDesk: (deskId, keyword, type) => {
+    let card = Database.objects('Card').filtered('deskId = $0 AND keyword = $1 AND type = $2', deskId, keyword, type);
+    if (!card || (card && card.length == 0)) {
+      return false;
+    } else {
+      return true;
+    }
+  },
+
+  getCards: (deskId) => {
+    let sortProperties = [];
+    sortProperties.push(["createTime", false]);
+    let cards = Database.objects('Card').filtered('deskId = $0', deskId).sorted(sortProperties);
+    return cards;
   },
 
   getCardInDesk: (deskId, startIndex, endIndex) => {
     let sortProperties = [];
     sortProperties.push(["createTime", false]);
-    let cardByDesk = Database.objects('Card').filtered('deskId == $0', deskId).sorted(sortProperties);
+    let cardByDesk = Database.objects('Card').filtered('deskId = $0', deskId).sorted(sortProperties);
     return cardByDesk.slice(startIndex, endIndex);
   },
 
   getCardInDeskByNewCard: (deskId, numberCard) => {
     let sortProperties = [];
     sortProperties.push(["nextTime", false]);
-    let cardByDesk = Database.objects('Card').filtered('deskId == $0 and boxIndex == 1 and nextTime == $1', deskId, new Date()).sorted(sortProperties);
-    if (numberCard === -1) {
+    let cardByDesk = Database.objects('Card').filtered('deskId = $0 and boxIndex = 1 and nextTime = $1', deskId, new Date()).sorted(sortProperties);
+    if (numberCard == -1) {
       return cardByDesk;
     } else {
       return cardByDesk.slice(0, numberCard);
@@ -92,8 +103,8 @@ export default {
   getCardInDeskByReviewCard: (deskId, numberCard) => {
     let sortProperties = [];
     sortProperties.push(["nextTime", false]);
-    let cardByDesk = Database.objects('Card').filtered('deskId == $0 and boxIndex != 1 and nextTime == $1', deskId, new Date()).sorted(sortProperties);
-    if (numberCard === -1) {
+    let cardByDesk = Database.objects('Card').filtered('deskId = $0 and boxIndex != 1 and nextTime = $1', deskId, new Date()).sorted(sortProperties);
+    if (numberCard == -1) {
       return cardByDesk;
     } else {
       return cardByDesk.slice(0, numberCard);
@@ -101,7 +112,7 @@ export default {
   },
 
   answerCard: (id, nextTime, boxIndex) => {
-    let cardByDesk = Database.objects('Card').filtered('id == $0', id);
+    let cardByDesk = Database.objects('Card').filtered('id = $0', id);
     Database.write(() => {
       cardByDesk.answerTime = new Date(),
       cardByDesk.nextTime = nextTime,
@@ -170,7 +181,7 @@ export default {
   },
 
   getKanjiMatome: (keyword) => {
-    let kanji = Database.objects('KanjiMatome').filtered('keyword == $0', keyword);
+    let kanji = Database.objects('KanjiMatome').filtered('keyword = $0', keyword);
     return kanji;
   },
 
@@ -204,7 +215,7 @@ export default {
   },
 
   getSetting: (key) => {
-    let settings = Database.objects('Setting').filtered('key == $0', key);
+    let settings = Database.objects('Setting').filtered('key = $0', key);
     return settings;
   },
 
