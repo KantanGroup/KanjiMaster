@@ -6,6 +6,7 @@ import { watchLoginAttempt } from './LoginSaga'
 import getCityWeather from './GetCityWeatherSaga'
 import searchKanjiSaga from './SearchKanjiSaga'
 import managementDeskSaga from './ManagementDeskSaga'
+import managementCardSaga from './ManagementCardSaga'
 import DebugSettings from '../Config/DebugSettings'
 
 // Create our API at this level and feed it into
@@ -21,9 +22,10 @@ export default function * root () {
   yield fork(watchInitiativeDatabase)
   yield fork(getCityWeather(api).watcher)
   yield fork(searchKanjiSaga().watcher)
+  yield fork(managementCardSaga().addCardToDesk)
+  yield fork(managementCardSaga().addCardsToDesk)
+  yield fork(managementCardSaga().getStudyCards)
   yield fork(managementDeskSaga().createDesk)
-  yield fork(managementDeskSaga().addCardToDesk)
-  yield fork(managementDeskSaga().addCardsToDesk)
   yield fork(managementDeskSaga().searchDesk)
   yield fork(managementDeskSaga().searchDesks)
 }
