@@ -28,7 +28,7 @@ import SettingScreen from '../Containers/SettingScreen'
 import FlashCardScreen from '../Containers/FlashCardScreen'
 import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 import SearchScreen from '../Containers/SearchScreen'
-import DeskViewScreen from '../Containers/DeskViewScreen'
+import DeskListScreen from '../Containers/DeskListScreen'
 import DeskCreateScreen from '../Containers/DeskCreateScreen'
 
 // I18n
@@ -89,7 +89,7 @@ class NavigationRouter extends Component {
             <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} hideNavBar />
             <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} hideNavBar />
             <Scene key='search' component={SearchScreen} title='Search' hideNavBar />
-            <Scene key='desk' component={DeskViewScreen} title='Desk' />
+            <Scene key='desk' component={DeskListScreen} title='Desk' />
             <Scene key='deskCreation' component={DeskCreateScreen} title='Create Desk' />
           </Scene>
         </Scene>
