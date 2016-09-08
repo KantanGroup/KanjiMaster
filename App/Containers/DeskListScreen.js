@@ -9,9 +9,9 @@ import DeskAddButton from '../Components/DeskAddButton'
 import DeskItem from '../Components/DeskItem'
 
 // Styles
-import styles from './Styles/DeskViewScreenStyle'
+import styles from './Styles/DeskListScreenStyle'
 
-class DeskViewScreen extends React.Component {
+class DeskListScreen extends React.Component {
 
   constructor (props) {
     super(props)
@@ -82,7 +82,7 @@ class DeskViewScreen extends React.Component {
   *************************************************************/
   _renderRow (rowData) {
     return (
-      <DeskItem text={rowData.name}/>
+      <DeskItem desk={rowData}/>
     )
   }
 
@@ -161,7 +161,7 @@ class DeskViewScreen extends React.Component {
   }
 }
 
-DeskViewScreen.propTypes = {
+DeskListScreen.propTypes = {
   desks: PropTypes.object
 }
 
@@ -177,4 +177,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeskViewScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(DeskListScreen)
