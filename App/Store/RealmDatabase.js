@@ -67,8 +67,8 @@ const CardSchema = {
     front:        {type: 'string', indexed: true},
     back:         {type: 'string', optional: true, indexed: true},
     type:         {type: 'int', indexed: true},
-    due:          {type: 'float', default: 0, indexed: true},
-    point:        {type: 'float', default: 1.0, indexed: true},
+    due:          {type: 'float', default: 0.0},
+    point:        {type: 'float', default: 1.0},
     createTime:   {type: 'int', default: Date.now(), indexed: true},
     answerTime:   {type: 'int', default: Date.now()},
     nextTime:     {type: 'int', default: Date.now(), indexed: true},
@@ -85,4 +85,4 @@ const SettingSchema = {
   }
 };
 
-export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, KanjiMatomeTangoSchema, KanjiMatomeMeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
+export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, KanjiMatomeTangoSchema, KanjiMatomeMeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 3});

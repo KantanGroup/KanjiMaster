@@ -94,7 +94,7 @@ export default {
     sortProperties.push(["nextTime", false]);
     let endDay = new Date();
     endDay.setHours(23,59,59,999);
-    let cardByDesk = Database.objects('Card').filtered('deskId = $0 and boxIndex = 1 and nextTime < $1', deskId, endDay.getTime()).sorted(sortProperties);
+    let cardByDesk = Database.objects('Card').filtered('deskId = $0 and boxIndex = 0 and nextTime < $1', deskId, endDay.getTime()).sorted(sortProperties);
     if (numberCard == -1) {
       return cardByDesk;
     } else {
@@ -107,7 +107,7 @@ export default {
     sortProperties.push(["nextTime", false]);
     let endDay = new Date();
     endDay.setHours(23,59,59,999);
-    let cardByDesk = Database.objects('Card').filtered('deskId = $0 and boxIndex != 1 and nextTime < $1', deskId, endDay.getTime()).sorted(sortProperties);
+    let cardByDesk = Database.objects('Card').filtered('deskId = $0 and boxIndex != 0 and nextTime < $1', deskId, endDay.getTime()).sorted(sortProperties);
     if (numberCard == -1) {
       return cardByDesk;
     } else {
