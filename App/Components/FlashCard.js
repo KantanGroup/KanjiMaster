@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import { ScrollView, View, Image, TouchableOpacity, Text } from 'react-native'
+import { BackAndroid, ScrollView, View, Image, TouchableOpacity, Text } from 'react-native'
 import { connect } from 'react-redux'
 import Actions from '../Actions/Creators'
 import styles from './Styles/FlashCardStyle'
@@ -70,6 +70,18 @@ class FlasCardDefine extends React.Component {
     super(props);
   }
 
+  componentWillMount = () => {
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+        try {
+            NavigationActions.pop();
+            return true;
+        }
+        catch (err) {
+            return true;
+        }
+    });
+  }
+
   render() {
     let definition;
     if (this.props.showData.definition) {
@@ -116,6 +128,18 @@ class FlasCardDefine extends React.Component {
 class FlasCardMeaning extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount = () => {
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+        try {
+            this.props.onPress();
+            return true;
+        }
+        catch (err) {
+            return true;
+        }
+    });
   }
 
   render() {
