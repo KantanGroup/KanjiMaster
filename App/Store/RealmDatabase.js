@@ -36,17 +36,17 @@ const KanjiMatomeTangoSchema = {
     tango:        {type: 'string', indexed: true},
     hiragana:     {type: 'string', indexed: true},
     hanViet:      {type: 'string', indexed: true},
-    meanings:     {type: 'list', objectType: 'MeaningByLanguage'}
+    meanings:     {type: 'list', objectType: 'KanjiMatomeMeaningByLanguage'}
   }
 };
 
-const MeaningByLanguageSchema = {
-  name: 'MeaningByLanguage',
+const KanjiMatomeMeaningByLanguageSchema = {
+  name: 'KanjiMatomeMeaningByLanguage',
   properties: {
     language:     {type: 'string', indexed: true},
     meaning:      {type: 'string'}
   }
-}
+};
 
 const DeskSchema = {
   name: "Desk",
@@ -60,16 +60,21 @@ const DeskSchema = {
 
 const CardSchema = {
   name: "Card",
+  primaryKey: "id",
   properties: {
+    id:           {type: 'int'},
     deskId:       {type: 'int', indexed: true},
-    keyword:      {type: 'string', indexed: true},
+    front:        {type: 'string', indexed: true},
+    back:         {type: 'string', optional: true, indexed: true},
     type:         {type: 'int', indexed: true},
-    createTime:   {type: 'date', default: new Date(), indexed: true},
-    answerTime:   {type: 'date', default: new Date()},
-    nextTime:     {type: 'date', default: new Date(), indexed: true},
-    boxIndex:     {type: 'int', default: 1, indexed: true}
+    due:          {type: 'float', default: 0, indexed: true},
+    point:        {type: 'float', default: 1.0, indexed: true},
+    createTime:   {type: 'int', default: Date.now(), indexed: true},
+    answerTime:   {type: 'int', default: Date.now()},
+    nextTime:     {type: 'int', default: Date.now(), indexed: true},
+    boxIndex:     {type: 'int', default: 0, indexed: true}
   }
-}
+};
 
 const SettingSchema = {
   name: "Setting",
@@ -78,6 +83,6 @@ const SettingSchema = {
     key:          {type: 'string', indexed: true},
     value:        {type: 'bool', default: false}
   }
-}
+};
 
-export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, KanjiMatomeTangoSchema, MeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
+export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, KanjiMatomeTangoSchema, KanjiMatomeMeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
