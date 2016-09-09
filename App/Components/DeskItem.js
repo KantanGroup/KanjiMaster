@@ -6,14 +6,14 @@ import styles from './Styles/DeskItemStyle'
 
 class DeskItem extends React.Component {
 
-  gotoStudy () {
-    this.props.getStudyCards(this.props.desk.id);
+  startStudy () {
+    this.props.startStudyDesk(this.props.desk.id);
   }
 
   render () {
     return (
       <View>
-        <TouchableOpacity key="desk_01" style={styles.desk} onPress={() => {this.gotoStudy()}}>
+        <TouchableOpacity style={styles.desk} onPress={() => {this.startStudy()}}>
           <Text style={styles.deskText}>{this.props.desk.name}</Text>
         </TouchableOpacity>
       </View>
@@ -28,7 +28,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getStudyCards: (deskId) => dispatch(Actions.getStudyCards(deskId))
+    startStudyDesk: (deskId) => dispatch(Actions.startStudyDesk(deskId))
   }
 }
 

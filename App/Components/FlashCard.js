@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import { ScrollView, View, Image, TouchableOpacity, Text } from 'react-native'
+import { connect } from 'react-redux'
+import Actions from '../Actions/Creators'
 import styles from './Styles/FlashCardStyle'
 
 import * as Animatable from 'react-native-animatable'
@@ -22,7 +24,7 @@ var cardMeaning = {
   hiragana: '漢字は難しい'
 }
 
-export default class FlashCard extends React.Component {
+class FlashCard extends React.Component {
 
   constructor (props) {
     super(props)
@@ -145,3 +147,22 @@ class FlasCardMeaning extends React.Component {
     )
   }
 }
+
+FlashCard.propTypes = {
+  newCardInDay: PropTypes.object,
+  reviewCardInDay: PropTypes.object
+}
+
+const mapStateToProps = (state) => {
+  return {
+    newCardInDay: state.card.newCardInDay,
+    reviewCardInDay: state.card.reviewCardInDay
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlashCard)

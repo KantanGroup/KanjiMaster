@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addCardToDesk: (deskId, keyword, type) => dispatch(Actions.addCardToDesk(deskId, keyword, type)),
-    getStudyCards: (deskId) => dispatch(Actions.getStudyCards(deskId))
+    startStudyDesk: (deskId) => dispatch(Actions.startStudyDesk(deskId))
   }
 }
 
