@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "apisauce": "^0.5.0",
+    "fastpriorityqueue": "^0.1.0",
     "format-json": "^1.0.3",
     "moment": "^2.14.1",
     "parse5": "^1.4.1",

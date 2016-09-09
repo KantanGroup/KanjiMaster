@@ -8,6 +8,7 @@ import moment from 'moment'
 import Toast from 'react-native-root-toast';
 
 import DatabaseService from '../Services/DatabaseService'
+import LeitnerSystem from '../LeitnerSystem/LeitnerSystem'
 
 export default () => {
   function * addCardToDesk () {
@@ -40,19 +41,20 @@ export default () => {
     }
   }
 
-  function * getStudyCards () {
+  function * startStudyDesk () {
     while (true) {
-      const action = yield take(Types.CARD_STUDY)
+      const action = yield take(Types.DESK_STUDY_START)
       const { deskId } = action
 
       try {
-        //const newDay = yield select((state) => state.card.newDay)
-        //const currentDay = moment(new Date()).format("YYYYMMDD");
         const newCards = yield call(DatabaseService.getCardInDeskByNewCard, deskId, -1)
         yield put(Actions.receiveNewCardInDay(newCards, moment(new Date()).format("YYYYMMDD")))
 
         const reviewCards = yield call(DatabaseService.getCardInDeskByReviewCard, deskId, -1)
         yield put(Actions.receiveReviewCardInDay(reviewCards, moment(new Date()).format("YYYYMMDD")))
+
+        LeitnerSystem.startStudy(newCards, reviewCards);
+        yield put(Actions.countCard(LeitnerSystem.countNewCard(), LeitnerSystem.countDoingCard(), LeitnerSystem.countReviewCard()));
       } catch (error) {
         Toast.show(error)
       }
@@ -62,6 +64,6 @@ export default () => {
   return {
     addCardToDesk,
     addCardsToDesk,
-    getStudyCards
+    startStudyDesk
   }
 }

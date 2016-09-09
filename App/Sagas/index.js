@@ -24,7 +24,7 @@ export default function * root () {
   yield fork(searchKanjiSaga().watcher)
   yield fork(managementCardSaga().addCardToDesk)
   yield fork(managementCardSaga().addCardsToDesk)
-  yield fork(managementCardSaga().getStudyCards)
+  yield fork(managementCardSaga().startStudyDesk)
   yield fork(managementDeskSaga().createDesk)
   yield fork(managementDeskSaga().searchDesk)
   yield fork(managementDeskSaga().searchDesks)

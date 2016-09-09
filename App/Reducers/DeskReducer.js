@@ -33,12 +33,21 @@ const notFound = (state, action) =>
     desks: []
   })
 
+const countCard = (state, action) =>
+  state.merge({
+    countNewCard: action.countNewCard,
+    countDoingCard: action.countDoingCard,
+    countReviewCard: action.countReviewCard
+  })
+
+
 // map our types to our handlers
 const ACTION_HANDLERS = {
   [Types.DESK_SEARCH]: search,
   [Types.DESK_RECEIVE]: receiveDesk,
   [Types.DESKS_RECEIVE]: receiveDesks,
-  [Types.DESK_NOT_FOUND]: notFound
+  [Types.DESK_NOT_FOUND]: notFound,
+  [Types.DESK_CARD_COUNT]: countCard
 }
 
 export default createReducer(INITIAL_STATE, ACTION_HANDLERS)

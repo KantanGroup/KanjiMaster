@@ -29,8 +29,9 @@ const receiveCard = (card) =>　({ type: Types.CARD_RECEIVE, card })
 const receiveCards = (cards) =>　({ type: Types.CARDS_RECEIVE, cards })
 const receiveNewCardInDay = (cards, date) =>　({ type: Types.CARD_NEW_INDDAY_RECEIVE, cards , date})
 const receiveReviewCardInDay = (cards, date) =>　({ type: Types.CARD_REVIEW_INDDAY_RECEIVE, cards , date})
-const getStudyCards = (deskId) =>　({ type: Types.CARD_STUDY, deskId })
 
+const startStudyDesk = (deskId) =>  ({ type: Types.DESK_STUDY_START, deskId })
+const countCard = (countNewCard, countDoingCard, countReviewCard) =>  ({ type: Types.DESK_CARD_COUNT, countNewCard, countDoingCard, countReviewCard })
 const createDesk = (name) =>  ({ type: Types.DESK_CREATE, name })
 const searchDesk = (id) =>  ({ type: Types.DESK_SEARCH, id })
 const receiveDesk = (desk) =>　({ type: Types.DESK_RECEIVE, desk })
@@ -61,7 +62,8 @@ export default {
   receiveCards,
   receiveNewCardInDay,
   receiveReviewCardInDay,
-  getStudyCards,
+  startStudyDesk,
+  countCard,
   searchDesk,
   receiveDesk,
   searchDesks,
