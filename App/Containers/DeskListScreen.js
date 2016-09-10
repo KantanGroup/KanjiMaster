@@ -167,7 +167,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchKanji: (keyword) => dispatch(Actions.searchKanji(keyword))
   }
 }
 
