@@ -12,19 +12,15 @@ export default class Footer extends React.Component {
     let footer;
     if (this.props.type === 'black') {
       footer = (
-        <View style={styles.footerBlack}>
-          <Text style={styles.subtitle}>Made with ❤️ by Tran Anh Tuan</Text>
-        </View>
+        <Text style={styles.subtitle}>Made with ❤️ by Tran Anh Tuan</Text>
       );
     } else {
       footer = (
-        <View style={styles.footerWhite}>
-          <Text>Made with ❤️ by Tran Anh Tuan</Text>
-        </View>
+        <Text>Made with ❤️ by Tran Anh Tuan</Text>
       );
     }
     return (
-      <View>
+      <View style={this.props.type === 'black' ? styles.footerBlack : styles.footerWhite}>
         {footer}
       </View>
     )

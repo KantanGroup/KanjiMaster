@@ -3,7 +3,7 @@ import { WebView, View, Text } from 'react-native'
 import styles from './Styles/KanjiMeaningStyle'
 import { Metrics } from '../Themes/'
 
-import HtmlText from './HtmlText'
+import HTMLView from 'react-native-htmlview';
 
 export default class KanjiMeaning extends React.Component {
 
@@ -35,8 +35,7 @@ export default class KanjiMeaning extends React.Component {
       const firstHtml = '<html><body><div>'
       const lastHtml = '</div></body></html>'
       setsumei = (
-        <HtmlText html={`${firstHtml}${this.props.kanjiContent.setsumei}${lastHtml}`}/>
-
+        <HTMLView value={`${firstHtml}${this.props.kanjiContent.setsumei}${lastHtml}`} />
       );
     }
     return (

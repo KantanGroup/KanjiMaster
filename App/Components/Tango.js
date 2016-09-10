@@ -10,7 +10,6 @@ import { Images } from '../Themes'
 
 import F8Touchable from './f8/F8Touchable'
 import Star from './Star'
-import HtmlText from './HtmlText'
 
 var LayoutAnimation = require('LayoutAnimation');
 
