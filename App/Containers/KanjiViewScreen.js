@@ -9,6 +9,7 @@ import { Metrics } from '../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import KanjiActions from '../Redux/KanjiRedux'
 
 // Styles
 import styles from './Styles/KanjiViewScreenStyle'
@@ -53,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchKanji: (keyword) => dispatch(Actions.searchKanji(keyword))
+    searchKanji: (keyword) => dispatch(KanjiActions.kanjiSearch(keyword))
   }
 }
 

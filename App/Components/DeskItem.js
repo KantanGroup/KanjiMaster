@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Actions from '../Actions/Creators'
 import styles from './Styles/DeskItemStyle'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import DeskActions from '../Redux/DeskRedux'
 
 class DeskItem extends React.Component {
 
@@ -30,7 +31,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    startStudyDesk: (deskId) => dispatch(Actions.startStudyDesk(deskId))
+    startStudyDesk: (id) => dispatch(DeskActions.deskStudy(id))
   }
 }
 

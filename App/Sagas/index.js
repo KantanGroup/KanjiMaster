@@ -1,31 +1,54 @@
-import { fork } from 'redux-saga/effects'
+import { takeLatest } from 'redux-saga'
 import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
-import { watchStartup, watchInitiativeDatabase } from './StartupSaga'
-import { watchLoginAttempt } from './LoginSaga'
-import getCityWeather from './GetCityWeatherSaga'
-import searchKanjiSaga from './SearchKanjiSaga'
-import managementDeskSaga from './ManagementDeskSaga'
-import managementCardSaga from './ManagementCardSaga'
 import DebugSettings from '../Config/DebugSettings'
 
-// Create our API at this level and feed it into
-// the sagas that are expected to make API calls
-// so there's only 1 copy app-wide!
-// const api = API.create()
+/* ------------- Types ------------- */
+
+import { StartupTypes } from '../Redux/StartupRedux'
+import { TemperatureTypes } from '../Redux/TemperatureRedux'
+import { LoginTypes } from '../Redux/LoginRedux'
+import { KanjiTypes } from '../Redux/KanjiRedux'
+import { DeskTypes } from '../Redux/DeskRedux'
+import { CardTypes } from '../Redux/CardRedux'
+
+/* ------------- Sagas ------------- */
+
+import { startup, initiativeDatabase } from './StartupSagas'
+import { login } from './LoginSagas'
+import { getTemperature } from './TemperatureSagas'
+import { searchKanji } from './KanjiSagas'
+import { createDesk, searchDesk, searchDesks, startStudyDesk } from './DeskSagas'
+import { addCardToDesk } from './CardSagas'
+
+/* ------------- API ------------- */
+
+// The API we use is only used from Sagas, so we create it here and pass along
+// to the sagas which need it.
 const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 
-// start the daemons
+/* ------------- Connect Types To Sagas ------------- */
+
 export default function * root () {
-  yield fork(watchStartup)
-  yield fork(watchLoginAttempt)
-  yield fork(watchInitiativeDatabase)
-  yield fork(getCityWeather(api).watcher)
-  yield fork(searchKanjiSaga().watcher)
-  yield fork(managementCardSaga().addCardToDesk)
-  yield fork(managementCardSaga().addCardsToDesk)
-  yield fork(managementCardSaga().startStudyDesk)
-  yield fork(managementDeskSaga().createDesk)
-  yield fork(managementDeskSaga().searchDesk)
-  yield fork(managementDeskSaga().searchDesks)
+  yield [
+    // some sagas only receive an action
+    takeLatest(StartupTypes.STARTUP, startup),
+    takeLatest(StartupTypes.INITIATIVE_DATABASE, initiativeDatabase),
+    takeLatest(LoginTypes.LOGIN_REQUEST, login),
+
+    // some sagas receive extra parameters in addition to an action
+    takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api),
+
+    //Kanji action
+    takeLatest(KanjiTypes.KANJI_SEARCH, searchKanji),
+
+    //Desk action
+    takeLatest(DeskTypes.DESK_CREATE, createDesk),
+    takeLatest(DeskTypes.DESK_SEARCH, searchDesk),
+    takeLatest(DeskTypes.DESKS_SEARCH, searchDesks),
+    takeLatest(DeskTypes.DESK_STUDY, startStudyDesk),
+
+    //Card action
+    takeLatest(CardTypes.CARD_ADD_TO_DESK, addCardToDesk)
+  ]
 }

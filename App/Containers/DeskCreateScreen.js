@@ -26,6 +26,7 @@ import { Metrics } from '../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import DeskActions from '../Redux/DeskRedux'
 
 // Styles
 import styles from './Styles/DeskCreateScreenStyle'
@@ -119,7 +120,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createDesk: (name) => dispatch(Actions.createDesk(name))
+    createDesk: (name) => dispatch(DeskActions.deskCreate(name))
   }
 }
 

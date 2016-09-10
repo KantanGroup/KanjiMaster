@@ -1,15 +1,5 @@
-import React from 'react'
-import { AppRegistry } from 'react-native'
-import Root from './App/Root'
 import './App/Config/ReactotronConfig'
-import configureStore from './App/Store/Store'
+import { AppRegistry } from 'react-native'
+import App from './App/Containers/App'
 
-// Handling store here to avoid hot-reloading issues
-const store = configureStore()
-class RNBase extends React.Component {
-  render () {
-    return <Root {...this.props} store={store} />
-  }
-}
-
-AppRegistry.registerComponent('KanjiMaster', () => RNBase)
+AppRegistry.registerComponent('KanjiMaster', () => App)

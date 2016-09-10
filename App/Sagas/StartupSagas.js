@@ -1,22 +1,22 @@
-import { take, put, call, select } from 'redux-saga/effects'
-import Types from '../Actions/Types'
-import Actions from '../Actions/Creators'
-import R from 'ramda'
+import { call, put, select } from 'redux-saga/effects'
+import TemperatureActions from '../Redux/TemperatureRedux'
+import { is } from 'ramda'
 
 import Toast from 'react-native-root-toast';
 import DatabaseService from '../Services/DatabaseService'
 
-// process STARTUP actions
-export function * watchStartup () {
-  yield take(Types.STARTUP)
+// exported to make available for tests
+export const selectTemperature = state => state.temperature.temperature
 
-  const temp = yield select((state) => state.weather.temperature)
+// process STARTUP actions
+export function * startup (action) {
+  const temp = yield select(selectTemperature)
 
   yield call(initiativeDatabase)
 
   // only fetch new temps when we don't have one yet
-  if (!R.is(Number, temp)) {
-    yield put(Actions.requestTemperature('San Francisco'))
+  if (!is(Number, temp)) {
+    yield put(TemperatureActions.temperatureRequest('San Francisco'))
   }
 }
 
@@ -37,17 +37,7 @@ export function * initiativeDatabase () {
   }
 }
 
-export function * watchInitiativeDatabase () {
-  // daemonize
-  while (true) {
-    // wait for LOGIN_ATTEMPT actions to arrive
-    yield take(Types.INITIATIVE_DATABASE)
-    // call attemptLogin to perform the actual work
-    yield call(initiativeDatabase)
-  }
-}
-
-export function * importDatabaseKanji () {
+function * importDatabaseKanji () {
   let setting = DatabaseService.getSetting("importDatabaseKanji");
   if (!setting || (setting && (!setting[0] || !setting[0].value))) {
     console.log("Kanji do import database")
@@ -62,7 +52,7 @@ export function * importDatabaseKanji () {
   }
 }
 
-export function * importDatabaseKanjiTango() {
+function * importDatabaseKanjiTango() {
   let setting = DatabaseService.getSetting("importDatabaseKanjiTango");
   if (!setting || (setting && (!setting[0] || !setting[0].value))) {
     console.log("Kanji tango do import database")
