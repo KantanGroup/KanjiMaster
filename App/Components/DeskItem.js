@@ -14,11 +14,9 @@ class DeskItem extends React.Component {
 
   render () {
     return (
-      <View>
-        <TouchableOpacity style={styles.desk} onPress={() => {this.startStudy()}}>
-          <Text style={styles.deskText}>{this.props.desk.name}</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.desk} onPress={() => {this.startStudy()}}>
+        <Text style={styles.deskText}>{this.props.desk.name}</Text>
+      </TouchableOpacity>
     )
   }
 }

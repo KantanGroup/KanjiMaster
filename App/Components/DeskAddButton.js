@@ -8,11 +8,9 @@ export default class DeskAddButton extends React.Component {
 
   render () {
     return (
-      <View>
-        <TouchableOpacity style={styles.box} onPress={() => NavigationActions.deskCreation()}>
-          <Text style={styles.text}>Create new Desk</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.box} onPress={() => NavigationActions.deskCreation()}>
+        <Text style={styles.text}>Create new Desk</Text>
+      </TouchableOpacity>
     )
   }
 }

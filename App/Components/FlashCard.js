@@ -10,6 +10,7 @@ import { Images } from '../Themes'
 
 import HeaderOptions from '../Components/HeaderOptions'
 import KanjiComponent from '../Components/KanjiComponent'
+import FlashCardFooter from '../Components/FlashCardFooter'
 
 var cardDefinition = {
   definition: 'Kanji',
@@ -108,17 +109,7 @@ class FlasCardDefine extends React.Component {
           </View>
         </View>
 
-        <View style={styles.footer}>
-           <TouchableOpacity style={styles.bottomButtons}>
-              <Text style={styles.footerText}>A</Text>
-           </TouchableOpacity>
-           <TouchableOpacity style={styles.bottomButtons}>
-              <Text style={styles.footerText}>B</Text>
-           </TouchableOpacity>
-           <TouchableOpacity style={styles.bottomButtons}>
-              <Text style={styles.footerText}>C</Text>
-           </TouchableOpacity>
-        </View>
+        <FlashCardFooter />
       </View>
     )
   }

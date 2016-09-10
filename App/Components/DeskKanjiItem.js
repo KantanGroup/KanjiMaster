@@ -14,11 +14,9 @@ class DeskKanjiItem extends React.Component {
 
   render () {
     return (
-      <View>
-        <TouchableOpacity style={styles.desk} onPress={() => {this.addToDesk(this.props.desk.id, this.props.keyword)}}>
-          <Text style={styles.deskText}>{this.props.desk.name}</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.desk} onPress={() => {this.addToDesk(this.props.desk.id, this.props.keyword)}}>
+        <Text style={styles.deskText}>{this.props.desk.name}</Text>
+      </TouchableOpacity>
     )
   }
 }
