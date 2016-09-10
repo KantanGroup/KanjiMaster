@@ -18,7 +18,7 @@ export default {
 
   startStudy: (newCards, reviewCards) => {
     doingSize = 0;
-    queue = new FastPriorityQueue(function(a,b) {return a.nextTime > b.nextTime});
+    queue = new FastPriorityQueue(function(a,b) {return a.nextTime < b.nextTime});
     newSize = Object.keys(newCards).length;
     Object.keys(newCards).forEach(function(key) {
       queue.add(newCards[key]);
@@ -38,6 +38,7 @@ export default {
     if (!queue.isEmpty()) {
       card = queue.poll();
     }
+    return card;
   },
 
   countDoingCard: () => {

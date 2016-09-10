@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react'
 import { ScrollView, Image, Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import Actions from '../Actions/Creators'
 import { Images } from '../Themes'
 import { Metrics } from '../Themes'
 

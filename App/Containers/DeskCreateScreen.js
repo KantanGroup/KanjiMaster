@@ -19,7 +19,6 @@ import {
 } from 'react-native-tableview-simple';
 
 import { connect } from 'react-redux'
-import Actions from '../Actions/Creators'
 import { Images } from '../Themes'
 import { Metrics } from '../Themes'
 // external libs

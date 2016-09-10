@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react'
 import { BackAndroid, ScrollView, View, Image, TouchableOpacity, Text } from 'react-native'
 import { connect } from 'react-redux'
-import Actions from '../Actions/Creators'
 import styles from './Styles/FlashCardStyle'
 
 import * as Animatable from 'react-native-animatable'

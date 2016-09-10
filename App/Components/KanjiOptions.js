@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react'
 import { ListView, Modal, TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
-import Actions from '../Actions/Creators'
 import styles from './Styles/KanjiOptionsStyle'
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -19,7 +18,6 @@ class KanjiOptions extends React.Component {
   }
 
   componentDidMount() {
-    console.log("KanjiOptions " + this.props.keyword);
     const rowHasChanged = (r1, r2) => r1 !== r2
     const ds = new ListView.DataSource({rowHasChanged})
     this.setState({

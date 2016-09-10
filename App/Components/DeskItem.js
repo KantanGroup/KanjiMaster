@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
-import Actions from '../Actions/Creators'
 import styles from './Styles/DeskItemStyle'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import DeskActions from '../Redux/DeskRedux'

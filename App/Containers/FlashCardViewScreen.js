@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactNative, { Image } from 'react-native'
 import { connect } from 'react-redux'
-import Actions from '../Actions/Creators'
 import { Images } from '../Themes'
 import { Metrics } from '../Themes'
 // external libs

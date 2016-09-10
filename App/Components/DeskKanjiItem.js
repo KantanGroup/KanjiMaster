@@ -1,26 +1,15 @@
 import React, {PropTypes} from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
-import Actions from '../Actions/Creators'
 import styles from './Styles/DeskKanjiItemStyle'
 
 import Toast from 'react-native-root-toast';
-import { CardActions } from '../Redux/CardRedux'
-import DatabaseService from '../Services/DatabaseService'
+import CardActions from '../Redux/CardRedux'
 
 class DeskKanjiItem extends React.Component {
 
-  addToDesk (id, front) {
-    //this.props.addCardToDesk(deskId, keyword, 0);
-    //*
-    let hasCard = DatabaseService.hasCardInDesk(id, front, 0)
-    if (!hasCard) {
-      DatabaseService.addCard(id, front, 0)
-      Toast.show("Add successful")
-    } else {
-      Toast.show("Have been added to desk")
-    }
-    //*/
+  addToDesk (deskId, front) {
+    this.props.addKanjiToDesk(deskId, front);
   }
 
   render () {
@@ -46,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCardToDesk: (id, front, back, type) => dispatch(CardActions.cardAddToDesk(id, front, back, type))
+    addKanjiToDesk: (deskId, front) => dispatch(CardActions.kanjiAddToDesk(deskId, front))
   }
 }
 

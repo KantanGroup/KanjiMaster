@@ -68,8 +68,31 @@ export function * startStudyDesk (action) {
 
     LeitnerSystem.startStudy(newCards, reviewCards);
     yield put(DeskActions.deskCountCard(LeitnerSystem.countNewCard(), LeitnerSystem.countDoingCard(), LeitnerSystem.countReviewCard()));
+
+    yield call(getNextCard)
   } catch (error) {
-    Toast.show(error)
+    Toast.show("Can't study this desk")
+    console.log(error)
     yield put(DeskActions.deskNotFound())
+    yield put(CardActions.cardEmptyInQueue())
   }
+}
+
+export function * feedbackCard(card, feedback) {
+  try {
+
+  } catch (error) {
+    Toast.show("Can't answer this card")
+    console.log(error)
+  }
+}
+
+function * getNextCard() {
+  const card = LeitnerSystem.nextCard();
+  if (card) {
+    yield put(CardActions.cardInQueue(card, card))
+  } else {
+    yield put(CardActions.cardEmptyInQueue())
+  }
+  console.log(card)
 }

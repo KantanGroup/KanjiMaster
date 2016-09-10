@@ -42,12 +42,13 @@ export default {
     });
   },
 
-  addCard: (deskId, keyword, type) => {
+  addCard: (deskId, front, back, type) => {
     Database.write(() => {
       Database.create('Card', {
         id: Date.now(),
         deskId: deskId,
-        front: keyword,
+        front: front,
+        back: back,
         type: type
       });
     });

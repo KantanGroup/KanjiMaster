@@ -5,19 +5,9 @@ import { is } from 'ramda'
 import Toast from 'react-native-root-toast';
 import DatabaseService from '../Services/DatabaseService'
 
-// exported to make available for tests
-export const selectTemperature = state => state.temperature.temperature
-
 // process STARTUP actions
 export function * startup (action) {
-  const temp = yield select(selectTemperature)
-
   yield call(initiativeDatabase)
-
-  // only fetch new temps when we don't have one yet
-  if (!is(Number, temp)) {
-    yield put(TemperatureActions.temperatureRequest('San Francisco'))
-  }
 }
 
 export function * initiativeDatabase () {
