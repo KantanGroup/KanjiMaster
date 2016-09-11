@@ -10,6 +10,7 @@ import DeskActions from '../Redux/DeskRedux'
 import CardActions from '../Redux/CardRedux'
 import DatabaseService from '../Services/DatabaseService'
 import LeitnerSystem from '../LeitnerSystem/LeitnerSystem'
+import Constant from '../Transforms/Constant'
 
 export function * searchDesk (action) {
   const { id } = action
@@ -79,11 +80,28 @@ export function * startStudyDesk (action) {
 }
 
 export function * feedbackCard(action) {
-  const { card, feedback } = action
+  const { card } = action
+  try {
+    const cardAgain = LeitnerSystem.feedbackAgain(card);
+    const cardHard = LeitnerSystem.feedbackHard(card);
+    const cardGood = LeitnerSystem.feedbackGood(card);
+    const cardEasy = LeitnerSystem.feedbackEasy(card);
+    yield put(DeskActions.deskReceiveFeedbackCard(cardAgain, cardHard, cardGood, cardEasy));
+  } catch (error) {
+    Toast.show("Can't answer this card")
+    console.log(error)
+  }
+}
+
+export function * updateCard(action) {
+  const { card, relearning } = action
   try {
     console.log(card)
-    console.log(feedback)
-
+    console.log(relearning)
+    yield put(DeskActions.deskReceiveFeedbackCard(cardAgain, cardHard, cardGood, cardEasy));
+    if (relearning) {
+      yield call(LeitnerSystem.addCard, card);
+    }
     yield call(getNextCard)
   } catch (error) {
     Toast.show("Can't answer this card")
@@ -92,11 +110,10 @@ export function * feedbackCard(action) {
 }
 
 function * getNextCard() {
-  const card = LeitnerSystem.nextCard();
-  if (card) {
-    yield put(CardActions.cardInQueue(card, null, null))
+  const nextCard = yield call(LeitnerSystem.nextCard);
+  if (nextCard) {
+    yield put(CardActions.cardInQueue(nextCard, null, null))
   } else {
     yield put(CardActions.cardEmptyInQueue())
   }
-  console.log(card)
 }

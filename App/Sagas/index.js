@@ -18,7 +18,7 @@ import { startup, initiativeDatabase } from './StartupSagas'
 import { login } from './LoginSagas'
 import { getTemperature } from './TemperatureSagas'
 import { searchKanji } from './KanjiSagas'
-import { createDesk, searchDesk, searchDesks, startStudyDesk, feedbackCard } from './DeskSagas'
+import { createDesk, searchDesk, searchDesks, startStudyDesk, feedbackCard, updateCard } from './DeskSagas'
 import { addCardToDesk, addKanjiToDesk, addWordToDesk, addGrammarToDesk } from './CardSagas'
 
 /* ------------- API ------------- */
@@ -49,6 +49,7 @@ export default function * root () {
     takeLatest(DeskTypes.DESK_STUDY, startStudyDesk),
 
     takeLatest(DeskTypes.DESK_FEEDBACK_TO_CARD, feedbackCard),
+    takeLatest(DeskTypes.DESK_UPDATE_CARD, updateCard),
 
     //Card action
     takeLatest(CardTypes.CARD_ADD_TO_DESK, addCardToDesk),

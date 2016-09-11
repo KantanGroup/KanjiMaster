@@ -49,6 +49,7 @@ export const getCardInQueue = (state, action) =>
 
 export const emptyCardInQueue = (state, action) =>
   state.merge({ card: null, cardFront: null, cardBack: null })
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {

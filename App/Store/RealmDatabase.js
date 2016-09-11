@@ -67,7 +67,7 @@ const CardSchema = {
     front:        {type: 'string', indexed: true},
     back:         {type: 'string', optional: true, indexed: true},
     type:         {type: 'int', indexed: true},
-    due:          {type: 'float', default: 0.0},
+    due:          {type: 'float', default: 1.0},
     point:        {type: 'float', default: 1.0},
     createTime:   {type: 'int', default: Date.now(), indexed: true},
     answerTime:   {type: 'int', default: Date.now()},

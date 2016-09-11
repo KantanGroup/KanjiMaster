@@ -125,6 +125,12 @@ export default {
     });
   },
 
+  updateCard: (card) => {
+    Database.write(() => {
+      Database.create('Card', card, true);
+    });
+  },
+
   createKanjiMatome: (data) => {
     Database.write(() => {
       Database.create('KanjiMatome', {

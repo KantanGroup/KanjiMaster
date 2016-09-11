@@ -12,35 +12,39 @@ class FlashCardFeedback extends React.Component {
     super(props)
 
     this.state = {
-      feedbackType: 0
+      feedbackCard: null,
+      relearning: false
     }
   }
 
   componentWillMount() {
     switch (this.props.type) {
       case 'again':
-        this.setState({ feedbackType: Constant.FEEDBACK_AGAIN });
+        this.setState({ feedbackCard: this.props.cardAgain, relearning: true});
         break;
       case 'hard':
-        this.setState({ feedbackType: Constant.FEEDBACK_HARD });
+        if (this.props.cardHard.nextDay < 0.007) {
+          this.setState({ feedbackCard: this.props.cardHard, relearning: true});
+        } else {
+          this.setState({ feedbackCard: this.props.cardHard, relearning: false});
+        }
         break;
       case 'good':
-        this.setState({ feedbackType: Constant.FEEDBACK_GOOD });
+        this.setState({ feedbackCard: this.props.cardGood, relearning: false});
         break;
       case 'easy':
-        this.setState({ feedbackType: Constant.FEEDBACK_EASY });
+        this.setState({ feedbackCard: this.props.cardEasy, relearning: false});
         break;
     }
   }
 
   addFeedbackToCard () {
-    console.log(this.props.card)
-    console.log(this.state.feedbackType)
-    this.props.feedbackCard(this.props.card, this.state.feedbackType);
+    this.props.updateCard(this.state.feedbackCard, this.state.relearning);
   }
 
   render () {
     let styleType;
+    let text = '< 1 min';
     switch (this.props.type) {
       case 'again':
         styleType = {
@@ -51,21 +55,28 @@ class FlashCardFeedback extends React.Component {
         styleType = {
           backgroundColor: '#262626',
         };
+        if (this.props.cardHard.nextDay < 0.007) {
+          text = '< 10 mins'
+        } else {
+          text = `${this.props.cardHard.nextDay.toFixed(1)} days`
+        }
         break;
       case 'good':
         styleType = {
           backgroundColor: '#004d00',
         };
+        text = `${this.props.cardGood.nextDay.toFixed(1)} days`
         break;
       case 'easy':
         styleType = {
           backgroundColor: '#004d99',
         };
+        text = `${this.props.cardEasy.nextDay.toFixed(1)} days`
         break;
     }
     return (
       <TouchableOpacity style={[styles.bottomButtons, styleType]} onPress={() => {this.addFeedbackToCard()}}>
-         <Text style={styles.footerTime}>10 Minutes</Text>
+         <Text style={styles.footerTime}>{text}</Text>
          <Text style={styles.footerText}>{this.props.type.toUpperCase()}</Text>
       </TouchableOpacity>
     )
@@ -73,19 +84,24 @@ class FlashCardFeedback extends React.Component {
 }
 
 FlashCardFeedback.propTypes = {
-  card: PropTypes.object,
-  feedbackCard: PropTypes.func
+  cardAgain: PropTypes.object,
+  cardHard: PropTypes.object,
+  cardGood: PropTypes.object,
+  cardEasy: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
   return {
-    card: state.card.card
+    cardAgain: state.desk.cardAgain,
+    cardHard: state.desk.cardHard,
+    cardGood: state.desk.cardGood,
+    cardEasy: state.desk.cardEasy
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    feedbackCard: (card, feedback) => dispatch(DeskActions.deskFeedbackToCard(card, feedback))
+    updateCard: (card) => dispatch(DeskActions.deskUpdateCard(card))
   }
 }
 

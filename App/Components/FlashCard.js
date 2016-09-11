@@ -8,6 +8,7 @@ import * as Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { Images } from '../Themes'
 
+import DeskActions from '../Redux/DeskRedux'
 import HeaderOptions from '../Components/HeaderOptions'
 import KanjiComponent from '../Components/KanjiComponent'
 import FlashCardFooter from '../Components/FlashCardFooter'
@@ -37,10 +38,11 @@ class FlashCard extends React.Component {
   }
 
   switchFlashCard = () => {
-      this.setState({
-        showDefinition: !this.state.showDefinition,
-        showData: this.state.showDefinition ? cardDefinition : cardMeaning
-      });
+    this.props.feedbackCard(this.props.card);
+    this.setState({
+      showDefinition: !this.state.showDefinition,
+      showData: this.state.showDefinition ? cardDefinition : cardMeaning
+    });
   };
 
   render () {
@@ -162,18 +164,25 @@ class FlasCardMeaning extends React.Component {
 
 FlashCard.propTypes = {
   newCardInDay: PropTypes.object,
-  reviewCardInDay: PropTypes.object
+  reviewCardInDay: PropTypes.object,
+  card: PropTypes.object,
+  cardFront: PropTypes.object,
+  cardBack: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
   return {
     newCardInDay: state.card.newCardInDay,
-    reviewCardInDay: state.card.reviewCardInDay
+    reviewCardInDay: state.card.reviewCardInDay,
+    card: state.card.card,
+    cardFront: state.card.cardFront,
+    cardBack: state.card.cardBack
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    feedbackCard: (card) => dispatch(DeskActions.deskFeedbackToCard(card))
   }
 }
 

@@ -45,89 +45,120 @@ export default {
     return reviewSize;
   },
 
-  feedbackCard: (card, feedback) => {
-    switch (feedback) {
-      case Constant.FEEDBACK_AGAIN:
-        return feedbackAgain(card);
-      case Constant.FEEDBACK_HARD:
-        return feedbackHard(card);
-      case Constant.FEEDBACK_GOOD:
-        return feedbackGood(card);
-      case Constant.FEEDBACK_EASY:
-        return feedbackEasy(card);
-    }
-  },
-
   feedbackAgain: (card) => {
-    card.due = 0;
-    card.point = 1;
-    card.nextTime = Date().now + Constant.A_MINUTE;
-    card.answerTime = Date().now;
-    if (card.boxIndex === 0) {
+    let cloneCard = clone(card);
+    let date = new Date();
+    cloneCard.due = 0;
+    cloneCard.point = 1;
+    cloneCard.nextDay = 1 / (60 * 24);
+    cloneCard.nextTime = date.getTime() + Constant.A_MINUTE;
+    cloneCard.answerTime = date.getTime();
+    if (cloneCard.boxIndex === 0) {
       newSize--;
       doingSize++;
-    } else if (card.boxIndex === 2) {
+    } else if (cloneCard.boxIndex === 2) {
       reviewSize--;
       doingSize++;
     }
-    card.boxIndex = 1;
-    return card;
+    cloneCard.boxIndex = 1;
+    return cloneCard;
   },
 
   feedbackHard: (card) => {
-    let nextDue = card.due * 1.2;
-    let nextPoint = card.point * 0.85;
-    if (card.boxIndex == 0) {
+    let cloneCard = clone(card);
+    let date = new Date();
+    let nextDue = cloneCard.due * 1.2;
+    let nextPoint = cloneCard.point * 0.85;
+    if (cloneCard.boxIndex == 0) {
       newSize--;
       doingSize++;
-      card.boxIndex = 1;
-      card.nextTime = Date().now + Constant.A_MINUTE * 10;
+      cloneCard.boxIndex = 1;
+      cloneCard.nextDay = 10 / (60 * 24);
+      cloneCard.nextTime = date.getTime() + Constant.A_MINUTE * 10;
     } else {
-      if (card.boxIndex === 2) {
+      if (cloneCard.boxIndex === 2) {
         reviewSize--;
       } else {
         doingSize--;
       }
-      card.boxIndex = 2;
-      card.point = nextPoint;
-      card.nextDay = nextPoint * nextDue * Constant.A_DAY;
-      card.nextTime = Date().now + card.nextDay * Constant.A_DAY;
+      cloneCard.boxIndex = 2;
+      cloneCard.point = nextPoint;
+      cloneCard.nextDay = nextPoint * nextDue;
+      cloneCard.nextTime = date.getTime() + cloneCard.nextDay * Constant.A_DAY;
     }
-    card.answerTime = Date().now;
-    return card;
+    cloneCard.answerTime = date.getTime();
+    return cloneCard;
   },
 
   feedbackGood: (card) => {
-    if (card.boxIndex === 0) {
+    let cloneCard = clone(card);
+    let date = new Date();
+    if (cloneCard.boxIndex === 0) {
       newSize--;
-    } else if (card.boxIndex === 2) {
+    } else if (cloneCard.boxIndex === 2) {
       reviewSize--;
     } else {
       doingSize--;
     }
-    let nextDue = card.due * 2.5;
-    card.nextDay = nextDue * Constant.A_DAY;
-    card.nextTime = Date().now + card.nextDay * Constant.A_DAY;
-    card.answerTime = Date().now;
-    card.boxIndex = 2;
-    return card;
+    let nextDue = cloneCard.due * 2.5;
+    cloneCard.nextDay = nextDue;
+    cloneCard.nextTime = date.getTime() + cloneCard.nextDay * Constant.A_DAY;
+    cloneCard.answerTime = date.getTime();
+    cloneCard.boxIndex = 2;
+    return cloneCard;
   },
 
   feedbackEasy: (card) => {
-    if (card.boxIndex === 0) {
+    let cloneCard = clone(card);
+    let date = new Date();
+    if (cloneCard.boxIndex === 0) {
       newSize--;
-    } else if (card.boxIndex === 2) {
+    } else if (cloneCard.boxIndex === 2) {
       reviewSize--;
     } else {
       doingSize--;
     }
-    let nextDue = card.due * 3.25;
-    let nextPoint = card.point * 1.15;
-    card.point = nextPoint;
-    card.nextDay = nextPoint * nextDue;
-    card.nextTime = Date().now + card.nextDay * Constant.A_DAY;
-    card.answerTime = Date().now;
-    card.boxIndex = 2;
-    return card;
-  }
+    let nextDue = cloneCard.due * 3.25;
+    let nextPoint = cloneCard.point * 1.15;
+    cloneCard.point = nextPoint;
+    cloneCard.nextDay = nextPoint * nextDue;
+    cloneCard.nextTime = date.getTime() + cloneCard.nextDay * Constant.A_DAY;
+    cloneCard.answerTime = date.getTime();
+    cloneCard.boxIndex = 2;
+    return cloneCard;
+  },
+}
+
+function clone(obj) {
+    var copy;
+
+    // Handle the 3 simple types, and null or undefined
+    if (null == obj || "object" != typeof obj) return obj;
+
+    // Handle Date
+    if (obj instanceof Date) {
+        copy = new Date();
+        copy.setTime(obj.getTime());
+        return copy;
+    }
+
+    // Handle Array
+    if (obj instanceof Array) {
+        copy = [];
+        for (var i = 0, len = obj.length; i < len; i++) {
+            copy[i] = clone(obj[i]);
+        }
+        return copy;
+    }
+
+    // Handle Object
+    if (obj instanceof Object) {
+        copy = {};
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+        }
+        return copy;
+    }
+
+    throw new Error("Unable to copy obj! Its type isn't supported.");
 }
