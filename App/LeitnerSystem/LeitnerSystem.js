@@ -1,13 +1,5 @@
 import FastPriorityQueue from "fastpriorityqueue"
-
-const AGAIN = 1; //The card is placed into relearning mode
-const HARD = 2; //
-const GOOD = 3;
-const EASY = 4;
-
-const A_MINUTE = 1000 * 60;
-const A_HOUR =  A_MINUTE * 60;
-const A_DAY = A_HOUR * 24;
+import Constant from '../Transforms/Constant'
 
 var queue;
 var doingSize = 0;
@@ -55,13 +47,13 @@ export default {
 
   feedbackCard: (card, feedback) => {
     switch (feedback) {
-      case AGAIN:
+      case Constant.FEEDBACK_AGAIN:
         return feedbackAgain(card);
-      case HARD:
+      case Constant.FEEDBACK_HARD:
         return feedbackHard(card);
-      case GOOD:
+      case Constant.FEEDBACK_GOOD:
         return feedbackGood(card);
-      case EASY:
+      case Constant.FEEDBACK_EASY:
         return feedbackEasy(card);
     }
   },
@@ -69,7 +61,7 @@ export default {
   feedbackAgain: (card) => {
     card.due = 0;
     card.point = 1;
-    card.nextTime = Date().now + A_MINUTE;
+    card.nextTime = Date().now + Constant.A_MINUTE;
     card.answerTime = Date().now;
     if (card.boxIndex === 0) {
       newSize--;
@@ -89,7 +81,7 @@ export default {
       newSize--;
       doingSize++;
       card.boxIndex = 1;
-      card.nextTime = Date().now + A_MINUTE * 10;
+      card.nextTime = Date().now + Constant.A_MINUTE * 10;
     } else {
       if (card.boxIndex === 2) {
         reviewSize--;
@@ -98,8 +90,8 @@ export default {
       }
       card.boxIndex = 2;
       card.point = nextPoint;
-      card.nextDay = nextPoint * nextDue * A_DAY;
-      card.nextTime = Date().now + card.nextDay * A_DAY;
+      card.nextDay = nextPoint * nextDue * Constant.A_DAY;
+      card.nextTime = Date().now + card.nextDay * Constant.A_DAY;
     }
     card.answerTime = Date().now;
     return card;
@@ -114,8 +106,8 @@ export default {
       doingSize--;
     }
     let nextDue = card.due * 2.5;
-    card.nextDay = nextDue * A_DAY;
-    card.nextTime = Date().now + card.nextDay * A_DAY;
+    card.nextDay = nextDue * Constant.A_DAY;
+    card.nextTime = Date().now + card.nextDay * Constant.A_DAY;
     card.answerTime = Date().now;
     card.boxIndex = 2;
     return card;
@@ -133,7 +125,7 @@ export default {
     let nextPoint = card.point * 1.15;
     card.point = nextPoint;
     card.nextDay = nextPoint * nextDue;
-    card.nextTime = Date().now + card.nextDay * A_DAY;
+    card.nextTime = Date().now + card.nextDay * Constant.A_DAY;
     card.answerTime = Date().now;
     card.boxIndex = 2;
     return card;
