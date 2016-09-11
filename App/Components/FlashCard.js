@@ -47,7 +47,7 @@ class FlashCard extends React.Component {
     let meaning;
     if (this.state.showDefinition) {
       meaning = (
-        <FlasCardDefine showData={this.state.showData} onPress={this.switchFlashCard}/>
+        <FlasCardDefine showData={this.state.showData} pressAnswer={this.switchFlashCard}/>
       )
     } else {
       meaning = (
@@ -96,20 +96,20 @@ class FlasCardDefine extends React.Component {
       );
     }
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, flexDirection: 'column'}}>
         <HeaderOptions pressBack={() => NavigationActions.pop()} pressOptions={() => alert("Menu options")}/>
 
         <View style={styles.containerCenter}>
           <View style={styles.centered}>
-            <TouchableOpacity style={styles.card} onPress={this.props.onPress}>
+            <View style={styles.card}>
               {definition}
               <Text numberOfLines={1} style={styles.kanji}>{this.props.showData.kanji}</Text>
               {hiragana}
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
 
-        <FlashCardFooter />
+        <FlashCardFooter pressAnswer={this.props.pressAnswer} type='answer'/>
       </View>
     )
   }
@@ -149,15 +149,13 @@ class FlasCardMeaning extends React.Component {
     };
 
     return (
-      <ScrollView>
+      <View style={{flex: 1, flexDirection: 'column'}}>
         <HeaderOptions pressBack={this.props.onPress} pressOptions={() => alert("Menu options")}/>
 
-        <TouchableOpacity onPress={this.props.onPress}>
+        <KanjiComponent kanjiContent={kanjiContent} tangos={tangos}/>
 
-          <KanjiComponent kanjiContent={kanjiContent} tangos={tangos}/>
-
-        </TouchableOpacity>
-      </ScrollView>
+        <FlashCardFooter type='feedback'/>
+      </View>
     )
   }
 }
