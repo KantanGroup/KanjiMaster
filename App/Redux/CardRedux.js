@@ -12,7 +12,7 @@ const { Types, Creators } = createActions({
   cardsReceive: ['cards'],
   cardNewInDayReceive: ['cards', 'date'],
   cardReviewInDayReceive: ['cards', 'date'],
-  cardInQueue: ['front', 'back'],
+  cardInQueue: ['card', 'front', 'back'],
   cardEmptyInQueue: null
 })
 
@@ -45,10 +45,10 @@ export const receiveReviewCardInDay = (state, action) =>
   state.merge({ reviewCardInDay: action.cards, reviewDay: action.date })
 
 export const getCardInQueue = (state, action) =>
-  state.merge({ cardFront: action.front, cardBack: action.back })
+  state.merge({ card: action.card, cardFront: action.front, cardBack: action.back })
 
 export const emptyCardInQueue = (state, action) =>
-  state.merge({ cardFront: null, cardBack: null })
+  state.merge({ card: null, cardFront: null, cardBack: null })
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {

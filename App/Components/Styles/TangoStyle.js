@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 10
+    padding: 5
   },
   innerContainer: {
     borderRadius: 5,
@@ -80,5 +80,12 @@ export default StyleSheet.create({
     paddingTop: 5,
     lineHeight: 21,
     color: '#002350',
-  }
+  },
+  slide: {
+    flex: 1,
+    padding: 0,
+    paddingLeft: 10,
+    paddingRight: 5,
+    paddingBottom: 20
+  },
 })

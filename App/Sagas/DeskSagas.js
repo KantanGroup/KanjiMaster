@@ -78,9 +78,13 @@ export function * startStudyDesk (action) {
   }
 }
 
-export function * feedbackCard(card, feedback) {
+export function * feedbackCard(action) {
+  const { card, feedback } = action
   try {
+    console.log(card)
+    console.log(feedback)
 
+    yield call(getNextCard)
   } catch (error) {
     Toast.show("Can't answer this card")
     console.log(error)
@@ -90,7 +94,7 @@ export function * feedbackCard(card, feedback) {
 function * getNextCard() {
   const card = LeitnerSystem.nextCard();
   if (card) {
-    yield put(CardActions.cardInQueue(card, card))
+    yield put(CardActions.cardInQueue(card, null, null))
   } else {
     yield put(CardActions.cardEmptyInQueue())
   }

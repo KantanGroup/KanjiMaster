@@ -5,6 +5,7 @@ import styles from './Styles/TangoStyle'
 import { RadioButtons } from 'react-native-radio-buttons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HTMLView from 'react-native-htmlview';
+import Swiper from 'react-native-swiper';
 
 import { Images } from '../Themes'
 
@@ -101,7 +102,7 @@ class TangoComponent extends React.Component {
       backgroundColor: this.state.transparent ? 'rgba(0, 0, 0, 0.5)' : '#f5fcff',
     };
     let innerContainerTransparentStyle = this.state.transparent
-      ? {backgroundColor: '#fff', padding: 15}
+      ? {backgroundColor: '#fff', padding: 0}
       : null;
     let activeButtonStyle = {
       backgroundColor: '#ddd'
@@ -119,24 +120,39 @@ class TangoComponent extends React.Component {
     let languages = getLanguageInTango(this.props.tango);
     languages.map((langage) => {
       if (langage === 'ja') {
+        let meaning  = getMeaningByLanguage(this.props.tango.meanings, 'ja')
         languagItem.push(
-          <TouchableHighlight key="touch_ja" onPress={() => {this.switchLanguage('ja')}} >
-            <Text style={{ fontWeight: 'bold', color: 'blue', margin: 10}}>Japanese</Text>
-          </TouchableHighlight>
+          <View key="swiper_ja" style={styles.slide}>
+            <ScrollView>
+              <HTMLView stylesheet={htmlStyles}
+                value={`${firstHtml}${meaning}${lastHtml}`}
+              />
+            </ScrollView>
+          </View>
         )
       }
       if (langage === 'en') {
+        let meaning  = getMeaningByLanguage(this.props.tango.meanings, 'en')
         languagItem.push(
-          <TouchableHighlight key="touch_en" onPress={() => {this.switchLanguage('en')}} >
-            <Text style={{ fontWeight: 'bold', color: 'blue', margin: 10}}>English</Text>
-          </TouchableHighlight>
+          <View key="swiper_en" style={styles.slide}>
+            <ScrollView>
+              <HTMLView stylesheet={htmlStyles}
+                value={`${firstHtml}${meaning}${lastHtml}`}
+              />
+            </ScrollView>
+          </View>
         )
       }
       if (langage === 'vi') {
+        let meaning  = getMeaningByLanguage(this.props.tango.meanings, 'vi')
         languagItem.push(
-          <TouchableHighlight key="touch_vi" onPress={() => {this.switchLanguage('vi')}} >
-            <Text style={{ fontWeight: 'bold', color: 'blue', margin: 10}}>Vietnamese</Text>
-          </TouchableHighlight>
+          <View key="swiper_vi" style={styles.slide}>
+            <ScrollView>
+              <HTMLView stylesheet={htmlStyles}
+                value={`${firstHtml}${meaning}${lastHtml}`}
+              />
+            </ScrollView>
+          </View>
         )
       }
     })
@@ -151,15 +167,20 @@ class TangoComponent extends React.Component {
           >
           <View style={[styles.container, modalBackgroundStyle]}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', backgroundColor: "#FFFFFF", borderTopLeftRadius: 5, borderTopRightRadius: 5}}>
-              {languagItem}
+              <View><Text></Text></View>
               {myButton}
             </View>
              <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
-               <ScrollView>
-                 <HTMLView stylesheet={htmlStyles}
-                   value={`${firstHtml}${this.state.selectedMeaning}${lastHtml}`}
-                 />
-               </ScrollView>
+               <Swiper width={350} height={350} style={styles.wrapper}
+                  onMomentumScrollEnd={function(e, state, context){console.log('index:', state.index)}}
+                  dot={<View style={{backgroundColor:'rgba(0,0,0,.2)', width: 5, height: 5,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                  activeDot={<View style={{backgroundColor: '#00f', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                  paginationStyle={{
+                    bottom: 5
+                  }}
+                 >
+                 {languagItem}
+               </Swiper>
              </View>
            </View>
         </Modal>

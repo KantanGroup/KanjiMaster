@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { ScrollView, View, Text } from 'react-native'
 import styles from './Styles/KanjiComponentStyle'
 
 import KanjiMeaning from '../Components/KanjiMeaning'
@@ -13,7 +13,7 @@ export default class KanjiComponent extends React.Component {
 
   render () {
     return (
-      <View style={styles.container}>
+      <ScrollView style={{flex: 1, flexDirection: 'column'}}>
 
         <KanjiMeaning kanjiContent={this.props.kanjiContent}/>
 
@@ -21,7 +21,7 @@ export default class KanjiComponent extends React.Component {
 
         <Footer type='black'/>
 
-      </View>
+      </ScrollView>
     )
   }
 }
