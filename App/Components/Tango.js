@@ -206,6 +206,7 @@ class TangoComponent extends React.Component {
 
 var htmlStyles = StyleSheet.create({
   font: {
-    fontSize: 12 //Change font size
+    //fontSize: 14, //Change font size
+    lineHeight: 20
   },
 })
