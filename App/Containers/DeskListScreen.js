@@ -65,6 +65,12 @@ class DeskListScreen extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(this.props.desks)
+    })
+  }
+
   /* ***********************************************************
   * STEP 3
   * `_renderRow` function -How each cell/row should be rendered

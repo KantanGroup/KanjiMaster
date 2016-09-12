@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import styles from './Styles/FlashCardFooterStyle'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 
 import Constant from '../Transforms/Constant'
 import DeskActions from '../Redux/DeskRedux'
@@ -17,7 +18,7 @@ class FlashCardFeedback extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     switch (this.props.type) {
       case 'again':
         this.setState({ feedbackCard: this.props.cardAgain, relearning: true});
@@ -40,6 +41,9 @@ class FlashCardFeedback extends React.Component {
 
   addFeedbackToCard () {
     this.props.updateCard(this.state.feedbackCard, this.state.relearning);
+    setTimeout(() => {
+      NavigationActions.refresh();
+    }, 100);
   }
 
   render () {
@@ -101,7 +105,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateCard: (card) => dispatch(DeskActions.deskUpdateCard(card))
+    updateCard: (card, relearning) => dispatch(DeskActions.deskUpdateCard(card, relearning))
   }
 }
 

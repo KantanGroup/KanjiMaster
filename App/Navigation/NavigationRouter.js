@@ -22,9 +22,10 @@ import KanjiByJLPTScreen from '../Containers/KanjiByJLPTScreen'
 import KanjiViewScreen from '../Containers/KanjiViewScreen'
 import NiteirukanjiScreen from '../Containers/ListviewExample'
 import DouonigigoScreen from '../Containers/KanjiScreen'
-import TangoScreen from '../Containers/FlashCardScreen'
+import TangoScreen from '../Containers/FlashCardSetup'
 import BunpouScreen from '../Containers/AutocompleteExample'
 import SettingScreen from '../Containers/SettingScreen'
+import FlashCardSetup from '../Containers/FlashCardSetup'
 import FlashCardScreen from '../Containers/FlashCardScreen'
 import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 import SearchScreen from '../Containers/SearchScreen'
@@ -83,10 +84,11 @@ class NavigationRouter extends Component {
             <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} hideNavBar={false} renderRightButton={() => <KanjiOptions />}/>
             <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} hideNavBar={false}/>
             <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} hideNavBar={false}/>
-            <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} hideNavBar={true}/>
+            <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} />
             <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} hideNavBar={false}/>
             <Scene key='settei' component={SettingScreen} title={I18n.t('settei')} hideNavBar={false}/>
             <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} hideNavBar={true} />
+            <Scene key='flashcardsetup' component={FlashCardSetup} title={I18n.t('flashcard')} hideNavBar={true} />
             <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} hideNavBar={true} />
             <Scene key='search' component={SearchScreen} title='Search' hideNavBar />
             <Scene key='desk' component={DeskListScreen} title='Desk' hideNavBar={false}/>

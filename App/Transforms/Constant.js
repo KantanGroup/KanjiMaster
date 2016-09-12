@@ -4,9 +4,9 @@ module.exports = {
   FEEDBACK_GOOD: 3,
   FEEDBACK_EASY: 4,
 
-  A_MINUTE: 1000 * 60,
-  A_HOUR: 1000 * 60 * 60,
-  A_DAY: 1000 * 60 * 60 * 24
+  A_MINUTE: 60000,
+  A_HOUR: 3600000,
+  A_DAY: 86400000
 }
 
 /*

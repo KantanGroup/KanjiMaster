@@ -50,9 +50,6 @@ class DeskCreateScreen extends React.Component {
   }
 
   createDesk() {
-    console.log(this._deskFilter.state.selectedItem)
-    console.log(this._deskFilter.state.selectedSubItem)
-    console.log(this._deskName.state)
     if(this._deskName.state.text === '') {
       alert("Input desk name")
       return
@@ -69,8 +66,7 @@ class DeskCreateScreen extends React.Component {
     console.log("Add card to desk")
     NavigationActions.pop();
     setTimeout(() => {
-      NavigationActions.refresh({name:'zzzzar'});
-      console.log("zzzz");
+      NavigationActions.refresh();
     }, 100);
   }
 

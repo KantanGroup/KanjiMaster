@@ -9,7 +9,7 @@ class DeskItem extends React.Component {
 
   startStudy () {
     this.props.startStudyDesk(this.props.desk.id);
-    NavigationActions.flashcard();
+    NavigationActions.flashcardsetup();
   }
 
   render () {

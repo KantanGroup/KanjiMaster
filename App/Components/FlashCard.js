@@ -13,12 +13,6 @@ import HeaderOptions from '../Components/HeaderOptions'
 import KanjiComponent from '../Components/KanjiComponent'
 import FlashCardFooter from '../Components/FlashCardFooter'
 
-var cardDefinition = {
-  definition: 'Kanji',
-  kanji: '漢字',
-  hiragana: 'かんじ'
-}
-
 var cardMeaning = {
   definition: 'Chữ hán',
   kanji: '漢字',
@@ -30,6 +24,9 @@ class FlashCard extends React.Component {
   constructor (props) {
     super(props)
 
+    let cardDefinition = {
+      kanji: this.props.nextCard.front
+    }
     // Datasource is always in state
     this.state = {
       showDefinition: true,
@@ -37,8 +34,17 @@ class FlashCard extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      showDefinition: true
+    });
+  }
+
   switchFlashCard = () => {
-    this.props.feedbackCard(this.props.card);
+    this.props.feedbackCard(this.props.nextCard);
+    let cardDefinition = {
+      kanji: this.props.nextCard.front
+    }
     this.setState({
       showDefinition: !this.state.showDefinition,
       showData: this.state.showDefinition ? cardDefinition : cardMeaning
@@ -165,7 +171,7 @@ class FlasCardMeaning extends React.Component {
 FlashCard.propTypes = {
   newCardInDay: PropTypes.object,
   reviewCardInDay: PropTypes.object,
-  card: PropTypes.object,
+  nextCard: PropTypes.object,
   cardFront: PropTypes.object,
   cardBack: PropTypes.object
 }
@@ -174,7 +180,7 @@ const mapStateToProps = (state) => {
   return {
     newCardInDay: state.card.newCardInDay,
     reviewCardInDay: state.card.reviewCardInDay,
-    card: state.card.card,
+    nextCard: state.card.nextCard,
     cardFront: state.card.cardFront,
     cardBack: state.card.cardBack
   }

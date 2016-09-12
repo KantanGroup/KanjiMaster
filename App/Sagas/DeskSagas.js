@@ -1,7 +1,5 @@
 import {call, put} from 'redux-saga/effects'
 import R from 'ramda'
-import Types from '../Actions/Types'
-import Actions from '../Actions/Creators'
 import I18n from 'react-native-i18n'
 
 import moment from 'moment'
@@ -96,17 +94,17 @@ export function * feedbackCard(action) {
 export function * updateCard(action) {
   const { card, relearning } = action
   try {
-    console.log(card)
-    console.log(relearning)
-    yield put(DeskActions.deskReceiveFeedbackCard(cardAgain, cardHard, cardGood, cardEasy));
+
+    yield call(DatabaseService.updateCard, card);
     if (relearning) {
       yield call(LeitnerSystem.addCard, card);
     }
-    yield call(getNextCard)
   } catch (error) {
     Toast.show("Can't answer this card")
     console.log(error)
   }
+
+  yield call(getNextCard)
 }
 
 function * getNextCard() {

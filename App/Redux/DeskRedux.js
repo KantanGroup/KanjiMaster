@@ -44,7 +44,7 @@ export const receiveDesks = (state, action) =>
   state.merge({ desks: action.desks })
 
 export const notFound = (state, action) =>
-  state.merge({ id: null, desks: null })
+  state.merge({ id: null, desks: {} })
 
 export const countCard = (state, action) =>
   state.merge({ countNewCard: action.countNewCard, countDoingCard: action.countDoingCard, countReviewCard: action.countReviewCard })

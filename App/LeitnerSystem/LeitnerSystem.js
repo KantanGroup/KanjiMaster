@@ -48,9 +48,9 @@ export default {
   feedbackAgain: (card) => {
     let cloneCard = clone(card);
     let date = new Date();
-    cloneCard.due = 0;
+    cloneCard.due = 1;
     cloneCard.point = 1;
-    cloneCard.nextDay = 1 / (60 * 24);
+    cloneCard.nextDay = 1;
     cloneCard.nextTime = date.getTime() + Constant.A_MINUTE;
     cloneCard.answerTime = date.getTime();
     if (cloneCard.boxIndex === 0) {
@@ -83,7 +83,8 @@ export default {
       }
       cloneCard.boxIndex = 2;
       cloneCard.point = nextPoint;
-      cloneCard.nextDay = nextPoint * nextDue;
+      cloneCard.nextDay = cloneCard.nextDay * nextPoint * nextDue;
+      cloneCard.nextDay = cloneCard.nextDay > 1 ? cloneCard.nextDay : 1;
       cloneCard.nextTime = date.getTime() + cloneCard.nextDay * Constant.A_DAY;
     }
     cloneCard.answerTime = date.getTime();
@@ -101,7 +102,8 @@ export default {
       doingSize--;
     }
     let nextDue = cloneCard.due * 2.5;
-    cloneCard.nextDay = nextDue;
+    cloneCard.nextDay = cloneCard.nextDay * nextDue;
+    cloneCard.nextDay = cloneCard.nextDay > 1 ? cloneCard.nextDay : 1;
     cloneCard.nextTime = date.getTime() + cloneCard.nextDay * Constant.A_DAY;
     cloneCard.answerTime = date.getTime();
     cloneCard.boxIndex = 2;
@@ -121,7 +123,8 @@ export default {
     let nextDue = cloneCard.due * 3.25;
     let nextPoint = cloneCard.point * 1.15;
     cloneCard.point = nextPoint;
-    cloneCard.nextDay = nextPoint * nextDue;
+    cloneCard.nextDay = cloneCard.nextDay * nextPoint * nextDue;
+    cloneCard.nextDay = cloneCard.nextDay > 1 ? cloneCard.nextDay : 1;
     cloneCard.nextTime = date.getTime() + cloneCard.nextDay * Constant.A_DAY;
     cloneCard.answerTime = date.getTime();
     cloneCard.boxIndex = 2;
