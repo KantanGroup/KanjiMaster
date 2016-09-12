@@ -43,13 +43,17 @@ export default {
   },
 
   addCard: (deskId, front, back, type) => {
+    let date = new Date();
     Database.write(() => {
       Database.create('Card', {
         id: Date.now(),
         deskId: deskId,
         front: front,
         back: back,
-        type: type
+        type: type,
+        createTime: date.getTime(),
+        answerTime: date.getTime(),
+        nextTime: date.getTime()
       });
     });
   },
@@ -57,11 +61,16 @@ export default {
   addCards: (deskId, keywords, type) => {
     Database.write(() => {
       keywords.map((keyword) => {
+        let date = new Date();
         Database.create('Card', {
           id: Date.now(),
           deskId: deskId,
           front: keyword,
-          type: type
+          back: back,
+          type: type,
+          createTime: date.getTime(),
+          answerTime: date.getTime(),
+          nextTime: date.getTime()
         });
       })
     });

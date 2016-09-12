@@ -88,7 +88,7 @@ class NavigationRouter extends Component {
             <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} hideNavBar={false}/>
             <Scene key='settei' component={SettingScreen} title={I18n.t('settei')} hideNavBar={false}/>
             <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} hideNavBar={true} />
-            <Scene key='flashcardsetup' component={FlashCardSetup} title={I18n.t('flashcard')} hideNavBar={true} />
+            <Scene key='flashcardsetup' component={FlashCardSetup} title={I18n.t('flashcard')} />
             <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} hideNavBar={true} />
             <Scene key='search' component={SearchScreen} title='Search' hideNavBar />
             <Scene key='desk' component={DeskListScreen} title='Desk' hideNavBar={false}/>

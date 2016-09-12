@@ -13,6 +13,10 @@ import HeaderOptions from '../Components/HeaderOptions'
 import KanjiComponent from '../Components/KanjiComponent'
 import FlashCardFooter from '../Components/FlashCardFooter'
 
+var cardDefinition = {
+  kanji: null
+}
+
 var cardMeaning = {
   definition: 'Chữ hán',
   kanji: '漢字',
@@ -30,21 +34,35 @@ class FlashCard extends React.Component {
     // Datasource is always in state
     this.state = {
       showDefinition: true,
-      showData: cardDefinition
+      showData: cardDefinition,
+      nextCard: this.props.nextCard,
+      cardFront: this.props.cardFront,
+      cardBack: this.props.cardBack
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    if (!nextProps.nextCard) {
+      NavigationActions.flashcardsetup();
+    }
+    cardDefinition = {
+      kanji: nextProps.nextCard.front
+    }
     this.setState({
-      showDefinition: true
+      showDefinition: true,
+      showData: cardDefinition,
+      nextCard: nextProps.nextCard,
+      nextCard: nextProps.nextCard,
+      cardFront: nextProps.cardFront,
+      cardBack: nextProps.cardBack
     });
   }
 
   switchFlashCard = () => {
-    this.props.feedbackCard(this.props.nextCard);
     let cardDefinition = {
-      kanji: this.props.nextCard.front
+      kanji: this.state.nextCard.front
     }
+    this.props.feedbackCard(this.state.nextCard);
     this.setState({
       showDefinition: !this.state.showDefinition,
       showData: this.state.showDefinition ? cardDefinition : cardMeaning
@@ -55,11 +73,11 @@ class FlashCard extends React.Component {
     let meaning;
     if (this.state.showDefinition) {
       meaning = (
-        <FlasCardDefine showData={this.state.showData} pressAnswer={this.switchFlashCard}/>
+        <FlasCardFront card={this.state.cardFront} showData={this.state.showData} pressAnswer={this.switchFlashCard}/>
       )
     } else {
       meaning = (
-        <FlasCardMeaning showData={this.state.showData} onPress={this.switchFlashCard}/>
+        <FlasCardBack card={this.state.cardBack} showData={this.state.showData} onPress={this.switchFlashCard}/>
       )
     }
     return (
@@ -73,7 +91,7 @@ class FlashCard extends React.Component {
   }
 }
 
-class FlasCardDefine extends React.Component {
+class FlasCardFront extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -123,7 +141,7 @@ class FlasCardDefine extends React.Component {
   }
 }
 
-class FlasCardMeaning extends React.Component {
+class FlasCardBack extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -142,6 +160,7 @@ class FlasCardMeaning extends React.Component {
 
   render() {
     let tangos = require('../Fixtures/tangos.json');
+    // const { kanji, tangos} = this.props.card;
 
     let kanjiContent = {
       hantu: "HAN",

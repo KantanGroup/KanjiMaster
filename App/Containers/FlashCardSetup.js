@@ -34,7 +34,7 @@ class FlashCardSetup extends React.Component {
           resizeMode='stretch' />
 
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text style={{color: 'white'}}>おめでとうございます</Text>
+            <Text style={{color: 'green'}}>おめでとうございます</Text>
           </View>
       </View>
     )
