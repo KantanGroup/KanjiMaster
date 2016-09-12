@@ -15,7 +15,7 @@ import styles from './Styles/KanjiViewScreenStyle'
 
 // I18n
 import I18n from 'react-native-i18n'
-
+import KanjiService from '../Services/KanjiService'
 import KanjiComponent from '../Components/KanjiComponent'
 
 class KanjiViewScreen extends React.Component {
@@ -28,8 +28,12 @@ class KanjiViewScreen extends React.Component {
   }
 
   render () {
-    let tangos = require('../Fixtures/tangos.json');
-
+    // let tangos = require('../Fixtures/tangos.json');
+    let tangos = [];
+    const datas = KanjiService.getTangoByKeyword(this.props.kanjiContent.keyword)
+    Object.keys(datas).forEach(function(key) {
+      tangos.push(datas[key]);
+    });
     return (
       <View style={styles.mainContainer}>
         <Image

@@ -1,33 +1,54 @@
-import React from 'react'
-import { WebView, View, Text } from 'react-native'
+import React, {PropTypes} from 'react'
+import { View, Text } from 'react-native'
+import { connect } from 'react-redux'
 import styles from './Styles/KanjiMeaningStyle'
 import { Metrics } from '../Themes/'
 
 import HTMLView from 'react-native-htmlview';
 
-export default class KanjiMeaning extends React.Component {
+class KanjiMeaning extends React.Component {
 
   constructor (props) {
     super(props)
+
+    this.state = {
+      keyword: this.props.kanjiContent.keyword,
+      hanViet: this.props.kanjiContent.hanViet,
+      onyomi: this.props.kanjiContent.onyomi,
+      kunyomi: this.props.kanjiContent.kunyomi,
+      jlpt: this.props.kanjiContent.jlpt,
+      radical: this.props.kanjiContent.radical
+    }
   }
 
-  render () {    
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      keyword: nextProps.keyword,
+      hanViet: nextProps.hanViet,
+      onyomi: nextProps.onyomi,
+      kunyomi: nextProps.kunyomi,
+      jlpt: nextProps.jlpt,
+      radical: nextProps.radical
+    });
+  }
+
+  render () {
     let keyword;
-    if (this.props.kanjiContent.keyword) {
-      keyword = this.props.kanjiContent.keyword;
+    if (this.state.keyword) {
+      keyword = this.state.keyword;
     } else {
       keyword = '漢';
     }
     let onyomi;
-    if (this.props.kanjiContent.onyomi) {
+    if (this.state.onyomi) {
       onyomi = (
-        <Text numberOfLines={1} style={styles.onyomi}>訓:{this.props.kanjiContent.onyomi}</Text>
+        <Text numberOfLines={1} style={styles.onyomi}>訓:{this.state.onyomi}</Text>
       );
     }
     let kunyomi;
-    if (this.props.kanjiContent.kunyomi) {
+    if (this.state.kunyomi) {
       kunyomi = (
-        <Text numberOfLines={1} style={styles.kunyomi}>音:{this.props.kanjiContent.kunyomi}</Text>
+        <Text numberOfLines={1} style={styles.kunyomi}>音:{this.state.kunyomi}</Text>
       );
     }
     let setsumei;
@@ -49,15 +70,15 @@ export default class KanjiMeaning extends React.Component {
           <View style={styles.content}>
             <View style={styles.content}>
               <Text style={[styles.text]}>
-                {this.props.kanjiContent.hantu}
+                {this.state.hanViet}
               </Text>
               {onyomi}
               {kunyomi}
               <Text style={[styles.text]}>
-                JLPT: {this.props.kanjiContent.level}
+                JLPT: {this.state.jlpt}
               </Text>
               <Text style={[styles.text]}>
-                Bộ thành phần: {this.props.kanjiContent.part}
+                Radical: {this.state.radical}
               </Text>
             </View>
           </View>
@@ -67,3 +88,15 @@ export default class KanjiMeaning extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(KanjiMeaning)
