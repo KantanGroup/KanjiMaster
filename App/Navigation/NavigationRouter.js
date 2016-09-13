@@ -43,6 +43,7 @@ class NavigationRouter extends Component {
             return true;
         }
         catch (err) {
+            Actions.startup();
             backButtonPressedOnceToExit = true;
             setTimeout(function() {
                 backButtonPressedOnceToExit = false;
