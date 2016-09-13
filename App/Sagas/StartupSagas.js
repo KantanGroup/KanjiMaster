@@ -32,7 +32,19 @@ function * importDatabaseKanji () {
   let setting = DatabaseService.getSetting("importDatabaseKanji");
   if (!setting || (setting && (!setting[0] || !setting[0].value))) {
     console.log("Kanji do import database")
-    const kanjimatomes = require('../Fixtures/kanjimatome_export.json')
+    let kanjimatomes = require('../Fixtures/kanjimatome_test_500.json')
+    KanjiService.createKanjiMatomes(kanjimatomes);
+    kanjimatomes = require('../Fixtures/kanjimatome_test_1000.json')
+    KanjiService.createKanjiMatomes(kanjimatomes);
+    kanjimatomes = require('../Fixtures/kanjimatome_test_1500.json')
+    KanjiService.createKanjiMatomes(kanjimatomes);
+    kanjimatomes = require('../Fixtures/kanjimatome_test_2000.json')
+    KanjiService.createKanjiMatomes(kanjimatomes);
+    kanjimatomes = require('../Fixtures/kanjimatome_test_2500.json')
+    KanjiService.createKanjiMatomes(kanjimatomes);
+    kanjimatomes = require('../Fixtures/kanjimatome_test_3000.json')
+    KanjiService.createKanjiMatomes(kanjimatomes);
+    kanjimatomes = require('../Fixtures/kanjimatome_test_3500.json')
     KanjiService.createKanjiMatomes(kanjimatomes);
     DatabaseService.setSetting("importDatabaseKanji", true);
   } else {

@@ -13,7 +13,7 @@ class KanjiMeaning extends React.Component {
 
     this.state = {
       keyword: this.props.kanjiContent.keyword,
-      hanViet: this.props.kanjiContent.hanViet,
+      hantu: this.props.kanjiContent.hantu,
       onyomi: this.props.kanjiContent.onyomi,
       kunyomi: this.props.kanjiContent.kunyomi,
       jlpt: this.props.kanjiContent.jlpt,
@@ -24,7 +24,7 @@ class KanjiMeaning extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       keyword: nextProps.keyword,
-      hanViet: nextProps.hanViet,
+      hantu: nextProps.hantu,
       onyomi: nextProps.onyomi,
       kunyomi: nextProps.kunyomi,
       jlpt: nextProps.jlpt,
@@ -70,7 +70,7 @@ class KanjiMeaning extends React.Component {
           <View style={styles.content}>
             <View style={styles.content}>
               <Text style={[styles.text]}>
-                {this.state.hanViet}
+                {this.state.hantu}
               </Text>
               {onyomi}
               {kunyomi}

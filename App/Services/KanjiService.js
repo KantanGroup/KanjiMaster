@@ -13,7 +13,10 @@ export default {
         jlpt: data.jlpt,
         jouyou: data.jouyou,
         rtk6th: data.rtk6th,
-        rank: data.rank
+        rank: data.rank,
+        hantu: data.hantu,
+        definition: data.definition,
+        meanings: data.meanings
       }, true);
     });
   },
@@ -31,7 +34,10 @@ export default {
           jlpt: data.jlpt,
           jouyou: data.jouyou,
           rtk6th: data.rtk6th,
-          rank: data.rank
+          rank: data.rank,
+          hantu: data.hantu,
+          definition: data.definition,
+          meanings: data.meanings
         }, true);
       })
     });

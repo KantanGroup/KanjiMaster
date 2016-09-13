@@ -5,7 +5,8 @@ const KanjiMatomeSchema = {
   primaryKey: 'keyword',
   properties: {
     keyword:      {type: 'string'},
-    hanViet:      {type: 'string', optional: true, indexed: true},
+    hantu:        {type: 'string', optional: true, indexed: true},
+    definition:   {type: 'string', optional: true, indexed: true},
     onyomi:       {type: 'string', optional: true, indexed: true},
     kunyomi:      {type: 'string', optional: true, indexed: true},
     radical:      {type: 'string', optional: true, indexed: true},
@@ -14,7 +15,8 @@ const KanjiMatomeSchema = {
     jlpt:         {type: 'int', optional: true, indexed: true},
     jouyou:       {type: 'int', optional: true, indexed: true},
     rtk6th:       {type: 'int', optional: true, indexed: true},
-    rank:         {type: 'int', optional: true, indexed: true}
+    rank:         {type: 'int', optional: true, indexed: true},
+    meanings:     {type: 'list', objectType: 'KanjiMatomeMeaningByLanguage'}
   }
 };
 
