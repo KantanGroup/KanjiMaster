@@ -14,7 +14,7 @@ import KanjiComponent from '../Components/KanjiComponent'
 import FlashCardFooter from '../Components/FlashCardFooter'
 
 var cardDefinition = {
-  kanji: null
+  kanji: "漢字"
 }
 
 var cardMeaning = {
@@ -27,35 +27,34 @@ class FlashCard extends React.Component {
 
   constructor (props) {
     super(props)
-
-    let cardDefinition = {
-      kanji: this.props.nextCard.front
-    }
-    // Datasource is always in state
     this.state = {
       showDefinition: true,
-      showData: cardDefinition,
-      nextCard: this.props.nextCard,
-      cardFront: this.props.cardFront,
-      cardBack: this.props.cardBack
+      showData: cardDefinition
+    }
+  }
+
+  componentWillMount() {
+    if (!this.props.nextCard) {
+      NavigationActions.flashcardsetup();
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.nextCard) {
       NavigationActions.flashcardsetup();
+    } else {
+      cardDefinition = {
+        kanji: nextProps.nextCard.front
+      }
+      this.setState({
+        showDefinition: true,
+        showData: cardDefinition,
+        nextCard: nextProps.nextCard,
+        nextCard: nextProps.nextCard,
+        cardFront: nextProps.cardFront,
+        cardBack: nextProps.cardBack
+      });
     }
-    cardDefinition = {
-      kanji: nextProps.nextCard.front
-    }
-    this.setState({
-      showDefinition: true,
-      showData: cardDefinition,
-      nextCard: nextProps.nextCard,
-      nextCard: nextProps.nextCard,
-      cardFront: nextProps.cardFront,
-      cardBack: nextProps.cardBack
-    });
   }
 
   switchFlashCard = () => {
@@ -65,7 +64,7 @@ class FlashCard extends React.Component {
     this.props.feedbackCard(this.state.nextCard);
     this.setState({
       showDefinition: !this.state.showDefinition,
-      showData: this.state.showDefinition ? cardDefinition : cardMeaning
+      showData: cardDefinition
     });
   };
 
