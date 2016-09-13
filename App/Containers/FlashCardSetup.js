@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Images } from '../Themes'
 import { Metrics } from '../Themes'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import HeaderOptions from '../Components/HeaderOptions'
 
 // Styles
 import styles from './Styles/FlashCardSetupStyle'
@@ -13,29 +14,15 @@ import I18n from 'react-native-i18n'
 
 class FlashCardSetup extends React.Component {
 
-  componentDidMount() {
-    if (this.props.nextCard) {
-      NavigationActions.flashcard();
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.nextCard) {
-      NavigationActions.flashcard();
-    }
-  }
-
   render () {
     return (
-      <View style={styles.mainContainer}>
-        <Image
-          source={Images.background}
-          style={styles.backgroundImage}
-          resizeMode='stretch' />
+      <View style={{flex: 1, flexDirection: 'column'}}>
+        <HeaderOptions pressBack={() => NavigationActions.pop()} pressOptions={() => alert("Menu options")}/>
 
-          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text style={{color: 'green'}}>おめでとうございます</Text>
-          </View>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={{color: 'green'}}>おめでとうございます</Text>
+        </View>
+
       </View>
     )
   }

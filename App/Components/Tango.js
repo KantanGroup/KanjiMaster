@@ -122,37 +122,31 @@ class TangoComponent extends React.Component {
       if (langage === 'ja') {
         let meaning  = getMeaningByLanguage(this.props.tango.meanings, 'ja')
         languagItem.push(
-          <View key="swiper_ja" style={styles.slide}>
-            <ScrollView>
-              <HTMLView stylesheet={htmlStyles}
-                value={`${firstHtml}${meaning}${lastHtml}`}
-              />
-            </ScrollView>
-          </View>
+          <ScrollView key="swiper_ja" style={styles.slide}>
+            <HTMLView stylesheet={htmlStyles}
+              value={`${firstHtml}${meaning}${lastHtml}`}
+            />
+          </ScrollView>
         )
       }
       if (langage === 'en') {
         let meaning  = getMeaningByLanguage(this.props.tango.meanings, 'en')
         languagItem.push(
-          <View key="swiper_en" style={styles.slide}>
-            <ScrollView>
-              <HTMLView stylesheet={htmlStyles}
-                value={`${firstHtml}${meaning}${lastHtml}`}
-              />
-            </ScrollView>
-          </View>
+          <ScrollView key="swiper_en" style={styles.slide}>
+            <HTMLView stylesheet={htmlStyles}
+              value={`${firstHtml}${meaning}${lastHtml}`}
+            />
+          </ScrollView>
         )
       }
       if (langage === 'vi') {
         let meaning  = getMeaningByLanguage(this.props.tango.meanings, 'vi')
         languagItem.push(
-          <View key="swiper_vi" style={styles.slide}>
-            <ScrollView>
-              <HTMLView stylesheet={htmlStyles}
-                value={`${firstHtml}${meaning}${lastHtml}`}
-              />
-            </ScrollView>
-          </View>
+          <ScrollView key="swiper_vi" style={styles.slide}>
+            <HTMLView stylesheet={htmlStyles}
+              value={`${firstHtml}${meaning}${lastHtml}`}
+            />
+          </ScrollView>
         )
       }
     })

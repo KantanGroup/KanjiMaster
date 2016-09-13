@@ -12,7 +12,7 @@ import styles from './Styles/KanjiByJLPTScreenStyle'
 
 //Components
 import KanjiDefineByRow from '../Components/KanjiDefineByRow'
-import DatabaseService from '../Services/DatabaseService'
+import KanjiService from '../Services/KanjiService'
 
 class KanjiByJLPTScreen extends React.Component {
 
@@ -45,7 +45,7 @@ class KanjiByJLPTScreen extends React.Component {
     ]
     */
     //const dataObjects = require('../Fixtures/hantus.json');
-    const dataObjects = DatabaseService.getKanjiMatomes(this.startIndex, this.endIndex);
+    const dataObjects = KanjiService.getKanjiMatomes(this.startIndex, this.endIndex);
     const noDataObjects = []
 
     /* ***********************************************************
@@ -104,7 +104,7 @@ class KanjiByJLPTScreen extends React.Component {
   }
 
   refreshContent = (startIndex, endIndex) => {
-    const dataObjects = DatabaseService.getKanjiMatomes(startIndex, endIndex);
+    const dataObjects = KanjiService.getKanjiMatomes(startIndex, endIndex);
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(dataObjects)
     })

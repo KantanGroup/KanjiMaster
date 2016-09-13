@@ -4,6 +4,7 @@ import { is } from 'ramda'
 
 import Toast from 'react-native-root-toast';
 import DatabaseService from '../Services/DatabaseService'
+import KanjiService from '../Services/KanjiService'
 
 // process STARTUP actions
 export function * startup (action) {
@@ -32,12 +33,12 @@ function * importDatabaseKanji () {
   if (!setting || (setting && (!setting[0] || !setting[0].value))) {
     console.log("Kanji do import database")
     const kanjimatomes = require('../Fixtures/kanjimatome_export.json')
-    DatabaseService.createKanjiMatomes(kanjimatomes);
+    KanjiService.createKanjiMatomes(kanjimatomes);
     DatabaseService.setSetting("importDatabaseKanji", true);
   } else {
     console.log("Kanji have been imported")
     //DatabaseService.setSetting("importDatabaseKanji", false);
-    let allKanji = DatabaseService.getKanjiMatomes();
+    let allKanji = KanjiService.getKanjiMatomes();
     console.log("Count kanji " + allKanji.length)
   }
 }
@@ -47,13 +48,13 @@ function * importDatabaseKanjiTango() {
   if (!setting || (setting && (!setting[0] || !setting[0].value))) {
     console.log("Kanji tango do import database")
     let kanjiMatomeTangos = require('../Fixtures/kanjimatome_meanings_500.json')
-    DatabaseService.createKanjiMatomeTangos(kanjiMatomeTangos);
+    KanjiService.createKanjiMatomeTangos(kanjiMatomeTangos);
     kanjiMatomeTangos = require('../Fixtures/kanjimatome_meanings_1000.json')
-    DatabaseService.createKanjiMatomeTangos(kanjiMatomeTangos);
+    KanjiService.createKanjiMatomeTangos(kanjiMatomeTangos);
     DatabaseService.setSetting("importDatabaseKanjiTango", true);
   } else {
     console.log("Kanji tango have been imported")
-    let allKanji = DatabaseService.getKanjiMatomeTangos();
+    let allKanji = KanjiService.getKanjiMatomeTangos();
     console.log("Count kanji tango" + allKanji.length)
   }
 }

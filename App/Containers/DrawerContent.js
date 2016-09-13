@@ -34,6 +34,11 @@ class DrawerContent extends Component {
     NavigationActions.bunpou()
   }
 
+  handlePressDesk = () => {
+    this.toggleDrawer()
+    NavigationActions.desk()
+  }
+
   handlePressSettei = () => {
     this.toggleDrawer()
     NavigationActions.settei()
@@ -47,6 +52,7 @@ class DrawerContent extends Component {
         <DrawerButton text={I18n.t('kanji')} onPress={this.handlePressKanji} />
         <DrawerButton text={I18n.t('tango')} onPress={this.handlePressTango} />
         <DrawerButton text={I18n.t('bunpou')} onPress={this.handlePressBunpou} />
+        <DrawerButton text="学習" onPress={this.handlePressDesk} />
         <DrawerButton text={I18n.t('settei')} onPress={this.handlePressSettei} />
       </ScrollView>
     )

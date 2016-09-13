@@ -86,4 +86,4 @@ const SettingSchema = {
   }
 };
 
-export default new Realm({path: 'kanji.realm', schema: [KanjiMatomeSchema, KanjiMatomeTangoSchema, KanjiMatomeMeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 3});
+export default new Realm({path: 'kanjidaily.realm', schema: [KanjiMatomeSchema, KanjiMatomeTangoSchema, KanjiMatomeMeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});

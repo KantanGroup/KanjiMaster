@@ -51,7 +51,7 @@ class DeskCreateScreen extends React.Component {
 
   createDesk() {
     if(this._deskName.state.text === '') {
-      alert("Input desk name")
+      Toast.show("Input desk name")
       return
     } else {
       this.props.createDesk(this._deskName.state.text);
@@ -59,11 +59,9 @@ class DeskCreateScreen extends React.Component {
 
     if ((!this._deskFilter.state.selectedItem || (this._deskFilter.state.selectedItem && this._deskFilter.state.selectedItem.value !== ''))
       && (this._deskFilter.state.selectedSubItem && this._deskFilter.state.selectedSubItem.length === 0)) {
-      alert("Select a item")
+      Toast.show("Select a item")
       return
     }
-
-    console.log("Add card to desk")
     NavigationActions.pop();
     setTimeout(() => {
       NavigationActions.refresh();
@@ -104,7 +102,6 @@ class DeskCreateScreen extends React.Component {
 }
 
 DeskCreateScreen.propTypes = {
-  dispatch: PropTypes.func,
   createDesk: PropTypes.func
 }
 

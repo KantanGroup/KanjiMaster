@@ -53,13 +53,6 @@ export default {
     cloneCard.nextDay = 1;
     cloneCard.nextTime = date.getTime() + Constant.A_MINUTE;
     cloneCard.answerTime = date.getTime();
-    if (cloneCard.boxIndex === 0) {
-      newSize--;
-      doingSize++;
-    } else if (cloneCard.boxIndex === 2) {
-      reviewSize--;
-      doingSize++;
-    }
     cloneCard.boxIndex = 1;
     return cloneCard;
   },
@@ -70,21 +63,14 @@ export default {
     let nextDue = cloneCard.due * 1.2;
     let nextPoint = cloneCard.point * 0.85;
     if (cloneCard.boxIndex == 0) {
-      newSize--;
-      doingSize++;
       cloneCard.boxIndex = 1;
       cloneCard.nextDay = 10 / (60 * 24);
       cloneCard.nextTime = date.getTime() + Constant.A_MINUTE * 10;
     } else {
-      if (cloneCard.boxIndex === 2) {
-        reviewSize--;
-      } else {
-        doingSize--;
-      }
       cloneCard.boxIndex = 2;
       cloneCard.point = nextPoint;
       cloneCard.nextDay = cloneCard.nextDay * nextPoint * nextDue;
-      cloneCard.nextDay = cloneCard.nextDay > 1 ? cloneCard.nextDay : 1;
+      resetDefaultCard(cloneCard)
       cloneCard.nextTime = date.getTime() + cloneCard.nextDay * Constant.A_DAY;
     }
     cloneCard.answerTime = date.getTime();
@@ -94,16 +80,9 @@ export default {
   feedbackGood: (card) => {
     let cloneCard = clone(card);
     let date = new Date();
-    if (cloneCard.boxIndex === 0) {
-      newSize--;
-    } else if (cloneCard.boxIndex === 2) {
-      reviewSize--;
-    } else {
-      doingSize--;
-    }
     let nextDue = cloneCard.due * 2.5;
     cloneCard.nextDay = cloneCard.nextDay * nextDue;
-    cloneCard.nextDay = cloneCard.nextDay > 1 ? cloneCard.nextDay : 1;
+    resetDefaultCard(cloneCard)
     cloneCard.nextTime = date.getTime() + cloneCard.nextDay * Constant.A_DAY;
     cloneCard.answerTime = date.getTime();
     cloneCard.boxIndex = 2;
@@ -113,18 +92,11 @@ export default {
   feedbackEasy: (card) => {
     let cloneCard = clone(card);
     let date = new Date();
-    if (cloneCard.boxIndex === 0) {
-      newSize--;
-    } else if (cloneCard.boxIndex === 2) {
-      reviewSize--;
-    } else {
-      doingSize--;
-    }
     let nextDue = cloneCard.due * 3.25;
     let nextPoint = cloneCard.point * 1.15;
     cloneCard.point = nextPoint;
     cloneCard.nextDay = cloneCard.nextDay * nextPoint * nextDue;
-    cloneCard.nextDay = cloneCard.nextDay > 1 ? cloneCard.nextDay : 1;
+    resetDefaultCard(cloneCard)
     cloneCard.nextTime = date.getTime() + cloneCard.nextDay * Constant.A_DAY;
     cloneCard.answerTime = date.getTime();
     cloneCard.boxIndex = 2;
@@ -132,36 +104,37 @@ export default {
   },
 }
 
+function resetDefaultCard(cloneCard) {
+  cloneCard.point = cloneCard.point > 1 ? cloneCard.point : 1;
+  cloneCard.date = cloneCard.date > 1 ? cloneCard.date : 1;
+  cloneCard.nextDay = cloneCard.nextDay > 1 ? cloneCard.nextDay : 1;
+}
+
 function clone(obj) {
-    var copy;
-
-    // Handle the 3 simple types, and null or undefined
-    if (null == obj || "object" != typeof obj) return obj;
-
-    // Handle Date
-    if (obj instanceof Date) {
-        copy = new Date();
-        copy.setTime(obj.getTime());
-        return copy;
+  var copy;
+  // Handle the 3 simple types, and null or undefined
+  if (null == obj || "object" != typeof obj) return obj;
+  // Handle Date
+  if (obj instanceof Date) {
+    copy = new Date();
+    copy.setTime(obj.getTime());
+    return copy;
+  }
+  // Handle Array
+  if (obj instanceof Array) {
+    copy = [];
+    for (var i = 0, len = obj.length; i < len; i++) {
+      copy[i] = clone(obj[i]);
     }
-
-    // Handle Array
-    if (obj instanceof Array) {
-        copy = [];
-        for (var i = 0, len = obj.length; i < len; i++) {
-            copy[i] = clone(obj[i]);
-        }
-        return copy;
+    return copy;
+  }
+  // Handle Object
+  if (obj instanceof Object) {
+    copy = {};
+    for (var attr in obj) {
+      if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
     }
-
-    // Handle Object
-    if (obj instanceof Object) {
-        copy = {};
-        for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
-        }
-        return copy;
-    }
-
-    throw new Error("Unable to copy obj! Its type isn't supported.");
+    return copy;
+  }
+  throw new Error("Unable to copy obj! Its type isn't supported.");
 }

@@ -1,21 +1,11 @@
 import React, { Component } from 'react'
 import { ToastAndroid, BackAndroid, View } from 'react-native'
-import { Actions, Scene, Router } from 'react-native-router-flux'
+import { Actions, Scene, Router, ActionConst } from 'react-native-router-flux'
 import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 import NavItems from './NavItems'
 
 // screens identified by the router
-import PresentationScreen from '../Containers/PresentationScreen'
-import AllComponentsScreen from '../Containers/AllComponentsScreen'
-import UsageExamplesScreen from '../Containers/UsageExamplesScreen'
-import LoginScreen from '../Containers/LoginScreen'
-import ListviewExample from '../Containers/ListviewExample'
-import ListviewGridExample from '../Containers/ListviewGridExample'
-import MapviewExample from '../Containers/MapviewExample'
-import APITestingScreen from '../Containers/APITestingScreen'
-import ThemeScreen from '../Containers/ThemeScreen'
-import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
 import StartupScreen from '../Containers/StartupScreen'
 import KanjiScreen from '../Containers/KanjiScreen'
 import KanjiByJLPTScreen from '../Containers/KanjiByJLPTScreen'
@@ -68,31 +58,36 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene key='presentationScreen' component={PresentationScreen} title='Ignite' renderLeftButton={NavItems.hamburgerButton} />
-            <Scene key='componentExamples' component={AllComponentsScreen} title='Components' />
-            <Scene key='usageExamples' component={UsageExamplesScreen} title='Usage' rightTitle='Example' onRight={()=>window.alert('Example Pressed')} />
-            <Scene key='login' component={LoginScreen} title='Login' hideNavBar />
-            <Scene key='listviewExample' component={ListviewExample} title='Listview Example' />
-            <Scene key='listviewGridExample' component={ListviewGridExample} title='Listview Grid' />
-            <Scene key='mapviewExample' component={MapviewExample} title='Mapview Example' />
-            <Scene key='apiTesting' component={APITestingScreen} title='API Testing' />
-            <Scene key='theme' component={ThemeScreen} title='Theme' />
-            <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
-            <Scene initial key='startup' component={StartupScreen} renderLeftButton={NavItems.hamburgerButton} hideNavBar={false}/>
-            <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} hideNavBar={false}/>
-            <Scene key='kanjijlpt' component={KanjiByJLPTScreen} title={I18n.t('kanjijlpt')} hideNavBar={false}/>
-            <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} hideNavBar={false} renderRightButton={() => <KanjiOptions />}/>
-            <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} hideNavBar={false}/>
-            <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} hideNavBar={false}/>
-            <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} />
-            <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} hideNavBar={false}/>
-            <Scene key='settei' component={SettingScreen} title={I18n.t('settei')} hideNavBar={false}/>
-            <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} hideNavBar={true} />
-            <Scene key='flashcardsetup' component={FlashCardSetup} title={I18n.t('flashcard')} />
-            <Scene key='flashcardview' component={FlashCardViewScreen} title={I18n.t('flashcardview')} hideNavBar={true} />
-            <Scene key='search' component={SearchScreen} title='Search' hideNavBar />
-            <Scene key='desk' component={DeskListScreen} title='Desk' hideNavBar={false}/>
-            <Scene key='deskCreation' component={DeskCreateScreen} title='Create Desk' hideNavBar={false}/>
+            <Scene initial key='startup' component={StartupScreen} renderLeftButton={NavItems.hamburgerButton} type={ActionConst.RESET}/>
+            {/* Home -> Kanji */}
+            <Scene key='kanji' component={KanjiScreen} title={I18n.t('kanji')} type={ActionConst.RESET}/>
+            {/* Home -> Kanji -> Kanji JLPT */}
+            <Scene key='kanjijlpt' component={KanjiByJLPTScreen} title={I18n.t('kanjijlpt')} type={ActionConst.RESET}/>
+            {/* Home -> Kanji -> Kanji JLPT -> Kanji View */}
+            <Scene key='kanjiview' component={KanjiViewScreen} title={I18n.t('kanji')} renderRightButton={() => <KanjiOptions />}/>
+            {/* Home -> Kanji -> Niteiru Kanji */}
+            <Scene key='niteirukanji' component={NiteirukanjiScreen} title={I18n.t('niteirukanji')} type={ActionConst.RESET}/>
+            {/* Home -> Kanji -> Douonigigo Kanji */}
+            <Scene key='douonigigo' component={DouonigigoScreen} title={I18n.t('douonigigo')} type={ActionConst.RESET}/>
+
+            {/* Home -> Tango */}
+            <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} type={ActionConst.RESET}/>
+
+            {/* Home -> Bunpou */}
+            <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} type={ActionConst.RESET}/>
+
+            {/* Home -> Setting */}
+            <Scene key='settei' component={SettingScreen} title={I18n.t('settei')} type={ActionConst.RESET}/>
+
+            {/* Home -> Desk -> Flashcard */}
+            <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} type={ActionConst.RESET}/>
+            {/* Home -> Desk -> Flashcard -> Flashcard Setup */}
+            <Scene key='flashcardsetup' component={FlashCardSetup} title={I18n.t('flashcard')} type={ActionConst.RESET}/>
+
+            {/* Home -> Desk */}
+            <Scene key='desk' component={DeskListScreen} title='Desk' type={ActionConst.RESET}/>
+            {/* Home -> Desk -> Create desk*/}
+            <Scene key='deskCreation' component={DeskCreateScreen} title='Create Desk'/>
           </Scene>
         </Scene>
       </Router>
