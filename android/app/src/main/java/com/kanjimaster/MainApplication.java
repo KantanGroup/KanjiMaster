@@ -1,22 +1,22 @@
 package com.kanjimaster;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.facebook.react.ReactApplication;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.i18n.reactnativei18n.ReactNativeI18n;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+import com.facebook.stetho.Stetho;
+import com.i18n.reactnativei18n.ReactNativeI18n;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
 
 import java.util.Arrays;
 import java.util.List;
 
-import io.realm.react.RealmReactPackage; // ADD THIS
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import io.realm.react.RealmReactPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -38,6 +38,17 @@ public class MainApplication extends Application implements ReactApplication {
       );
     }
   };
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+
+    Stetho.initialize(
+        Stetho.newInitializerBuilder(this)
+            .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+            .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
+            .build());
+  }
 
   @Override
   public ReactNativeHost getReactNativeHost() {
