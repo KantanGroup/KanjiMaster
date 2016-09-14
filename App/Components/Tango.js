@@ -69,16 +69,16 @@ class TangoComponent extends React.Component {
     let hiragana;
     if (this.props.tango.hiragana) {
       hiragana = (
-        <Text style={styles.text}>
-          [{this.props.tango.hiragana}]
+        <Text style={styles.textHiragana}>
+          ({this.props.tango.hiragana})
         </Text>
       )
     }
     let hanViet;
     if (this.props.tango.hanViet) {
       hanViet = (
-        <Text style={styles.text}>
-          [{this.props.tango.hanViet}]
+        <Text style={styles.textHantu}>
+          {this.props.tango.hanViet}
         </Text>
       )
     }
@@ -173,15 +173,19 @@ class TangoComponent extends React.Component {
           this.setModalVisible(true)
         }}>
           <View style={styles.title} >
-            <Text style={styles.symbol}>
-              {this.state.expanded ? '\u2212' : '+'}
-            </Text>
-            <Text style={styles.text}>
-              {this.props.tango.tango}
-            </Text>
-            {hiragana}
-            {hanViet}
-            <Star rating={4} />
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.symbol}>
+                {this.state.expanded ? '\u2212' : '+'}
+              </Text>
+              <Text style={styles.textWord}>
+                {this.props.tango.tango}
+              </Text>
+              {hiragana}
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              {hanViet}
+              <Star rating={4} />
+            </View>
           </View>
         </TouchableHighlight>
       </View>
