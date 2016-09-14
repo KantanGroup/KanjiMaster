@@ -19,7 +19,7 @@ import { login } from './LoginSagas'
 import { getTemperature } from './TemperatureSagas'
 import { searchKanji } from './KanjiSagas'
 import { createDesk, searchDesk, searchDesks, startStudyDesk, feedbackCard, updateCard } from './DeskSagas'
-import { addCardToDesk, addKanjiToDesk, addWordToDesk, addGrammarToDesk } from './CardSagas'
+import { addCardToDesk, addKanjiToDesk, addWordToDesk, addGrammarToDesk, addKanjiByPropertyCard } from './CardSagas'
 
 /* ------------- API ------------- */
 
@@ -54,6 +54,7 @@ export default function * root () {
     //Card action
     takeLatest(CardTypes.CARD_ADD_TO_DESK, addCardToDesk),
     takeLatest(CardTypes.KANJI_ADD_TO_DESK, addKanjiToDesk),
+    takeLatest(CardTypes.KANJI_BY_PROPERTY_ADD_TO_DESK, addKanjiByPropertyCard),
     takeLatest(CardTypes.WORD_ADD_TO_DESK, addWordToDesk),
     takeLatest(CardTypes.GRAMMAR_ADD_TO_DESK, addGrammarToDesk)
   ]

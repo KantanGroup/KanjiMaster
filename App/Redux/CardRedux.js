@@ -6,6 +6,7 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   cardAddToDesk: ['deskId', 'front', 'back', 'type'],
   kanjiAddToDesk: ['deskId', 'front'],
+  kanjiByPropertyAddToDesk: ['deskId', 'property'],
   wordAddToDesk: ['deskId', 'front'],
   grammarAddToDesk: ['deskId', 'front'],
   cardReceive: ['card'],
@@ -25,6 +26,9 @@ export const INITIAL_STATE = Immutable({
 })
 
 /* ------------- Reducers ------------- */
+
+export const addCardByProperty = (state, action) =>
+  state.merge({ deskId: action.deskId, property: action.front})
 
 export const addSimpleCard = (state, action) =>
   state.merge({ deskId: action.deskId, front: action.front})
@@ -55,6 +59,7 @@ export const emptyCardInQueue = (state, action) =>
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CARD_ADD_TO_DESK]: addFrontBackCard,
   [Types.KANJI_ADD_TO_DESK]: addSimpleCard,
+  [Types.KANJI_BY_PROPERTY_ADD_TO_DESK]: addCardByProperty,
   [Types.WORD_ADD_TO_DESK]: addSimpleCard,
   [Types.GRAMMAR_ADD_TO_DESK]: addSimpleCard,
   [Types.CARD_RECEIVE]: receiveCard,

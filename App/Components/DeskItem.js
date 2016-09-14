@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import styles from './Styles/DeskItemStyle'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import DeskActions from '../Redux/DeskRedux'
+import DatabaseService from '../Services/DatabaseService'
 
 class DeskItem extends React.Component {
 
@@ -13,9 +14,10 @@ class DeskItem extends React.Component {
   }
 
   render () {
+    let count = DatabaseService.countCard(this.props.desk.id)
     return (
       <TouchableOpacity style={styles.desk} onPress={() => {this.startStudy()}}>
-        <Text style={styles.deskText}>{this.props.desk.name}</Text>
+        <Text style={styles.deskText}>{this.props.desk.name} ({count})</Text>
       </TouchableOpacity>
     )
   }

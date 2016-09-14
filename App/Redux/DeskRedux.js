@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  deskCreate: ['name'],
+  deskCreate: ['id', 'name'],
   deskSearch: ['id'],
   desksSearch: null,
   deskStudy: ['id'],
@@ -29,7 +29,7 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Reducers ------------- */
 
 export const createDesk = (state, action) =>
-  state.merge({ name: action.name })
+  state.merge({ id: action.id, name: action.name })
 
 export const studyDesk = (state, action) =>
   state.merge({ id: action.id })

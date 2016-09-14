@@ -41,9 +41,9 @@ export function * searchDesks () {
 }
 
 export function * createDesk (action) {
-  const { name } = action
+  const { id, name } = action
   try {
-    yield call(DatabaseService.createDesk, name)
+    yield call(DatabaseService.createDesk, id, name)
     // make the call to the api
     const desks = yield call(DatabaseService.getDesks)
     if (desks) {

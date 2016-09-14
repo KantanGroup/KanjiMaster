@@ -1,10 +1,10 @@
 import Database from '../Store/RealmDatabase'
 
 export default {
-  createDesk: (name) => {
+  createDesk: (id, name) => {
     Database.write(() => {
       Database.create('Desk', {
-        id: Date.now(),
+        id: id,
         name: name
       });
     });
@@ -90,6 +90,11 @@ export default {
     sortProperties.push(["createTime", false]);
     let cards = Database.objects('Card').filtered('deskId = $0', deskId).sorted(sortProperties);
     return cards;
+  },
+
+  countCard: (deskId) => {
+    let cards = Database.objects('Card').filtered('deskId = $0', deskId);
+    return cards.length;
   },
 
   getCardInDesk: (deskId, startIndex, endIndex) => {

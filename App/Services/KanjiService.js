@@ -67,6 +67,15 @@ export default {
     return rangeKanji;
   },
 
+  getKanjiMatomeByJLPT: (jlpt) => {
+    let sortProperties = [];
+    sortProperties.push(["jlpt", true]);
+    sortProperties.push(["rtk6th", false]);
+    sortProperties.push(["rank", false]);
+    let allKanji = Database.objects('KanjiMatome').filtered('jlpt = $0', jlpt).sorted(sortProperties);
+    return allKanji;
+  },
+
   deleteKanjiMatomes: () => {
     Database.write(() => {
       let allKanji = Database.objects('KanjiMatome');
