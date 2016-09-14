@@ -11,6 +11,7 @@ import { Images } from '../Themes'
 import DeskActions from '../Redux/DeskRedux'
 import HeaderOptions from '../Components/HeaderOptions'
 import KanjiService from '../Services/KanjiService'
+import FlashCardEmpty from '../Components/FlashCardEmpty'
 import KanjiComponent from '../Components/KanjiComponent'
 import FlashCardFooter from '../Components/FlashCardFooter'
 
@@ -23,6 +24,7 @@ class FlashCard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      showEmpty: false,
       showDefinition: true,
       showData: cardDefinition
     }
@@ -30,7 +32,9 @@ class FlashCard extends React.Component {
 
   componentWillMount() {
     if (!this.props.nextCard) {
-      NavigationActions.flashcardsetup();
+      this.setState({
+        showEmpty: true
+      });
     } else {
       this.setState({
         showDefinition: true,
@@ -43,7 +47,9 @@ class FlashCard extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.nextCard) {
-      NavigationActions.flashcardsetup();
+      this.setState({
+        showEmpty: true
+      });
     } else {
       this.setState({
         showDefinition: true,
@@ -62,6 +68,16 @@ class FlashCard extends React.Component {
   };
 
   render () {
+    if (this.state.showEmpty) {
+      return (
+        <View style={styles.container}>
+          <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+
+          <FlashCardEmpty />
+
+        </View>
+      )
+    }
     let meaning;
     if (this.state.showDefinition) {
       meaning = (

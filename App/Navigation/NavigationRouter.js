@@ -12,10 +12,9 @@ import KanjiByJLPTScreen from '../Containers/KanjiByJLPTScreen'
 import KanjiViewScreen from '../Containers/KanjiViewScreen'
 import NiteirukanjiScreen from '../Containers/ListviewExample'
 import DouonigigoScreen from '../Containers/KanjiScreen'
-import TangoScreen from '../Containers/FlashCardSetup'
+import TangoScreen from '../Containers/FlashCardScreen'
 import BunpouScreen from '../Containers/AutocompleteExample'
 import SettingScreen from '../Containers/SettingScreen'
-import FlashCardSetup from '../Containers/FlashCardSetup'
 import FlashCardScreen from '../Containers/FlashCardScreen'
 import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 import SearchScreen from '../Containers/SearchScreen'
@@ -82,8 +81,6 @@ class NavigationRouter extends Component {
 
             {/* Home -> Desk -> Flashcard */}
             <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} type={ActionConst.RESET}/>
-            {/* Home -> Desk -> Flashcard -> Flashcard Setup */}
-            <Scene key='flashcardsetup' component={FlashCardSetup} title={I18n.t('flashcard')} type={ActionConst.RESET}/>
 
             {/* Home -> Desk */}
             <Scene key='desk' component={DeskListScreen} title='Desk' type={ActionConst.RESET}/>
