@@ -36,6 +36,17 @@ class FlashCard extends React.Component {
   componentWillMount() {
     if (!this.props.nextCard) {
       NavigationActions.flashcardsetup();
+    } else {
+      cardDefinition = {
+        kanji: this.props.nextCard.front
+      }
+      this.setState({
+        showDefinition: true,
+        showData: cardDefinition,
+        nextCard: this.props.nextCard,
+        cardFront: this.props.nextCard.cardFront,
+        cardBack: this.props.nextCard.cardBack
+      });
     }
   }
 
@@ -49,7 +60,6 @@ class FlashCard extends React.Component {
       this.setState({
         showDefinition: true,
         showData: cardDefinition,
-        nextCard: nextProps.nextCard,
         nextCard: nextProps.nextCard,
         cardFront: nextProps.cardFront,
         cardBack: nextProps.cardBack

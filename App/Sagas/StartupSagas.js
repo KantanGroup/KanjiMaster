@@ -59,9 +59,13 @@ function * importDatabaseKanjiTango() {
   let setting = DatabaseService.getSetting("importDatabaseKanjiTango");
   if (!setting || (setting && (!setting[0] || !setting[0].value))) {
     console.log("Kanji tango do import database")
-    let kanjiMatomeTangos = require('../Fixtures/kanjimatome_meanings_500.json')
+    let kanjiMatomeTangos = require('../Fixtures/kanjimatome_meaning_test_500.json')
     KanjiService.createKanjiMatomeTangos(kanjiMatomeTangos);
-    kanjiMatomeTangos = require('../Fixtures/kanjimatome_meanings_1000.json')
+    kanjiMatomeTangos = require('../Fixtures/kanjimatome_meaning_test_1000.json')
+    KanjiService.createKanjiMatomeTangos(kanjiMatomeTangos);
+    kanjiMatomeTangos = require('../Fixtures/kanjimatome_meaning_test_1500.json')
+    KanjiService.createKanjiMatomeTangos(kanjiMatomeTangos);
+    kanjiMatomeTangos = require('../Fixtures/kanjimatome_meaning_test_2000.json')
     KanjiService.createKanjiMatomeTangos(kanjiMatomeTangos);
     DatabaseService.setSetting("importDatabaseKanjiTango", true);
   } else {
