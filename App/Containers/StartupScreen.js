@@ -40,20 +40,8 @@ class StartupScreen extends React.Component {
             {I18n.t('kanji')}
           </RoundedButton>
 
-          <RoundedButton onPress={this.props.tango}>
-            {I18n.t('tango')}
-          </RoundedButton>
-
-          <RoundedButton onPress={this.props.bunpou}>
-            {I18n.t('bunpou')}
-          </RoundedButton>
-
           <RoundedButton onPress={this.props.desk}>
             学習
-          </RoundedButton>
-
-          <RoundedButton onPress={this.props.settei}>
-            {I18n.t('settei')}
           </RoundedButton>
 
           <Footer type='black'/>
@@ -70,7 +58,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    kanji: NavigationActions.kanji,
+    kanji: NavigationActions.kanjijlpt,
     tango: NavigationActions.tango,
     bunpou: NavigationActions.bunpou,
     desk: NavigationActions.desk,

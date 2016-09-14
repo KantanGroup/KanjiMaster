@@ -90,14 +90,8 @@ class KanjiOptions extends React.Component {
             {modal}
           </View>
         </Modal>
-        <TouchableOpacity onPress={() => alert("Menu call")}>
-            <Icon name="call" color='#fff' size={23} style={{paddingRight:5}} />
-        </TouchableOpacity>
         <TouchableOpacity onPress={() => {this.setModalVisible('addDesk', true)}}>
             <Icon name="add-box" color='#fff' size={23} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert("Menu options")}>
-          <Icon name="more-vert" color='#fff' size={23} style={{paddingRight:-5}} />
         </TouchableOpacity>
       </View>
     )

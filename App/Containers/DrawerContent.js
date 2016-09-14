@@ -21,7 +21,7 @@ class DrawerContent extends Component {
 
   handlePressKanji = () => {
     this.toggleDrawer()
-    NavigationActions.kanji()
+    NavigationActions.kanjijlpt()
   }
 
   handlePressTango = () => {
@@ -50,10 +50,7 @@ class DrawerContent extends Component {
         <Image source={Images.logo} style={styles.logo} />
         <DrawerButton text={I18n.t('home')} onPress={this.handlePressStartup} />
         <DrawerButton text={I18n.t('kanji')} onPress={this.handlePressKanji} />
-        <DrawerButton text={I18n.t('tango')} onPress={this.handlePressTango} />
-        <DrawerButton text={I18n.t('bunpou')} onPress={this.handlePressBunpou} />
         <DrawerButton text="学習" onPress={this.handlePressDesk} />
-        <DrawerButton text={I18n.t('settei')} onPress={this.handlePressSettei} />
       </ScrollView>
     )
   }
