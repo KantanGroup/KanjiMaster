@@ -11,6 +11,7 @@ import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.rnfs.RNFSPackage; // <------- add package
 import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
 
 import java.util.Arrays;
@@ -33,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new ReactNativeI18n(),
             new RNDeviceInfo(),
+            new RNFSPackage(), // <---------- add package
             new ReactNativeConfigPackage(),
             new RealmReactPackage() // ADD THIS
       );
