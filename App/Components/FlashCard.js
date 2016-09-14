@@ -10,6 +10,8 @@ import { Images } from '../Themes'
 
 import DeskActions from '../Redux/DeskRedux'
 import HeaderOptions from '../Components/HeaderOptions'
+import KanjiService from '../Services/KanjiService'
+import FlashCardEmpty from '../Components/FlashCardEmpty'
 import KanjiComponent from '../Components/KanjiComponent'
 import FlashCardFooter from '../Components/FlashCardFooter'
 
@@ -17,17 +19,12 @@ var cardDefinition = {
   kanji: "漢字"
 }
 
-var cardMeaning = {
-  definition: 'Chữ hán',
-  kanji: '漢字',
-  hiragana: '漢字は難しい'
-}
-
 class FlashCard extends React.Component {
 
   constructor (props) {
     super(props)
     this.state = {
+      showEmpty: false,
       showDefinition: true,
       showData: cardDefinition
     }
@@ -35,31 +32,27 @@ class FlashCard extends React.Component {
 
   componentWillMount() {
     if (!this.props.nextCard) {
-      NavigationActions.flashcardsetup();
+      this.setState({
+        showEmpty: true
+      });
     } else {
-      cardDefinition = {
-        kanji: this.props.nextCard.front
-      }
       this.setState({
         showDefinition: true,
-        showData: cardDefinition,
         nextCard: this.props.nextCard,
-        cardFront: this.props.nextCard.cardFront,
-        cardBack: this.props.nextCard.cardBack
+        cardFront: this.props.cardFront,
+        cardBack: this.props.cardBack
       });
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.nextCard) {
-      NavigationActions.flashcardsetup();
+      this.setState({
+        showEmpty: true
+      });
     } else {
-      cardDefinition = {
-        kanji: nextProps.nextCard.front
-      }
       this.setState({
         showDefinition: true,
-        showData: cardDefinition,
         nextCard: nextProps.nextCard,
         cardFront: nextProps.cardFront,
         cardBack: nextProps.cardBack
@@ -68,25 +61,31 @@ class FlashCard extends React.Component {
   }
 
   switchFlashCard = () => {
-    let cardDefinition = {
-      kanji: this.state.nextCard.front
-    }
     this.props.feedbackCard(this.state.nextCard);
     this.setState({
-      showDefinition: !this.state.showDefinition,
-      showData: cardDefinition
+      showDefinition: !this.state.showDefinition
     });
   };
 
   render () {
+    if (this.state.showEmpty) {
+      return (
+        <View style={styles.container}>
+          <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+
+          <FlashCardEmpty />
+
+        </View>
+      )
+    }
     let meaning;
     if (this.state.showDefinition) {
       meaning = (
-        <FlasCardFront card={this.state.cardFront} showData={this.state.showData} pressAnswer={this.switchFlashCard}/>
+        <FlasCardFront card={this.state.cardFront} pressAnswer={this.switchFlashCard}/>
       )
     } else {
       meaning = (
-        <FlasCardBack card={this.state.cardBack} showData={this.state.showData} onPress={this.switchFlashCard}/>
+        <FlasCardBack card={this.state.cardBack} onPress={this.switchFlashCard}/>
       )
     }
     return (
@@ -105,29 +104,17 @@ class FlasCardFront extends React.Component {
     super(props);
   }
 
-  componentWillMount = () => {
-    BackAndroid.addEventListener('hardwareBackPress', () => {
-        try {
-            NavigationActions.pop();
-            return true;
-        }
-        catch (err) {
-            return true;
-        }
-    });
-  }
-
   render() {
-    let definition;
-    if (this.props.showData.definition) {
-      definition = (
-        <Text numberOfLines={2} style={styles.definition}>{this.props.showData.definition}</Text>
+    let topDefinition;
+    if (this.props.card && this.props.card.topDefinition) {
+      topDefinition = (
+        <Text numberOfLines={2} style={styles.definition}>{this.props.card.topDefinition}</Text>
       );
     }
-    let hiragana;
-    if (this.props.showData.hiragana) {
-      hiragana = (
-        <Text numberOfLines={1} style={styles.hiragana}>{this.props.showData.hiragana}</Text>
+    let bottomDefinition;
+    if (this.props.card && this.props.card.bottomDefinition) {
+      bottomDefinition = (
+        <Text numberOfLines={1} style={styles.hiragana}>{this.props.card.bottomDefinition}</Text>
       );
     }
     return (
@@ -137,9 +124,9 @@ class FlasCardFront extends React.Component {
         <View style={styles.containerCenter}>
           <View style={styles.centered}>
             <View style={styles.card}>
-              {definition}
-              <Text numberOfLines={1} style={styles.kanji}>{this.props.showData.kanji}</Text>
-              {hiragana}
+              {topDefinition}
+              <Text numberOfLines={1} style={styles.kanji}>{this.props.card && this.props.card.word}</Text>
+              {bottomDefinition}
             </View>
           </View>
         </View>
@@ -153,44 +140,31 @@ class FlasCardFront extends React.Component {
 class FlasCardBack extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      tangos: []
+    }
   }
 
-  componentWillMount = () => {
-    BackAndroid.addEventListener('hardwareBackPress', () => {
-        try {
-            this.props.onPress();
-            return true;
-        }
-        catch (err) {
-            return true;
-        }
+  componentWillMount() {
+    let tangos = [];
+    const datas = KanjiService.getTangoByKeyword(this.props.card.kanjiContent.keyword)
+    Object.keys(datas).forEach(function(key) {
+      tangos.push(datas[key]);
+    });
+    this.setState({
+      tangos: tangos
     });
   }
 
   render() {
-    let tangos = require('../Fixtures/tangos.json');
-    // const { kanji, tangos} = this.props.card;
-
-    let kanjiContent = {
-      hantu: "HAN",
-      kanji: "漢",
-      onyomi: "カン",
-      level: "4",
-      part: "氵 THỦY",
-      setsumei:
-      `Nghĩa:
-      (1) Sông Hán. Sông Thiên Hà (sông Thiên Hà trên trời).
-      (2) Nhà Hán. Nước Tàu.
-      (3) Giống Hán, giống dân làm chủ nước Tàu từ đời vua Hoàng Đế trở xuống gọi là giống Hán.`
-    };
-
     return (
-      <View style={{flex: 1, flexDirection: 'column'}}>
-        <HeaderOptions pressBack={this.props.onPress} pressOptions={() => alert("Menu options")}/>
+      <View style={styles.mainContainer}>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <KanjiComponent kanjiContent={this.props.card.kanjiContent} tangos={this.state.tangos}/>
 
-        <KanjiComponent kanjiContent={kanjiContent} tangos={tangos}/>
-
-        <FlashCardFooter type='feedback'/>
+          <FlashCardFooter type='feedback'/>
+        </View>
       </View>
     )
   }

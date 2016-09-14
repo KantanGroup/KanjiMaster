@@ -38,6 +38,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   symbol: {
     fontSize: 15,
@@ -49,8 +50,19 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  text: {
+  textWord: {
     fontSize: 15,
+    lineHeight: 21,
+    color: '#990000',
+  },
+  textHiragana: {
+    paddingLeft: 5,
+    fontSize: 12,
+    lineHeight: 21,
+    color: 'blue',
+  },
+  textHantu: {
+    fontSize: 12,
     lineHeight: 21,
     color: '#002350',
   },

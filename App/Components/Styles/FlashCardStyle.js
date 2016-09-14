@@ -12,8 +12,8 @@ export default StyleSheet.create({
     borderStyle: null,
     borderWidth: 0.5,
     borderRadius: 3,
-    width: 350,
-    height: 350,
+    width: 320,
+    height: 320,
   },
   definition: {
     fontSize: 30,

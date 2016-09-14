@@ -11,6 +11,7 @@ import { Images } from '../Themes'
 
 import F8Touchable from './f8/F8Touchable'
 import Star from './Star'
+import SwiperComponent from './SwiperComponent'
 
 var LayoutAnimation = require('LayoutAnimation');
 
@@ -58,42 +59,24 @@ class TangoComponent extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let languages = getLanguageInTango(this.props.tango);
-    this.setState({
-      languages: languages,
-      selectedOption: languages[0] || 'ja',
-      selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, languages[0] || 'ja'),
-    });
-  }
-
-  switchLanguage(selectedlanguage) {
-    this.setState({
-      selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, selectedlanguage)
-    });
-  }
-
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
   render() {
-    const firstHtml = '<html><body><div>'
-    const lastHtml = '</div></body></html>'
-
     let hiragana;
     if (this.props.tango.hiragana) {
       hiragana = (
-        <Text style={styles.text}>
-          [{this.props.tango.hiragana}]
+        <Text style={styles.textHiragana}>
+          ({this.props.tango.hiragana})
         </Text>
       )
     }
     let hanViet;
     if (this.props.tango.hanViet) {
       hanViet = (
-        <Text style={styles.text}>
-          [{this.props.tango.hanViet}]
+        <Text style={styles.textHantu}>
+          {this.props.tango.hanViet}
         </Text>
       )
     }
@@ -116,44 +99,20 @@ class TangoComponent extends React.Component {
         }}/>
     );
 
-    let languagItem = [];
+    let languagDatas = [];
     let languages = getLanguageInTango(this.props.tango);
     languages.map((langage) => {
       if (langage === 'ja') {
         let meaning  = getMeaningByLanguage(this.props.tango.meanings, 'ja')
-        languagItem.push(
-          <View key="swiper_ja" style={styles.slide}>
-            <ScrollView>
-              <HTMLView stylesheet={htmlStyles}
-                value={`${firstHtml}${meaning}${lastHtml}`}
-              />
-            </ScrollView>
-          </View>
-        )
+        languagDatas.push(meaning);
       }
       if (langage === 'en') {
         let meaning  = getMeaningByLanguage(this.props.tango.meanings, 'en')
-        languagItem.push(
-          <View key="swiper_en" style={styles.slide}>
-            <ScrollView>
-              <HTMLView stylesheet={htmlStyles}
-                value={`${firstHtml}${meaning}${lastHtml}`}
-              />
-            </ScrollView>
-          </View>
-        )
+        languagDatas.push(meaning);
       }
       if (langage === 'vi') {
         let meaning  = getMeaningByLanguage(this.props.tango.meanings, 'vi')
-        languagItem.push(
-          <View key="swiper_vi" style={styles.slide}>
-            <ScrollView>
-              <HTMLView stylesheet={htmlStyles}
-                value={`${firstHtml}${meaning}${lastHtml}`}
-              />
-            </ScrollView>
-          </View>
-        )
+        languagDatas.push(meaning);
       }
     })
 
@@ -171,16 +130,7 @@ class TangoComponent extends React.Component {
               {myButton}
             </View>
              <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
-               <Swiper width={350} height={350} style={styles.wrapper}
-                  onMomentumScrollEnd={function(e, state, context){console.log('index:', state.index)}}
-                  dot={<View style={{backgroundColor:'rgba(0,0,0,.2)', width: 5, height: 5,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                  activeDot={<View style={{backgroundColor: '#00f', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                  paginationStyle={{
-                    bottom: 5
-                  }}
-                 >
-                 {languagItem}
-               </Swiper>
+               <SwiperComponent datas={languagDatas}/>
              </View>
            </View>
         </Modal>
@@ -188,25 +138,22 @@ class TangoComponent extends React.Component {
           this.setModalVisible(true)
         }}>
           <View style={styles.title} >
-            <Text style={styles.symbol}>
-              {this.state.expanded ? '\u2212' : '+'}
-            </Text>
-            <Text style={styles.text}>
-              {this.props.tango.tango}
-            </Text>
-            {hiragana}
-            {hanViet}
-            <Star rating={4} />
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.symbol}>
+                {this.state.expanded ? '\u2212' : '+'}
+              </Text>
+              <Text style={styles.textWord}>
+                {this.props.tango.tango}
+              </Text>
+              {hiragana}
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              {hanViet}
+              <Star rating={4} />
+            </View>
           </View>
         </TouchableHighlight>
       </View>
     );
   }
 }
-
-var htmlStyles = StyleSheet.create({
-  font: {
-    //fontSize: 14, //Change font size
-    lineHeight: 20
-  },
-})

@@ -21,19 +21,25 @@ import KanjiComponent from '../Components/KanjiComponent'
 class KanjiViewScreen extends React.Component {
   constructor (props) {
     super(props)
+
+    this.state = {
+      tangos: []
+    }
   }
 
   componentWillMount() {
     this.props.searchKanji(this.props.kanjiContent.keyword)
-  }
-
-  render () {
-    // let tangos = require('../Fixtures/tangos.json');
     let tangos = [];
     const datas = KanjiService.getTangoByKeyword(this.props.kanjiContent.keyword)
     Object.keys(datas).forEach(function(key) {
       tangos.push(datas[key]);
     });
+    this.setState({
+      tangos: tangos
+    });
+  }
+
+  render () {
     return (
       <View style={styles.mainContainer}>
         <Image
@@ -42,7 +48,7 @@ class KanjiViewScreen extends React.Component {
           resizeMode='stretch' />
         <ScrollView style={styles.container}>
 
-          <KanjiComponent kanjiContent={this.props.kanjiContent} tangos={tangos}/>
+          <KanjiComponent kanjiContent={this.props.kanjiContent} tangos={this.state.tangos}/>
 
         </ScrollView>
       </View>

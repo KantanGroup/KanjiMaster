@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import styles from './Styles/KanjiMeaningStyle'
 import { Metrics } from '../Themes/'
 
+import Swiper from 'react-native-swiper';
 import HTMLView from 'react-native-htmlview';
+import SwiperComponent from './SwiperComponent'
 
 class KanjiMeaning extends React.Component {
 
@@ -17,19 +19,9 @@ class KanjiMeaning extends React.Component {
       onyomi: this.props.kanjiContent.onyomi,
       kunyomi: this.props.kanjiContent.kunyomi,
       jlpt: this.props.kanjiContent.jlpt,
-      radical: this.props.kanjiContent.radical
+      radical: this.props.kanjiContent.radical,
+      meanings: this.props.kanjiContent.meanings
     }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      keyword: nextProps.keyword,
-      hantu: nextProps.hantu,
-      onyomi: nextProps.onyomi,
-      kunyomi: nextProps.kunyomi,
-      jlpt: nextProps.jlpt,
-      radical: nextProps.radical
-    });
   }
 
   render () {
@@ -52,11 +44,16 @@ class KanjiMeaning extends React.Component {
       );
     }
     let setsumei;
-    if (this.props.kanjiContent.setsumei) {
-      const firstHtml = '<html><body><div>'
-      const lastHtml = '</div></body></html>'
+    if (this.state.meanings) {
+      var meanings = this.state.meanings;
+      var datas = [];
+      Object.keys(meanings).forEach(function(key) {
+        datas.push(meanings[key].meaning);
+      });
       setsumei = (
-        <HTMLView value={`${firstHtml}${this.props.kanjiContent.setsumei}${lastHtml}`} />
+        <View style={{padding: 10}}>
+          <SwiperComponent width={330} height={80} datas={datas}/>
+        </View>
       );
     }
     return (

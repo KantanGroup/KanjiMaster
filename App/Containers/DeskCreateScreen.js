@@ -26,6 +26,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import DeskActions from '../Redux/DeskRedux'
+import CardActions from '../Redux/CardRedux'
 
 // Styles
 import styles from './Styles/DeskCreateScreenStyle'
@@ -50,18 +51,24 @@ class DeskCreateScreen extends React.Component {
   }
 
   createDesk() {
+    let date = new Date();
+    let id = date.getTime();
+
     if(this._deskName.state.text === '') {
       Toast.show("Input desk name")
       return
     } else {
-      this.props.createDesk(this._deskName.state.text);
+      this.props.createDesk(id, this._deskName.state.text);
     }
 
     if ((!this._deskFilter.state.selectedItem || (this._deskFilter.state.selectedItem && this._deskFilter.state.selectedItem.value !== ''))
       && (this._deskFilter.state.selectedSubItem && this._deskFilter.state.selectedSubItem.length === 0)) {
       Toast.show("Select a item")
       return
+    } else {
+      this.props.addKanjiByPropertyToDesk(id, this._deskFilter.state.selectedSubItem.value);
     }
+
     NavigationActions.pop();
     setTimeout(() => {
       NavigationActions.refresh();
@@ -102,7 +109,8 @@ class DeskCreateScreen extends React.Component {
 }
 
 DeskCreateScreen.propTypes = {
-  createDesk: PropTypes.func
+  createDesk: PropTypes.func,
+  addKanjiByPropertyToDesk: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -112,7 +120,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createDesk: (name) => dispatch(DeskActions.deskCreate(name))
+    createDesk: (id, name) => dispatch(DeskActions.deskCreate(id, name)),
+    addKanjiByPropertyToDesk: (deskId, property) => dispatch(CardActions.kanjiByPropertyAddToDesk(deskId, property))
   }
 }
 
