@@ -6,6 +6,7 @@ import moment from 'moment'
 import Toast from 'react-native-root-toast';
 import DeskActions from '../Redux/DeskRedux'
 import CardActions from '../Redux/CardRedux'
+import KanjiService from '../Services/KanjiService'
 import DatabaseService from '../Services/DatabaseService'
 import LeitnerSystem from '../LeitnerSystem/LeitnerSystem'
 import Constant from '../Transforms/Constant'
@@ -110,7 +111,32 @@ export function * updateCard(action) {
 function * getNextCard() {
   const nextCard = yield call(LeitnerSystem.nextCard);
   if (nextCard) {
-    yield put(CardActions.cardInQueue(nextCard, null, null))
+    switch (nextCard.type) {
+      case Constant.TYPE_KANJI:
+        let kanjis = KanjiService.getKanjiMatome(nextCard.front);
+        let cardFront = {};
+        cardFront.word = kanjis[0].keyword;
+        cardFront.topDefinition = kanjis[0].hantu;
+        cardFront.bottomDefinition = kanjis[0].definition;
+
+        // Get kanji information
+        const kanjiContent = kanjis[0];
+
+        // Get list of word via kanji
+        let cardBack = {};
+        cardBack.kanjiContent = kanjiContent;
+        cardBack.tangos = {};
+        yield put(CardActions.cardInQueue(nextCard, cardFront, cardBack))
+        break;
+      case Constant.TYPE_KANJI:
+
+        break;
+      case Constant.TYPE_KANJI:
+
+        break;
+      default:
+        yield put(CardActions.cardInQueue(nextCard, null, null))
+    }
   } else {
     yield put(CardActions.cardEmptyInQueue())
   }

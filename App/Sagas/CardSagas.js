@@ -8,11 +8,7 @@ import Toast from 'react-native-root-toast';
 
 import CardActions from '../Redux/CardRedux'
 import DatabaseService from '../Services/DatabaseService'
-
-export const TYPE_OTHER = 0
-export const TYPE_KANJI = 1;
-export const TYPE_WORD = 2;
-export const TYPE_GRAMMAR = 3;
+import Constant from '../Transforms/Constant'
 
 export function * addCardToDesk (action) {
   const { deskId, front, back, type } = action
@@ -21,17 +17,17 @@ export function * addCardToDesk (action) {
 
 export function * addKanjiToDesk (action) {
   const { deskId, front } = action
-  yield call(addToDesk, deskId, front, null, TYPE_KANJI)
+  yield call(addToDesk, deskId, front, null, Constant.TYPE_KANJI)
 }
 
 export function * addWordToDesk (action) {
   const { deskId, front } = action
-  yield call(addToDesk, deskId, front, null, TYPE_WORD)
+  yield call(addToDesk, deskId, front, null, Constant.TYPE_WORD)
 }
 
 export function * addGrammarToDesk (action) {
   const { deskId, front } = action
-  yield call(addToDesk, deskId, front, null, TYPE_GRAMMAR)
+  yield call(addToDesk, deskId, front, null, Constant.TYPE_GRAMMAR)
 }
 
 export function * addToDesk (deskId, front, back, type) {

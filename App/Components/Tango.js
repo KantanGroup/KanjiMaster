@@ -58,21 +58,6 @@ class TangoComponent extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let languages = getLanguageInTango(this.props.tango);
-    this.setState({
-      languages: languages,
-      selectedOption: languages[0] || 'ja',
-      selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, languages[0] || 'ja'),
-    });
-  }
-
-  switchLanguage(selectedlanguage) {
-    this.setState({
-      selectedMeaning: getMeaningByLanguage(this.props.tango.meanings, selectedlanguage)
-    });
-  }
-
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }

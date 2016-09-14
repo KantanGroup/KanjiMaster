@@ -6,7 +6,12 @@ module.exports = {
 
   A_MINUTE: 60000,
   A_HOUR: 3600000,
-  A_DAY: 86400000
+  A_DAY: 86400000,
+
+  TYPE_OTHER: 0,
+  TYPE_KANJI: 1,
+  TYPE_WORD: 2,
+  TYPE_GRAMMAR: 3
 }
 
 /*
