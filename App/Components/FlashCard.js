@@ -55,13 +55,9 @@ class FlashCard extends React.Component {
   }
 
   switchFlashCard = () => {
-    let cardDefinition = {
-      kanji: this.state.nextCard.front
-    }
     this.props.feedbackCard(this.state.nextCard);
     this.setState({
-      showDefinition: !this.state.showDefinition,
-      showData: cardDefinition
+      showDefinition: !this.state.showDefinition
     });
   };
 
@@ -92,27 +88,15 @@ class FlasCardFront extends React.Component {
     super(props);
   }
 
-  componentWillMount = () => {
-    BackAndroid.addEventListener('hardwareBackPress', () => {
-        try {
-            NavigationActions.pop();
-            return true;
-        }
-        catch (err) {
-            return true;
-        }
-    });
-  }
-
   render() {
     let topDefinition;
-    if (this.props.card.topDefinition) {
+    if (this.props.card && this.props.card.topDefinition) {
       topDefinition = (
         <Text numberOfLines={2} style={styles.definition}>{this.props.card.topDefinition}</Text>
       );
     }
     let bottomDefinition;
-    if (this.props.card.bottomDefinition) {
+    if (this.props.card && this.props.card.bottomDefinition) {
       bottomDefinition = (
         <Text numberOfLines={1} style={styles.hiragana}>{this.props.card.bottomDefinition}</Text>
       );
@@ -125,7 +109,7 @@ class FlasCardFront extends React.Component {
           <View style={styles.centered}>
             <View style={styles.card}>
               {topDefinition}
-              <Text numberOfLines={1} style={styles.kanji}>{this.props.card.word}</Text>
+              <Text numberOfLines={1} style={styles.kanji}>{this.props.card && this.props.card.word}</Text>
               {bottomDefinition}
             </View>
           </View>
@@ -140,30 +124,28 @@ class FlasCardFront extends React.Component {
 class FlasCardBack extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      tangos: []
+    }
   }
 
-  componentWillMount = () => {
-    BackAndroid.addEventListener('hardwareBackPress', () => {
-        try {
-            NavigationActions.startup();
-            return true;
-        }
-        catch (err) {
-            return true;
-        }
-    });
-  }
-
-  render() {
+  componentWillMount() {
     let tangos = [];
     const datas = KanjiService.getTangoByKeyword(this.props.card.kanjiContent.keyword)
     Object.keys(datas).forEach(function(key) {
       tangos.push(datas[key]);
     });
+    this.setState({
+      tangos: tangos
+    });
+  }
+
+  render() {
     return (
       <View style={styles.mainContainer}>
         <View style={{flex: 1, flexDirection: 'column'}}>
-          <KanjiComponent kanjiContent={this.props.card.kanjiContent} tangos={tangos}/>
+          <KanjiComponent kanjiContent={this.props.card.kanjiContent} tangos={this.state.tangos}/>
 
           <FlashCardFooter type='feedback'/>
         </View>
