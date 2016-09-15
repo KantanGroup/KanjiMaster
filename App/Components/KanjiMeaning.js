@@ -20,6 +20,7 @@ class KanjiMeaning extends React.Component {
       kunyomi: this.props.kanjiContent.kunyomi,
       jlpt: this.props.kanjiContent.jlpt,
       radical: this.props.kanjiContent.radical,
+      definition: this.props.kanjiContent.definition,
       meanings: this.props.kanjiContent.meanings
     }
   }
@@ -60,15 +61,18 @@ class KanjiMeaning extends React.Component {
       <View style={styles.box}>
         <View style={styles.row}>
           <View style={styles.card}>
+            <Text style={[styles.text]}>
+              {this.state.hantu}
+            </Text>
             <Text style={styles.kanji}>
               {keyword}
+            </Text>
+            <Text style={[styles.text]}>
+              {this.state.definition}
             </Text>
           </View>
           <View style={styles.content}>
             <View style={styles.content}>
-              <Text style={[styles.text]}>
-                {this.state.hantu}
-              </Text>
               {onyomi}
               {kunyomi}
               <Text style={[styles.text]}>

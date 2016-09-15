@@ -29,6 +29,7 @@ export default class KanjiDefineByRow extends React.Component {
         <View style={styles.card}>
           <Text numberOfLines={1} style={styles.kanjiHanTu}>{this.props.kanjiContent.hantu}</Text>
           <Text style={styles.kanji}>{this.props.kanjiContent.keyword}</Text>
+          <Text numberOfLines={1} style={styles.kanjiHanTu}>{this.props.kanjiContent.definition}</Text>
         </View>
         <View style={styles.content}>
           <Star rating={this.props.kanjiContent.jlpt} />

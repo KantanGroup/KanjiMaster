@@ -23,7 +23,7 @@ export default StyleSheet.create({
     width: 72
   },
   kanji: {
-    fontSize: 62,
+    fontSize: 42,
     alignSelf: 'center',
   },
   content: {
