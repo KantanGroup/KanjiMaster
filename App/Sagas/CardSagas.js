@@ -49,44 +49,50 @@ export function * addToDesk (deskId, front, back, type) {
 
 export function * addKanjiByPropertyCard (action) {
   const { deskId, property } = action
-  //*
-  console.log(deskId + "  -  " + property)
-  switch (property) {
-    case 'n5':
-      const n5Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 5)
-      n5Kanjis.map((kanji) => {
-        DatabaseService.addCard(deskId, kanji.keyword, null, Constant.TYPE_KANJI)
-      })
-      break;
-    case 'n4':
-      const n4Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 4)
-      n4Kanjis.map((kanji) => {
-        DatabaseService.addCard(deskId, kanji.keyword, null, Constant.TYPE_KANJI)
-      })
-      break;
-    case 'n3':
-      const n3Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 3)
-      n3Kanjis.map((kanji) => {
-        DatabaseService.addCard(deskId, kanji.keyword, null, Constant.TYPE_KANJI)
-      })
-      break;
-    case 'n2':
-      const n2Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 2)
-      n2Kanjis.map((kanji) => {
-        DatabaseService.addCard(deskId, kanji.keyword, null, Constant.TYPE_KANJI)
-      })
-      break;
-    case 'n1':
-      const n1Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 1)
-      n1Kanjis.map((kanji) => {
-        DatabaseService.addCard(deskId, kanji.keyword, null, Constant.TYPE_KANJI)
-      })
-      break;
-    default:
-      const allKanjis = yield call(KanjiService.getKanjiMatomes)
-      allKanjis.map((kanji) => {
-        DatabaseService.addCard(deskId, kanji.keyword, null, Constant.TYPE_KANJI)
-      })
+  try {
+    let keywords = [];
+    switch (property) {
+      case 'n5':
+        const n5Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 5)
+        n5Kanjis.map((kanji) => {
+          keywords.push(kanji.keyword)
+        })
+        break;
+      case 'n4':
+        const n4Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 4)
+        n4Kanjis.map((kanji) => {
+          keywords.push(kanji.keyword)
+        })
+        break;
+      case 'n3':
+        const n3Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 3)
+        n3Kanjis.map((kanji) => {
+          keywords.push(kanji.keyword)
+        })
+        break;
+      case 'n2':
+        const n2Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 2)
+        n2Kanjis.map((kanji) => {
+          keywords.push(kanji.keyword)
+        })
+        break;
+      case 'n1':
+        const n1Kanjis = yield call(KanjiService.getKanjiMatomeByJLPT, 1)
+        n1Kanjis.map((kanji) => {
+          keywords.push(kanji.keyword)
+        })
+        break;
+      default:
+        const allKanjis = yield call(KanjiService.getKanjiMatomes)
+        allKanjis.map((kanji) => {
+          keywords.push(kanji.keyword)
+        })
+    }
+    yield call(DatabaseService.addCards, deskId, keywords, null, Constant.TYPE_KANJI)
+  } catch (error) {
+    Toast.show("Can't add to desk")
+    console.log(error)
   }
+
   //*/
 }

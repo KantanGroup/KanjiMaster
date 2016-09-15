@@ -46,7 +46,7 @@ export default {
     let date = new Date();
     Database.write(() => {
       Database.create('Card', {
-        id: Date.now(),
+        id: date.getTime(),
         deskId: deskId,
         front: front,
         back: back,
@@ -58,12 +58,14 @@ export default {
     });
   },
 
-  addCards: (deskId, keywords, type) => {
+  addCards: (deskId, keywords, back, type) => {
+    let date = new Date();
+    let id = date.getTime();
     Database.write(() => {
       keywords.map((keyword) => {
-        let date = new Date();
+        id = id + 1;
         Database.create('Card', {
-          id: Date.now(),
+          id: id,
           deskId: deskId,
           front: keyword,
           back: back,
