@@ -21,8 +21,10 @@ import Footer from '../Components/Footer'
 import SwitchButton from '../Components/SwitchButton'
 import SettingItem from '../Components/SettingItem'
 import SettingLanguage from '../Components/SettingLanguage'
+import * as Progress from 'react-native-progress';
 
-var RNFS = require('react-native-fs');
+import RNFS from 'react-native-fs'
+import RNFetchBlob from 'react-native-fetch-blob'
 var jobId = -1;
 
 class SettingScreen extends React.Component {
@@ -30,7 +32,10 @@ class SettingScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      output: 'Doc folder: ' + RNFS.DocumentDirectoryPath
+      output: 'Doc folder: ' + RNFS.DocumentDirectoryPath,
+      imagePath: {
+        uri: ''
+      }
     }
   }
 
@@ -55,7 +60,7 @@ class SettingScreen extends React.Component {
 
     // Random file name needed to force refresh...
     const downloadDest = `${RNFS.DocumentDirectoryPath}/${((Math.random() * 1000) | 0)}.jpg`;
-
+    console.log(downloadDest)
     const ret = RNFS.downloadFile({ fromUrl: url, toFile: downloadDest, begin, progress, background, progressDivider });
 
     jobId = ret.jobId;
@@ -76,7 +81,50 @@ class SettingScreen extends React.Component {
     this.setState({ output: `ERROR: Code: ${err.code} Message: ${err.message}` });
   }
 
+  downloadFileFromLink(link) {
+    RNFetchBlob
+    .config({
+        trusty : true,
+        fileCache : true,
+        // android only options, these options be a no-op on IOS
+        addAndroidDownloads : {
+          // Show notification when response data transmitted
+          notification : true,
+          // Title of download notification
+          title : 'Great ! Download Success ! :O ',
+          // File description (not notification description)
+          description : 'An json file.',
+          mime : 'text/plain'
+          // Make the file scannable  by media scanner
+          //meidaScannable : true,
+        }
+    })
+    //.fetch('GET', 'http://ipv4.download.thinkbroadband.com/100MB.zip')
+    .fetch('GET', 'https://raw.githubusercontent.com/tk1cntt/KanjiMaster/master/App/Fixtures/kanjimatome_meaning_test_1500.json')
+    // listen to download progress event
+    .progress((received, total) => {
+        //var percentage = ((100 * received) / total) | 0;
+        console.log('received', received)
+        //console.log('total', total)
+        //console.log('%', percentage)
+    })
+    .then((resp) => {
+      // the path of downloaded file
+      console.log(resp.path())
+      RNFetchBlob.fs.readFile(resp.path(), 'utf8')
+      .then((data) => {
+        // handle the data ..
+        console.log(JSON.parse(data).length)
+      })
+      resp.push()
+    })
+    .catch((err) => {
+        // scan file error
+      console.log(err)
+    })
+  }
   render () {
+    this.downloadFileFromLink('');
     /*
     console.log('Doc folder: ' + RNFS.DocumentDirectoryPath);
     RNFS.readDir(RNFS.DocumentDirectoryPath)
@@ -87,9 +135,11 @@ class SettingScreen extends React.Component {
         return Promise.all([RNFS.stat(result[0].path), result[0].path]);
       })
       .then((statResult) => {
+        console.log('statResult', statResult)
         if (statResult[0].isFile()) {
           // if we have a file, read it
-          return RNFS.readFile(statResult[1], 'utf8');
+          //var RNFS = require('react-native-fs')
+          return RNFS.readFile(statResult[1], 'ascii');
         }
 
         return 'no file';
@@ -101,7 +151,7 @@ class SettingScreen extends React.Component {
       .catch((err) => {
         console.log(err.message, err.code);
       });
-    */
+    //*/
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
@@ -117,14 +167,16 @@ class SettingScreen extends React.Component {
           </SettingItem>
 
           <View>
-            <Text style={styles.text}>{this.state.output}</Text>
+            <Text style={{color: 'white'}}>{this.state.output}</Text>
 
             <Image style={styles.image} source={this.state.imagePath}></Image>
           </View>
 
-          <TouchableOpacity style={styles.box} onPress={() => this.downloadFileTest(true, 'http://lorempixel.com/400/200/')}>
+          <TouchableOpacity style={styles.box} onPress={() => this.downloadFileTest(true, 'http://ipv4.download.thinkbroadband.com/100MB.zip')}>
             <Text style={styles.text}>Create new Desk</Text>
           </TouchableOpacity>
+
+          <Progress.Bar progress={0.3} width={200} />
 
           <Footer type='black'/>
 
