@@ -9,6 +9,9 @@ export default class SwiperComponent extends React.Component {
 
   render () {
     let dataItems = []
+    if (this.props.firstComponent) {
+      dataItems.push(this.props.firstComponent);
+    }  
     this.props.datas.map((data, index) => {
       dataItems.push(
         <View key={`swiper_${index}`} style={styles.slide}>
@@ -20,6 +23,9 @@ export default class SwiperComponent extends React.Component {
         </View>
       )
     })
+    if (this.props.lastComponent) {
+      dataItems.push(this.props.lastComponent);
+    }
 
     return (
       <Swiper width={this.props.width || 350} height={this.props.height || 350}
