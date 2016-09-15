@@ -115,8 +115,8 @@ class SettingScreen extends React.Component {
       .then((data) => {
         // handle the data ..
         console.log(JSON.parse(data).length)
+        resp.flush()
       })
-      resp.push()
     })
     .catch((err) => {
         // scan file error
@@ -124,7 +124,25 @@ class SettingScreen extends React.Component {
     })
   }
   render () {
-    this.downloadFileFromLink('');
+    //this.downloadFileFromLink('');
+
+    const dirs = RNFetchBlob.fs.dirs
+    console.log(dirs.DocumentDir)
+    console.log(dirs.CacheDir)
+    console.log(dirs.DCIMDir)
+    console.log(dirs.PictureDir)
+    console.log(dirs.MusicDir)
+    console.log(dirs.DownloadDir)
+    console.log(dirs.MovieDir)
+    console.log(dirs.RingtoneDir)
+    console.log(dirs.SDCard)
+
+    RNFetchBlob.fs.ls(dirs.DocumentDir)
+    // files will an array contains filenames
+    .then((files) => {
+        console.log(files)
+    })
+
     /*
     console.log('Doc folder: ' + RNFS.DocumentDirectoryPath);
     RNFS.readDir(RNFS.DocumentDirectoryPath)
