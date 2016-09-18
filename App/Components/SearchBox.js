@@ -17,7 +17,7 @@ export default class SearchBox extends React.Component {
   }
 
   componentDidMount() {
-    const json = require('../Fixtures/inputDatas.json');
+    const json = {} //require('../Fixtures/inputDatas.json');
     const { results: inputDatas } = json;
     this.setState({ inputDatas });
   }
