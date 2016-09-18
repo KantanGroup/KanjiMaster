@@ -81,7 +81,7 @@ class KanjiMeaning extends React.Component {
       });
       setsumei = (
         <View>
-          <SwiperComponent width={360} height={120} firstComponent={firstComponent} datas={datas}/>
+          <SwiperComponent width={335} height={130} firstComponent={firstComponent} datas={datas}/>
         </View>
       );
     }

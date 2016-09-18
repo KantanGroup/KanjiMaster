@@ -130,7 +130,7 @@ class TangoComponent extends React.Component {
               {myButton}
             </View>
              <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
-               <SwiperComponent datas={languagDatas}/>
+               <SwiperComponent height={285} datas={languagDatas}/>
              </View>
            </View>
         </Modal>
@@ -138,7 +138,7 @@ class TangoComponent extends React.Component {
           this.setModalVisible(true)
         }}>
           <View style={styles.title} >
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
               <Text style={styles.symbol}>
                 {this.state.expanded ? '\u2212' : '+'}
               </Text>
@@ -147,9 +147,8 @@ class TangoComponent extends React.Component {
               </Text>
               {hiragana}
             </View>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
               {hanViet}
-              <Star rating={4} />
             </View>
           </View>
         </TouchableHighlight>
