@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Image, Text, View } from 'react-native'
+import { TouchableOpacity, ScrollView, Image, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { Images } from '../Themes'
 import { Metrics } from '../Themes'
@@ -21,6 +21,7 @@ import Footer from '../Components/Footer'
 import SwitchButton from '../Components/SwitchButton'
 import SettingItem from '../Components/SettingItem'
 import SettingLanguage from '../Components/SettingLanguage'
+import DownloadProgess from '../Components/DownloadProgess'
 
 class SettingScreen extends React.Component {
 
@@ -31,12 +32,8 @@ class SettingScreen extends React.Component {
 
         <ScrollView style={styles.container}>
 
-          <SettingItem title={I18n.t('setteiHanTu')}>
-            <SwitchButton ref='setteiHanTu' label='Hiển thị hỗ trợ Hán Tự'/>
-          </SettingItem>
-
-          <SettingItem title={I18n.t('settingLanguage')}>
-            <SettingLanguage　language='en' direction='column'/>
+          <SettingItem title="Download data sample">
+            <DownloadProgess　/>
           </SettingItem>
 
           <Footer type='black'/>

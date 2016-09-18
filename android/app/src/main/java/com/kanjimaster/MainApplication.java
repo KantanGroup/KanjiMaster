@@ -3,15 +3,18 @@ package com.kanjimaster;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.rnziparchive.RNZipArchivePackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.facebook.stetho.Stetho;
+//import com.facebook.stetho.Stetho;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
+import com.rnfs.RNFSPackage; // <------- add package
+//import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,15 +33,18 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new RNZipArchivePackage(),
+            new RNFetchBlobPackage(),
             new VectorIconsPackage(),
             new ReactNativeI18n(),
             new RNDeviceInfo(),
+            new RNFSPackage(), // <---------- add package
             new ReactNativeConfigPackage(),
             new RealmReactPackage() // ADD THIS
       );
     }
   };
-
+  /*
   @Override
   public void onCreate() {
     super.onCreate();
@@ -49,7 +55,7 @@ public class MainApplication extends Application implements ReactApplication {
             .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
             .build());
   }
-
+  */
   @Override
   public ReactNativeHost getReactNativeHost() {
       return mReactNativeHost;

@@ -20,6 +20,7 @@ class KanjiMeaning extends React.Component {
       kunyomi: this.props.kanjiContent.kunyomi,
       jlpt: this.props.kanjiContent.jlpt,
       radical: this.props.kanjiContent.radical,
+      definition: this.props.kanjiContent.definition,
       meanings: this.props.kanjiContent.meanings
     }
   }
@@ -43,6 +44,34 @@ class KanjiMeaning extends React.Component {
         <Text numberOfLines={1} style={styles.kunyomi}>音:{this.state.kunyomi}</Text>
       );
     }
+    let firstComponent;
+    firstComponent = (
+      <View style={styles.row}>
+        <View style={styles.card}>
+          <Text style={[styles.text]}>
+            {this.state.hantu}
+          </Text>
+          <Text style={styles.kanji}>
+            {keyword}
+          </Text>
+          <Text style={[styles.text]}>
+            {this.state.definition}
+          </Text>
+        </View>
+        <View style={styles.content}>
+          <View style={styles.content}>
+            {onyomi}
+            {kunyomi}
+            <Text style={[styles.text]}>
+              JLPT: {this.state.jlpt}
+            </Text>
+            <Text style={[styles.text]}>
+              Radical: {this.state.radical}
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
     let setsumei;
     if (this.state.meanings) {
       var meanings = this.state.meanings;
@@ -51,35 +80,13 @@ class KanjiMeaning extends React.Component {
         datas.push(meanings[key].meaning);
       });
       setsumei = (
-        <View style={{padding: 10}}>
-          <SwiperComponent width={330} height={80} datas={datas}/>
+        <View>
+          <SwiperComponent width={360} height={120} firstComponent={firstComponent} datas={datas}/>
         </View>
       );
     }
     return (
       <View style={styles.box}>
-        <View style={styles.row}>
-          <View style={styles.card}>
-            <Text style={styles.kanji}>
-              {keyword}
-            </Text>
-          </View>
-          <View style={styles.content}>
-            <View style={styles.content}>
-              <Text style={[styles.text]}>
-                {this.state.hantu}
-              </Text>
-              {onyomi}
-              {kunyomi}
-              <Text style={[styles.text]}>
-                JLPT: {this.state.jlpt}
-              </Text>
-              <Text style={[styles.text]}>
-                Radical: {this.state.radical}
-              </Text>
-            </View>
-          </View>
-        </View>
         {setsumei}
       </View>
     )

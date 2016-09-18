@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Platform, StyleSheet } from 'react-native';
 import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
@@ -11,7 +11,7 @@ export default StyleSheet.create({
     borderStyle: null,
     borderWidth: 0.5,
     borderRadius: 2,
-    height: 80,
+    height: 80
   },
   card: {
     margin: 10,
@@ -20,22 +20,32 @@ export default StyleSheet.create({
     width: 80
   },
   kanjiHanTu: {
-    fontSize: 16,
+    fontSize: 14,
     alignSelf: 'center',
-    color: Colors.snow,
-    marginBottom: -5,
+    color: Colors.snow
   },
   kanji: {
-    fontSize: 42,
+    fontSize: 36,
     alignSelf: 'center',
     color: Colors.snow,
+    ...Platform.select({
+      android: {
+        marginTop: -5,
+        marginBottom: -5
+      }
+    })
   },
   content: {
     flex: 1,
     flexDirection: 'column',
     marginHorizontal: 5,
-    marginTop: 5,
+    ...Platform.select({
+      android: {
+        marginTop: 5,
+      }
+    }),
     alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   onyomi: {
     marginTop: 3,
