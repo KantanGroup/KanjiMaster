@@ -1,4 +1,4 @@
-package com.kanjimaster;
+package com.kantangroup.kanjimaster.lite;
 
 import android.app.Application;
 

@@ -1,7 +1,6 @@
-package com.kanjimaster;
+package com.kantangroup.kanjimaster.lite;
 
 import com.facebook.react.ReactActivity;
-import io.realm.react.RealmReactPackage;
 
 public class MainActivity extends ReactActivity {
 
