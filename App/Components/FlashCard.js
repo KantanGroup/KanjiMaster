@@ -119,14 +119,11 @@ class FlasCardFront extends React.Component {
     }
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
-        <HeaderOptions pressBack={() => NavigationActions.pop()} pressOptions={() => alert("Menu options")}/>
 
         <View style={styles.containerCenter}>
           <View style={styles.centered}>
             <View style={styles.card}>
-              {topDefinition}
               <Text numberOfLines={1} style={styles.kanji}>{this.props.card && this.props.card.word}</Text>
-              {bottomDefinition}
             </View>
           </View>
         </View>
