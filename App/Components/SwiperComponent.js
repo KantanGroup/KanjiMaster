@@ -49,7 +49,7 @@ var htmlStyles = StyleSheet.create({
   },
   hiragana: {
     color: '#009933',
-    //fontSize: 14, //Change font size
+    fontSize: 18, //Change font size
     lineHeight: 20
   },
   type: {
@@ -59,12 +59,12 @@ var htmlStyles = StyleSheet.create({
   },
   meaning: {
     color: 'blue',
-    fontSize: 12, //Change font size
+    //fontSize: 14, //Change font size
     lineHeight: 20
   },
   sample: {
     color: '#b22222',
-    fontSize: 12, //Change font size
+    //fontSize: 14, //Change font size
     lineHeight: 20,
     paddingLeft: 10,
   },
