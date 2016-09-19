@@ -27,6 +27,7 @@ import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import DeskActions from '../Redux/DeskRedux'
 import CardActions from '../Redux/CardRedux'
+import Toast from 'react-native-root-toast';
 
 // Styles
 import styles from './Styles/DeskCreateScreenStyle'
@@ -66,7 +67,9 @@ class DeskCreateScreen extends React.Component {
       Toast.show("Select a item")
       return
     } else {
-      this.props.addKanjiByPropertyToDesk(id, this._deskFilter.state.selectedSubItem.value);
+      if (this._deskFilter.state.selectedItem.value === "kanji") {
+        this.props.addKanjiByPropertyToDesk(id, this._deskFilter.state.selectedSubItem.value);
+      }
     }
 
     NavigationActions.pop();
