@@ -42,7 +42,7 @@ export default class Tango extends React.Component {
   render () {
     let meanings =  [];
     return (
-      <View>
+      <View style={{ backgroundColor: 'white'}}>
         <TangoComponent tango={this.props.tango}/>
       </View>
     )
