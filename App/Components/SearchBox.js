@@ -55,6 +55,7 @@ export default class SearchBox extends React.Component {
           defaultValue={query}
           onChangeText={text => this.setState({ query: text })}
           renderItem={this._renderItem}
+          clear={true}
         />
       </View>
     );
