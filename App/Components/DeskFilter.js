@@ -25,7 +25,7 @@ export default class DeskFilter extends React.Component {
       { label: 'N3', value: 'n3' },
       { label: 'N2', value: 'n2' },
       { label: 'N1', value: 'n1' },
-      { label: 'N0', value: 'n0' }
+      { label: 'All', value: 'n0' }
     ]
 
     const wordsOptions = [
