@@ -11,29 +11,29 @@ export default StyleSheet.create({
     borderStyle: null,
     borderWidth: 0.5,
     borderRadius: 2,
-    height: 80
+    height: 90
   },
   card: {
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 80
+    width: 90
   },
   kanjiHanTu: {
     fontSize: 14,
     alignSelf: 'center',
-    color: Colors.snow
+    color: Colors.snow,
+    ...Platform.select({
+      android: {
+        marginTop: -2,
+        marginBottom: -2
+      }
+    }),
   },
   kanji: {
     fontSize: 36,
     alignSelf: 'center',
     color: Colors.snow,
-    ...Platform.select({
-      android: {
-        marginTop: -5,
-        marginBottom: -5
-      }
-    })
   },
   content: {
     flex: 1,

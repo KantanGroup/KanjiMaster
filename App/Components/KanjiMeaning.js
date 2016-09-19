@@ -48,13 +48,13 @@ class KanjiMeaning extends React.Component {
     firstComponent = (
       <View style={styles.row}>
         <View style={styles.card}>
-          <Text style={[styles.text]}>
+          <Text numberOfLines={1} style={[styles.text]}>
             {this.state.hantu}
           </Text>
           <Text style={styles.kanji}>
             {keyword}
           </Text>
-          <Text style={[styles.text]}>
+          <Text numberOfLines={1} style={[styles.text]}>
             {this.state.definition}
           </Text>
         </View>

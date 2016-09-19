@@ -20,7 +20,7 @@ export default StyleSheet.create({
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 72
+    width: 90
   },
   kanji: {
     fontSize: 42,
@@ -35,18 +35,18 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
     justifyContent: 'center',
     alignItems: 'center',
   },
   onyomi: {
     //marginLeft: 3,
     //marginBottom: 5,
-    fontSize: 16,
+    fontSize: 14,
     //textAlign: 'center',
   },
   kunyomi: {
-    fontSize: 16,
+    fontSize: 14,
     //textAlign: 'center',
   },
 })
