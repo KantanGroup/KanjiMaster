@@ -108,6 +108,22 @@ export function * updateCard(action) {
   yield call(getNextCard)
 }
 
+export function * deleteDesk(action) {
+  const { id } = action
+  try {
+    yield call(DatabaseService.deleteDesk, id);
+    const desks = yield call(DatabaseService.getDesks)
+    if (desks) {
+      yield put(DeskActions.desksReceive(desks))
+    } else {
+      yield put(DeskActions.deskNotFound())
+    }
+  } catch (error) {
+    Toast.show("Can't delete desk")
+    console.log(error)
+  }
+}
+
 function * getNextCard() {
   const nextCard = yield call(LeitnerSystem.nextCard);
   if (nextCard) {
