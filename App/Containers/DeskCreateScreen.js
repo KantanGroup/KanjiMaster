@@ -67,7 +67,7 @@ class DeskCreateScreen extends React.Component {
       Toast.show("Select a item")
       return
     } else {
-      if (this._deskFilter.state.selectedItem.value === "kanji") {
+      if (this._deskFilter.state.selectedItem && this._deskFilter.state.selectedItem.value === "kanji") {
         this.props.addKanjiByPropertyToDesk(id, this._deskFilter.state.selectedSubItem.value);
       }
     }

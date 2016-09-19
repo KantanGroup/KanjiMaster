@@ -27,5 +27,21 @@ export default StyleSheet.create({
   },
   listContent: {
     marginTop: Metrics.baseMargin
+  },
+	rowBack: {
+		alignItems: 'center',
+		//backgroundColor: '#DDD',
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+	},
+  desk: {
+    height: 40,
+    borderRadius: 5,
+    marginVertical: 1,
+    backgroundColor: 'white',
+    borderColor: 'green',
+    borderWidth: 0.8,
+    justifyContent: 'center'
   }
 })

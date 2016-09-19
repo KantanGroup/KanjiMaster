@@ -9,7 +9,7 @@ export default StyleSheet.create({
   desk: {
     height: 45,
     borderRadius: 5,
-    marginVertical: 5,
+    marginVertical: 1,
     backgroundColor: '#1a53ff',
     //borderColor: 'green',
     borderWidth: 0.8,

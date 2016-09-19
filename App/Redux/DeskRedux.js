@@ -14,7 +14,8 @@ const { Types, Creators } = createActions({
   deskNotFound: null,
   deskFeedbackToCard: ['card'],
   deskReceiveFeedbackCard: ['cardAgain', 'cardHard', 'cardGood', 'cardEasy'],
-  deskUpdateCard: ['card', 'relearning']
+  deskUpdateCard: ['card', 'relearning'],
+  deskDelete: ['id']
 })
 
 export const DeskTypes = Types
@@ -58,6 +59,8 @@ export const receiveFeedbackCard = (state, action) =>
 export const updateCard = (state, action) =>
   state.merge({ card: action.card, relearning: action.relearning})
 
+export const deleteDesk = (state, action) =>
+  state.merge({ id: action.id})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -71,5 +74,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.DESK_COUNT_CARD]: countCard,
   [Types.DESK_FEEDBACK_TO_CARD]: feedbackToCard,
   [Types.DESK_RECEIVE_FEEDBACK_CARD]: receiveFeedbackCard,
-  [Types.DESK_UPDATE_CARD]: updateCard
+  [Types.DESK_UPDATE_CARD]: updateCard,
+  [Types.DESK_DELETE]: deleteDesk
 })

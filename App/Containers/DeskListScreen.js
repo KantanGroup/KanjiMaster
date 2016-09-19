@@ -1,14 +1,17 @@
 import React, { PropTypes } from 'react'
-import { View, Text, ListView } from 'react-native'
+import { TouchableOpacity, View, Text, ListView } from 'react-native'
 import { connect } from 'react-redux'
-
+import { Actions as NavigationActions } from 'react-native-router-flux'
 // For empty lists
 import AlertMessage from '../Components/AlertMessageComponent'
 import DeskAddButton from '../Components/DeskAddButton'
 import DeskItem from '../Components/DeskItem'
+import DeskActions from '../Redux/DeskRedux'
 
 // Styles
 import styles from './Styles/DeskListScreenStyle'
+import { SwipeListView } from 'react-native-swipe-list-view';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 class DeskListScreen extends React.Component {
 
@@ -119,19 +122,32 @@ class DeskListScreen extends React.Component {
     this.footerY = layout.y
   }
 
+  deleteDesk(id) {
+    this.props.deleteDesk(id)
+    setTimeout(() => {
+      NavigationActions.refresh();
+    }, 200);
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <DeskAddButton />
-        <ListView
-          contentContainerStyle={styles.listContent}
-          dataSource={this.state.dataSource}
-          onLayout={this.onLayout}
-          renderRow={this._renderRow}
-          renderFooter={this.renderFooter}
-          enableEmptySections
-          pageSize={15}
-        />
+          <SwipeListView
+              dataSource={this.state.dataSource}
+              renderRow={this._renderRow}
+              renderHiddenRow={ data => (
+                  <View style={styles.rowBack}>
+                      <Text></Text>
+                      <TouchableOpacity onPress={() => this.deleteDesk(data.id)}>
+                        <View style={styles.desk}>
+                          <MaterialIcons name="delete-forever" color='#ff0000' size={32} />
+                        </View>
+                      </TouchableOpacity>
+                  </View>
+              )}
+              rightOpenValue={-35}
+          />
       </View>
     )
   }
@@ -149,6 +165,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    deleteDesk: (id) => dispatch(DeskActions.deskDelete(id)),
   }
 }
 

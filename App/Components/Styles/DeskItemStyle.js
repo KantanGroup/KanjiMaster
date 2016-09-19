@@ -7,9 +7,9 @@ export default StyleSheet.create({
     paddingTop: Metrics.titlePadding
   },
   desk: {
-    height: 45,
+    height: 40,
     borderRadius: 5,
-    marginVertical: 5,
+    marginVertical: 1,
     backgroundColor: 'white',
     borderColor: 'green',
     borderWidth: 0.8,
