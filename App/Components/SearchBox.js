@@ -6,6 +6,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 
 import Autocomplete from 'react-native-autocomplete-input';
 import Footer from '../Components/Footer'
+import GrammarService from '../Services/GrammarService'
 
 export default class SearchBox extends React.Component {
   constructor(props) {
@@ -16,10 +17,8 @@ export default class SearchBox extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const json = {} //require('../Fixtures/inputDatas.json');
-    const { results: inputDatas } = json;
-    this.setState({ inputDatas });
+  componentWillMount() {
+    this.setState({ inputDatas: GrammarService.getGrammars() });
   }
 
   _findData(query) {
@@ -29,16 +28,15 @@ export default class SearchBox extends React.Component {
 
     const { inputDatas } = this.state;
     const regex = new RegExp(`${query.trim()}`, 'i');
-    return inputDatas.filter(inputData => inputData.define.search(regex) >= 0);
+    return inputDatas.filter(inputData => inputData.hiragana.search(regex) >= 0);
   }
 
   _renderItem(item) {
     return (
-      <TouchableOpacity onPress={() => NavigationActions.search({data: item, title: item.define})}>
+      <TouchableOpacity style={styles.box} onPress={() => NavigationActions.grammarview({grammar: item})}>
         <Text style={styles.itemText}>
-          {item.define} ({item.release_date.split('-')[0]})
+          {item.grammar}
         </Text>
-        <Footer />
       </TouchableOpacity>
     )
   }
@@ -52,14 +50,10 @@ export default class SearchBox extends React.Component {
         <Autocomplete
           autoCapitalize="none"
           autoCorrect={false}
-          //containerStyle={styles.autocompleteContainer}
-          //inputContainerStyle={{margin: 5, marginTop: -15}}
           listStyle={{margin: 10}}
-          //style={{backgroundColor: 'red'}}
-          data={inputDatas.length === 1 && comp(query, inputDatas[0].define) ? [] : inputDatas}
+          data={inputDatas.length === 1 && comp(query, inputDatas[0].grammar) ? [] : inputDatas}
           defaultValue={query}
           onChangeText={text => this.setState({ query: text })}
-          //placeholder={this.props.placeholder}
           renderItem={this._renderItem}
         />
       </View>

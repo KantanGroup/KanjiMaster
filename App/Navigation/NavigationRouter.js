@@ -13,7 +13,8 @@ import KanjiViewScreen from '../Containers/KanjiViewScreen'
 import NiteirukanjiScreen from '../Containers/ListviewExample'
 import DouonigigoScreen from '../Containers/KanjiScreen'
 import TangoScreen from '../Containers/FlashCardScreen'
-import BunpouScreen from '../Containers/AutocompleteExample'
+import GrammarScreen from '../Containers/GrammarScreen'
+import GrammarViewScreen from '../Containers/GrammarViewScreen'
 import SettingScreen from '../Containers/SettingScreen'
 import FlashCardScreen from '../Containers/FlashCardScreen'
 import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
@@ -74,7 +75,9 @@ class NavigationRouter extends Component {
             <Scene key='tango' component={TangoScreen} title={I18n.t('tango')} type={ActionConst.RESET}/>
 
             {/* Home -> Bunpou */}
-            <Scene key='bunpou' component={BunpouScreen} title={I18n.t('bunpou')} type={ActionConst.RESET}/>
+            <Scene key='bunpou' component={GrammarScreen} title={I18n.t('bunpou')} type={ActionConst.RESET}/>
+            {/* Home -> Bunpou -> Bunpou View */}
+            <Scene key='grammarview' component={GrammarViewScreen} title={I18n.t('bunpou')}/>
 
             {/* Home -> Setting */}
             <Scene key='settei' component={SettingScreen} title={I18n.t('settei')} type={ActionConst.RESET}/>
