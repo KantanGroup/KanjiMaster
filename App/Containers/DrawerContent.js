@@ -50,6 +50,7 @@ class DrawerContent extends Component {
         <Image source={Images.logo} style={styles.logo} />
         <DrawerButton text={I18n.t('home')} onPress={this.handlePressStartup} />
         <DrawerButton text={I18n.t('kanji')} onPress={this.handlePressKanji} />
+        <DrawerButton text={I18n.t('bunpou')} onPress={this.handlePressBunpou} />
         <DrawerButton text="学習" onPress={this.handlePressDesk} />
       </ScrollView>
     )

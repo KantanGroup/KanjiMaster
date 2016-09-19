@@ -39,6 +39,10 @@ class StartupScreen extends React.Component {
             {I18n.t('kanji')}
           </RoundedButton>
 
+          <RoundedButton onPress={this.props.bunpou}>
+            {I18n.t('bunpou')}
+          </RoundedButton>
+
           <RoundedButton onPress={this.props.desk}>
             学習
           </RoundedButton>

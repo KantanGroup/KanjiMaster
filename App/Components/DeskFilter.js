@@ -16,9 +16,7 @@ export default class DeskFilter extends React.Component {
   renderChoiseLanguage(){
     const options = [
       { label: 'None', value: '' },
-      { label: '漢字', value: 'kanji' },
-      { label: '単語', value: 'tango' },
-      { label: '文法', value: 'bunpou' }
+      { label: '漢字', value: 'kanji' }
     ];
 
     const kanjiOptions = [
