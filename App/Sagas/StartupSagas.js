@@ -7,6 +7,7 @@ import RNFetchBlob from 'react-native-fetch-blob'
 import Toast from 'react-native-root-toast';
 import DatabaseService from '../Services/DatabaseService'
 import KanjiService from '../Services/KanjiService'
+import GrammarService from '../Services/GrammarService'
 
 // process STARTUP actions
 export function * startup (action) {
@@ -28,6 +29,7 @@ export function * initiativeDatabase (action) {
   if (!setting || (setting && (!setting[0] || !setting[0].value))) {
     //Go to setting screen to import database
     yield call(importDatabaseKanji)
+    yield call(importDatabaseGrammar)
     yield call(importDatabaseKanjiTango)
     DatabaseService.setSetting("importSampleDatabase", true);
   } else {
@@ -73,4 +75,9 @@ function * importDatabaseKanjiTango() {
   })
   .catch((err) => { console.log(err) })
   DatabaseService.setSetting("importDatabaseKanjiTango", true);
+}
+
+function * importDatabaseGrammar () {
+  let grammars = require('../Fixtures/grammars.json')
+  GrammarService.createGrammars(grammars);
 }

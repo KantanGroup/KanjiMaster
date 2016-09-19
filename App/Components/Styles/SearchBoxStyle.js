@@ -15,9 +15,19 @@ export default StyleSheet.create({
     right: 0,
     top: 20,
   },
+  box: {
+    height: 40,
+    borderRadius: 5,
+    marginVertical: 5,
+    backgroundColor: 'white',
+    borderColor: 'green',
+    borderWidth: 0.8,
+    justifyContent: 'center',
+  },
   itemText: {
-    fontSize: 15,
-    margin: 5
+    fontWeight: 'bold',
+    color: 'green',
+    marginLeft: 20
   },
   infoText: {
     textAlign: 'center'

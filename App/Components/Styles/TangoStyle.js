@@ -57,12 +57,12 @@ export default StyleSheet.create({
   },
   textHiragana: {
     paddingLeft: 5,
-    fontSize: 12,
+    fontSize: 15,
     lineHeight: 21,
     color: 'blue',
   },
   textHantu: {
-    fontSize: 12,
+    fontSize: 15,
     lineHeight: 21,
     color: '#002350',
   },

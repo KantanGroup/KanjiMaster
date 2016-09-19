@@ -79,6 +79,17 @@ const CardSchema = {
   }
 };
 
+const GrammarSchema = {
+  name: "Grammar",
+  primaryKey: "id",
+  properties: {
+    id:           {type: 'int'},
+    grammar:      {type: 'string', indexed: true},
+    hiragana:     {type: 'string', indexed: true},
+    definition:   {type: 'string'}
+  }
+}
+
 const SettingSchema = {
   name: "Setting",
   primaryKey: "key",
@@ -88,4 +99,4 @@ const SettingSchema = {
   }
 };
 
-export default new Realm({path: 'kanjidaily.realm', schema: [KanjiMatomeSchema, KanjiMatomeTangoSchema, KanjiMatomeMeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
+export default new Realm({path: 'kanjidaily.realm', schema: [GrammarSchema, KanjiMatomeSchema, KanjiMatomeTangoSchema, KanjiMatomeMeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
