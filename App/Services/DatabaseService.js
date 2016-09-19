@@ -72,7 +72,7 @@ export default {
           type: type,
           createTime: date.getTime(),
           answerTime: date.getTime(),
-          nextTime: date.getTime()
+          nextTime: id
         });
       })
     });

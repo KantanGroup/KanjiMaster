@@ -98,7 +98,7 @@ class DeskCreateScreen extends React.Component {
             <TouchableOpacity style={styles.bottomButtons} onPress={() => this.createDesk()}>
               <Text style={styles.footerText}>Create Desk</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.bottomButtons} onPress={() => NavigationActions.pop()}>
+            <TouchableOpacity style={styles.bottomButtons} onPress={() => { try { NavigationActions.pop() } catch (error) {}}}>
               <Text style={styles.footerText}>Cancel</Text>
             </TouchableOpacity>
           </View>
