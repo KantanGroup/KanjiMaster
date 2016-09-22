@@ -10,6 +10,9 @@ import ZipArchive from 'react-native-zip-archive'
 
 import StartupActions from '../Redux/StartupRedux'
 
+// I18n
+import I18n from 'react-native-i18n'
+
 class DownloadProgess extends React.Component {
 
   constructor (props) {
@@ -35,23 +38,16 @@ class DownloadProgess extends React.Component {
     .then((resp) => {
       ZipArchive.unzip(resp.path(), dirs.DocumentDir)
       .then(() => {
-        Toast.show("Download successful")
-        RNFetchBlob.fs.ls(dirs.DocumentDir)
-        // files will an array contains filenames
-        .then((files) => {
-            console.log(files)
-        })
+        Toast.show(I18n.t('dataWasDownloadSuccessful'))
         this.props.initiativeDatabase();
       })
       .catch((error) => {
-        Toast.show("Please check the storage size")
-        console.log(error)
+        Toast.show(I18n.t('pleaseCheckTheStorage'))
       })
       resp.flush()
     })
     .catch((err) => {
-      Toast.show("Please check the network connection")
-      console.log(error)
+      Toast.show(I18n.t('pleaseCheckTheNetworkConnection'))
     })
   }
 
@@ -59,7 +55,7 @@ class DownloadProgess extends React.Component {
     return (
       <View>
         <TouchableOpacity style={styles.box} onPress={() => this.downloadFileFromLink()}>
-          <Text style={styles.text}>Download data</Text>
+          <Text style={styles.text}>{I18n.t('downloadData')}</Text>
         </TouchableOpacity>
         <Progress.Bar progress={this.state.output} width={320} />
       </View>

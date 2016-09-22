@@ -17,7 +17,6 @@ import GrammarScreen from '../Containers/GrammarScreen'
 import GrammarViewScreen from '../Containers/GrammarViewScreen'
 import SettingScreen from '../Containers/SettingScreen'
 import FlashCardScreen from '../Containers/FlashCardScreen'
-import FlashCardViewScreen from '../Containers/FlashCardViewScreen'
 import SearchScreen from '../Containers/SearchScreen'
 import DeskListScreen from '../Containers/DeskListScreen'
 import DeskCreateScreen from '../Containers/DeskCreateScreen'
@@ -86,9 +85,9 @@ class NavigationRouter extends Component {
             <Scene key='flashcard' component={FlashCardScreen} title={I18n.t('flashcard')} type={ActionConst.RESET}/>
 
             {/* Home -> Desk */}
-            <Scene key='desk' component={DeskListScreen} title='Desk' type={ActionConst.RESET}/>
+            <Scene key='desk' component={DeskListScreen} title={I18n.t('desk')} type={ActionConst.RESET}/>
             {/* Home -> Desk -> Create desk*/}
-            <Scene key='deskCreation' component={DeskCreateScreen} title='Create Desk'/>
+            <Scene key='deskCreation' component={DeskCreateScreen} title={I18n.t('createDesk')}/>
           </Scene>
         </Scene>
       </Router>

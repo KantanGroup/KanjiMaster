@@ -35,13 +35,12 @@ export function * addToDesk (deskId, front, back, type) {
     const hasCard = yield call(DatabaseService.hasCardInDesk, deskId, front, type)
     if (!hasCard) {
       DatabaseService.addCard(deskId, front, back, type)
-      Toast.show("Add successful")
+      Toast.show(I18n.t('addSuccessful'))
     } else {
-      Toast.show("Have been added to desk")
+      Toast.show(I18n.t('haveBeenAddedToDesk'))
     }
   } catch (error) {
-    Toast.show("Can't add to desk")
-    console.log(error)
+    Toast.show(I18n.t('cantAddToDesk'))
   }
 }
 
@@ -88,9 +87,6 @@ export function * addKanjiByPropertyCard (action) {
     }
     yield call(DatabaseService.addCards, deskId, keywords, null, Constant.TYPE_KANJI)
   } catch (error) {
-    Toast.show("Can't add to desk")
-    console.log(error)
+    Toast.show(I18n.t('cantAddToDesk'))
   }
-
-  //*/
 }

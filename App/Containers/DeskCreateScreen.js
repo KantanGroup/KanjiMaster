@@ -56,7 +56,7 @@ class DeskCreateScreen extends React.Component {
     let id = date.getTime();
 
     if(this._deskName.state.text === '') {
-      Toast.show("Input desk name")
+      Toast.show(I18n.t('inputADeskName'))
       return
     } else {
       this.props.createDesk(id, this._deskName.state.text);
@@ -64,7 +64,7 @@ class DeskCreateScreen extends React.Component {
 
     if ((!this._deskFilter.state.selectedItem || (this._deskFilter.state.selectedItem && this._deskFilter.state.selectedItem.value !== ''))
       && (this._deskFilter.state.selectedSubItem && this._deskFilter.state.selectedSubItem.length === 0)) {
-      Toast.show("Select a item")
+      Toast.show(I18n.t('selectAItem'))
       return
     } else {
       if (this._deskFilter.state.selectedItem && this._deskFilter.state.selectedItem.value === "kanji") {
@@ -86,20 +86,20 @@ class DeskCreateScreen extends React.Component {
           style={styles.backgroundImage}
           resizeMode='stretch' />
         <ScrollView style={styles.container}>
-          <SettingItem title="Desk name">
+          <SettingItem title={I18n.t('deskName')}>
             <ImputButton ref={component => this._deskName = component}/>
           </SettingItem>
 
-          <SettingItem title="Add more data by category">
+          <SettingItem title={I18n.t('addMoreDataByCategory')}>
             <DeskFilter ref={component => this._deskFilter = component} onPress={this.deskDilter}/>
           </SettingItem>
 
           <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems:'center', marginLeft: 10, marginRight: 10}}>
             <TouchableOpacity style={styles.bottomButtons} onPress={() => this.createDesk()}>
-              <Text style={styles.footerText}>Create Desk</Text>
+              <Text style={styles.footerText}>{I18n.t('createDesk')}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.bottomButtons} onPress={() => { try { NavigationActions.pop() } catch (error) {}}}>
-              <Text style={styles.footerText}>Cancel</Text>
+              <Text style={styles.footerText}>{I18n.t('cancel')}</Text>
             </TouchableOpacity>
           </View>
 

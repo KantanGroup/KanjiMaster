@@ -16,7 +16,7 @@ export function * searchKanji (action) {
       yield put(KanjiActions.kanjiNotFound())
     }
   } catch (error) {
-    Toast.show(error)
+    Toast.show(I18n.t('cantFindTheKanji'))
     yield put(KanjiActions.kanjiNotFound())
   }
 }

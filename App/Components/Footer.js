@@ -2,6 +2,9 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import styles from './Styles/FooterStyle'
 
+// I18n
+import I18n from 'react-native-i18n'
+
 export default class Footer extends React.Component {
 
   constructor (props) {
@@ -12,11 +15,11 @@ export default class Footer extends React.Component {
     let footer;
     if (this.props.type === 'black') {
       footer = (
-        <Text style={styles.subtitle}>Made with ❤️ by Tran Anh Tuan</Text>
+        <Text style={styles.subtitle}>{I18n.t('copyRight')}</Text>
       );
     } else {
       footer = (
-        <Text>Made with ❤️ by Tran Anh Tuan</Text>
+        <Text>{I18n.t('copyRight')}</Text>
       );
     }
     return (

@@ -32,7 +32,7 @@ class SettingScreen extends React.Component {
 
         <ScrollView style={styles.container}>
 
-          <SettingItem title="Download data sample">
+          <SettingItem title={I18n.t('downloadDataSample')}>
             <DownloadProgess　/>
           </SettingItem>
 

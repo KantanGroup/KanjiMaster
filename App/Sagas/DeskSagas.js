@@ -21,7 +21,7 @@ export function * searchDesk (action) {
       yield put(DeskActions.deskNotFound())
     }
   } catch (error) {
-    Toast.show(error)
+    Toast.show(I18n.t('cantFindTheDesk'))
     yield put(Actions.deskNotFound())
   }
 }
@@ -35,7 +35,7 @@ export function * searchDesks () {
       yield put(DeskActions.deskNotFound())
     }
   } catch (error) {
-    Toast.show(error)
+    Toast.show(I18n.t('cantFindTheDesk'))
     yield put(ActiDeskActionsons.deskNotFound())
   }
 }
@@ -60,10 +60,8 @@ export function * startStudyDesk (action) {
     LeitnerSystem.startStudy(newCards, doingCards, reviewCards);
     yield call(getNextCard)
   } catch (error) {
-    Toast.show("Can't study this desk")
+    Toast.show(I18n.t('cantFindTheDesk'))
     console.log(error)
-    yield put(DeskActions.deskNotFound())
-    yield put(CardActions.cardEmptyInQueue())
   }
 }
 
@@ -76,8 +74,7 @@ export function * feedbackCard(action) {
     const cardEasy = LeitnerSystem.feedbackEasy(card);
     yield put(DeskActions.deskReceiveFeedbackCard(cardAgain, cardHard, cardGood, cardEasy));
   } catch (error) {
-    Toast.show("Can't answer this card")
-    console.log(error)
+    Toast.show(I18n.t('cantAnswerThisCard'))
   }
 }
 
@@ -90,8 +87,7 @@ export function * updateCard(action) {
       yield call(LeitnerSystem.addCard, card);
     }
   } catch (error) {
-    Toast.show("Can't answer this card")
-    console.log(error)
+    Toast.show(I18n.t('cantAnswerThisCard'))
   }
 
   yield call(getNextCard)
@@ -108,8 +104,7 @@ export function * deleteDesk(action) {
       yield put(DeskActions.deskNotFound())
     }
   } catch (error) {
-    Toast.show("Can't delete desk")
-    console.log(error)
+    Toast.show(I18n.t('cantDeleteThisDesk'))
   }
 }
 

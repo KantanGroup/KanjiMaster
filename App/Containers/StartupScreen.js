@@ -48,7 +48,7 @@ class StartupScreen extends React.Component {
           </RoundedButton>
 
           <RoundedButton onPress={this.props.desk}>
-            学習
+            {I18n.t('learning')}
           </RoundedButton>
 
           <RoundedButton onPress={this.props.settei}>

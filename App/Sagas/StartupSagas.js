@@ -9,6 +9,9 @@ import DatabaseService from '../Services/DatabaseService'
 import KanjiService from '../Services/KanjiService'
 import GrammarService from '../Services/GrammarService'
 
+// I18n
+import I18n from 'react-native-i18n'
+
 // process STARTUP actions
 export function * startup (action) {
   //If first install
@@ -20,7 +23,7 @@ export function * startup (action) {
     }, 500);
   } else {
     //Alert using sample database to user
-    Toast.show('You are using sample database');
+    Toast.show(I18n.t('youAreUsingSampleData'))
   }
 }
 
@@ -34,7 +37,7 @@ export function * initiativeDatabase (action) {
     DatabaseService.setSetting("importSampleDatabase", true);
   } else {
     //Alert using sample database to user
-    Toast.show('You are using sample database');
+    Toast.show(I18n.t('youAreUsingSampleData'))
   }
   setTimeout(() => {
     NavigationActions.startup();
