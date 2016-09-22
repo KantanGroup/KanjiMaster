@@ -44,31 +44,20 @@ export function * createDesk (action) {
   const { id, name } = action
   try {
     yield call(DatabaseService.createDesk, id, name)
-    // make the call to the api
-    const desks = yield call(DatabaseService.getDesks)
-    if (desks) {
-      yield put(DeskActions.desksReceive(desks))
-    } else {
-      yield put(DeskActions.deskNotFound())
-    }
   } catch (error) {
     Toast.show(error)
     yield put(DeskActions.deskNotFound())
   }
+  yield call(searchDesks)
 }
 
 export function * startStudyDesk (action) {
   const { id } = action
   try {
-    const newCards = yield call(DatabaseService.getCardInDeskByNewCard, id, -1)
-    yield put(CardActions.cardNewInDayReceive(newCards, moment(new Date()).format("YYYYMMDD")))
-
+    const newCards = yield call(DatabaseService.getCardInDeskByNewCard, id, 100)
+    const doingCards = yield call(DatabaseService.getCardInDeskByDoingCard, id, -1)
     const reviewCards = yield call(DatabaseService.getCardInDeskByReviewCard, id, -1)
-    yield put(CardActions.cardReviewInDayReceive(reviewCards, moment(new Date()).format("YYYYMMDD")))
-
-    LeitnerSystem.startStudy(newCards, reviewCards);
-    yield put(DeskActions.deskCountCard(LeitnerSystem.countNewCard(), LeitnerSystem.countDoingCard(), LeitnerSystem.countReviewCard()));
-
+    LeitnerSystem.startStudy(newCards, doingCards, reviewCards);
     yield call(getNextCard)
   } catch (error) {
     Toast.show("Can't study this desk")
