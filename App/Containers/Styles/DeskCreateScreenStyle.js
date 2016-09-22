@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { ApplicationStyles } from '../../Themes/'
+import { Colors, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -13,7 +13,7 @@ export default StyleSheet.create({
     flex:1
   },
   footerText: {
-    color:'green',
+    color: Colors.fire,
     fontWeight:'bold',
     alignItems:'center'
   }

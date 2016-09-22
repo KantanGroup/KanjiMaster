@@ -18,15 +18,15 @@ export default StyleSheet.create({
   box: {
     height: 40,
     borderRadius: 5,
-    marginVertical: 5,
-    backgroundColor: 'white',
-    borderColor: 'green',
-    borderWidth: 0.8,
+    marginVertical: 1,
+    backgroundColor: '#222930',
+    borderColor: '#e73536',
+    //borderWidth: 0.8,
     justifyContent: 'center',
   },
   itemText: {
     fontWeight: 'bold',
-    color: 'green',
+    color: '#E9E9E9',
     marginLeft: 20
   },
   infoText: {

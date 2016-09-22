@@ -8,7 +8,7 @@ export default StyleSheet.create({
     margin: 5,
     padding: 10,
     flexDirection: 'column',
-    backgroundColor: 'white',
+    backgroundColor: '#232B2B',
     borderColor: '#dddddd',
     borderStyle: null,
     borderWidth: 0.5,

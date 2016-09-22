@@ -23,11 +23,7 @@ class GrammarViewScreen extends React.Component {
   render () {
     console.log(this.props.grammar.definition)
     return (
-      <View style={styles.mainContainer}>
-        <Image
-          source={Images.background}
-          style={styles.backgroundImage}
-          resizeMode='stretch' />
+      <View style={[styles.mainContainer, { backgroundColor:'#232B2B' }]}>
         <ScrollView style={styles.box}>
 
           <HTMLView stylesheet={htmlStyles}
@@ -50,28 +46,28 @@ var htmlStyles = StyleSheet.create({
     //fontSize: 12, //Change font size
   },
   connection:{
-    color: '#ff1a1a',
+    color: '#FF0000',
     //fontSize: 12, //Change font size
   },
   conversation:{
-    color: '#0000ff',
+    color: '#FFFFFF',
     //fontSize: 12, //Change font size
   },
   explanation:{
-    color: '#2e2e1f',
+    color: '#E3AE57',
     //fontSize: 12, //Change font size
   },
   example:{
-    color: '#0000ff',
+    color: '#FFFFFF',
     //fontSize: 12, //Change font size
   },
   exercise:{
-    color: '#2e2e1f',
+    color: '#E3AE57',
     //fontSize: 12, //Change font size
   },
   answer:{
-    color: '#999966',
-    fontSize: 12, //Change font size
+    color: '#FFFFFF',
+    //fontSize: 12, //Change font size
   },
 })
 

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
+import { Fonts, Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   container: {
@@ -9,15 +9,14 @@ export default StyleSheet.create({
   desk: {
     height: 40,
     borderRadius: 5,
-    marginVertical: 1,
-    backgroundColor: 'white',
-    borderColor: 'green',
-    borderWidth: 0.8,
+    marginVertical: 2,
+    backgroundColor: Colors.fire,
     justifyContent: 'center'
   },
   deskText: {
     fontWeight: 'bold',
-    color: 'green',
+    color: Colors.snow,
+    fontSize: Fonts.size.medium,
     marginLeft: 20
   }
 })

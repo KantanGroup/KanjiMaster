@@ -11,14 +11,12 @@ export default StyleSheet.create({
     borderRadius: 5,
     marginVertical: 5,
     backgroundColor: 'white',
-    borderColor: 'green',
-    borderWidth: 0.8,
     justifyContent: 'center',
     alignItems: 'center'
   },
   text: {
     fontWeight: 'bold',
-    color: 'green',
+    color: Colors.fire,
     marginLeft: 20
   }
 })
