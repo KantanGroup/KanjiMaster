@@ -54,7 +54,7 @@ export function * createDesk (action) {
 export function * startStudyDesk (action) {
   const { id } = action
   try {
-    const newCards = yield call(DatabaseService.getCardInDeskByNewCard, id, 100)
+    const newCards = yield call(DatabaseService.getCardInDeskByNewCard, id, -1)
     const doingCards = yield call(DatabaseService.getCardInDeskByDoingCard, id, -1)
     const reviewCards = yield call(DatabaseService.getCardInDeskByReviewCard, id, -1)
     LeitnerSystem.startStudy(newCards, doingCards, reviewCards);

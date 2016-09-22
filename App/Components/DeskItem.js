@@ -14,7 +14,7 @@ class DeskItem extends React.Component {
   }
 
   render () {
-    const newCards = DatabaseService.getCardInDeskByNewCard(this.props.desk.id, 100)
+    const newCards = DatabaseService.getCardInDeskByNewCard(this.props.desk.id, -1)
     const doingCards = DatabaseService.getCardInDeskByDoingCard(this.props.desk.id, -1)
     const reviewCards = DatabaseService.getCardInDeskByReviewCard(this.props.desk.id, -1)
     const cardNew = newCards.length;

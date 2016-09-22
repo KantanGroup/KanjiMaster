@@ -1,34 +1,57 @@
 import FastPriorityQueue from "fastpriorityqueue"
 import Constant from '../Transforms/Constant'
 
-var queue;
+var queueNewCard;
+var queueDoingCard;
+var queueReviewCard;
 var doingSize = 0;
 var newSize = 0;
 var reviewSize = 0;
 
 export default {
 
-  startStudy: (newCards, reviewCards) => {
+  startStudy: (newCards, doingCards, reviewCards) => {
     doingSize = 0;
-    queue = new FastPriorityQueue(function(a,b) {return a.nextTime < b.nextTime});
+    queueNewCard = new FastPriorityQueue(function(a,b) {return a.nextTime < b.nextTime});
+    queueDoingCard = new FastPriorityQueue(function(a,b) {return a.nextTime < b.nextTime});
+    queueReviewCard = new FastPriorityQueue(function(a,b) {return a.nextTime < b.nextTime});
+
     newSize = Object.keys(newCards).length;
     Object.keys(newCards).forEach(function(key) {
-      queue.add(newCards[key]);
+      queueNewCard.add(newCards[key])
     });
+
+    doingSize = Object.keys(doingCards).length;
+    Object.keys(doingCards).forEach(function(key) {
+      queueDoingCard.add(doingCards[key])
+    });
+
     reviewSize = Object.keys(reviewCards).length;
     Object.keys(reviewCards).forEach(function(key) {
-      queue.add(reviewCards[key]);
+      queueReviewCard.add(reviewCards[key])
     });
   },
 
   addCard: (card) => {
-    queue.add(card);
+    queueDoingCard.add(card);
   },
 
   nextCard: () => {
     var card = null;
-    if (!queue.isEmpty()) {
-      card = queue.poll();
+    if (!queueDoingCard.isEmpty() || queueDoingCard.size() > 2) {
+      card = queueDoingCard.poll();
+    } else {
+      for (var i = 0; i < 5; i++) {
+        if (!queueNewCard.isEmpty()) {
+          queueDoingCard.add(queueNewCard.poll())
+        }
+        if (!queueReviewCard.isEmpty()) {
+          queueDoingCard.add(queueReviewCard.poll())
+        }
+      }
+      if (!queueDoingCard.isEmpty()) {
+        card = queueDoingCard.poll();
+      }
     }
     return card;
   },
