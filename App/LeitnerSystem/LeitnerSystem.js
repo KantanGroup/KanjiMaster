@@ -38,7 +38,7 @@ export default {
 
   nextCard: () => {
     var card = null;
-    if (!queueDoingCard.isEmpty() || queueDoingCard.size() > 2) {
+    if (!queueDoingCard.isEmpty() && queueDoingCard.size > 2) {
       card = queueDoingCard.poll();
     } else {
       for (var i = 0; i < 5; i++) {
