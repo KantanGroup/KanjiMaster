@@ -9,6 +9,7 @@ import RNFetchBlob from 'react-native-fetch-blob'
 import ZipArchive from 'react-native-zip-archive'
 
 import StartupActions from '../Redux/StartupRedux'
+import Config from 'react-native-config'
 
 // I18n
 import I18n from 'react-native-i18n'
@@ -23,7 +24,7 @@ class DownloadProgess extends React.Component {
   }
 
   downloadFileFromLink() {
-    let sourcePath = "https://raw.githubusercontent.com/tk1cntt/KanjiMaster/master/App/Fixtures/samples.zip";
+    let sourcePath = Config.DOWNLOAD_DATA;
     let targetPath;
 
     const dirs = RNFetchBlob.fs.dirs
