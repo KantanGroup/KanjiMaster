@@ -80,4 +80,6 @@ function * importDatabaseKanjiTango() {
 function * importDatabaseGrammar () {
   let grammars = require('../Fixtures/grammars.json')
   GrammarService.createGrammars(grammars);
+  grammars = require('../Fixtures/tudienmaucau.json')
+  GrammarService.createGrammars(grammars);
 }
