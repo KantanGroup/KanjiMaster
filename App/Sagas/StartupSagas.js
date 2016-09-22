@@ -81,8 +81,31 @@ function * importDatabaseKanjiTango() {
 }
 
 function * importDatabaseGrammar () {
-  let grammars = require('../Fixtures/grammars.json')
-  GrammarService.createGrammars(grammars);
-  grammars = require('../Fixtures/tudienmaucau.json')
-  GrammarService.createGrammars(grammars);
+  const dirs = RNFetchBlob.fs.dirs
+  console.log("Grammar do import database")
+  RNFetchBlob.fs.readStream(dirs.DocumentDir + '/grammars.json', 'utf8')
+  .then((stream) => {
+      let data = ''
+      stream.open()
+      stream.onData((chunk) => {
+          data += chunk
+      })
+      stream.onEnd(() => {
+          GrammarService.createGrammars(JSON.parse(data));
+      })
+  })
+  .catch((err) => { console.log(err) })
+  RNFetchBlob.fs.readStream(dirs.DocumentDir + '/tudienmaucau.json', 'utf8')
+  .then((stream) => {
+      let data = ''
+      stream.open()
+      stream.onData((chunk) => {
+          data += chunk
+      })
+      stream.onEnd(() => {
+          GrammarService.createGrammars(JSON.parse(data));
+      })
+  })
+  .catch((err) => { console.log(err) })
+  DatabaseService.setSetting("importDatabaseGrammar", true);
 }
