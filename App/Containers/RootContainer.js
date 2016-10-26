@@ -4,16 +4,18 @@ import NavigationRouter from '../Navigation/NavigationRouter'
 import { connect } from 'react-redux'
 import StartupActions from '../Redux/StartupRedux'
 import DeskActions from '../Redux/DeskRedux'
-
-// import './Config/PushConfig'
+import ReduxPersist from '../Config/ReduxPersist'
 
 // Styles
 import styles from './Styles/RootContainerStyle'
 
 class RootContainer extends Component {
   componentDidMount () {
-    this.props.startup()
-    this.props.getDesks()
+    // if redux persist is not active fire startup action
+    if (!ReduxPersist.active) {
+      this.props.startup()
+      this.props.getDesks()
+    }
   }
 
   render () {
