@@ -6,7 +6,7 @@ import { Images } from '../Themes'
 import itemstyles from '../Components/Styles/DeskItemStyle'
 
 // For empty lists
-import AlertMessage from '../Components/AlertMessageComponent'
+import AlertMessage from '../Components/AlertMessage'
 
 // Styles
 import styles from './Styles/KanjiByJLPTScreenStyle'

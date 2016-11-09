@@ -5,7 +5,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import { Images } from '../Themes'
 
 // For empty lists
-import AlertMessage from '../Components/AlertMessageComponent'
+import AlertMessage from '../Components/AlertMessage'
 
 // Styles
 import styles from './Styles/KanjiByJLPTScreenStyle'

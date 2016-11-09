@@ -10,6 +10,16 @@ import I18n from 'react-native-i18n'
 
 class DrawerContent extends Component {
 
+  componentDidMount () {
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+      if (this.context.drawer.props.open) {
+        this.toggleDrawer()
+        return true
+      }
+      return false
+    })
+  }
+
   toggleDrawer () {
     this.context.drawer.toggle()
   }

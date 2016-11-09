@@ -3,7 +3,7 @@ import { TouchableOpacity, View, Text, ListView } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 // For empty lists
-import AlertMessage from '../Components/AlertMessageComponent'
+import AlertMessage from '../Components/AlertMessage'
 import DeskAddButton from '../Components/DeskAddButton'
 import DeskItem from '../Components/DeskItem'
 import DeskActions from '../Redux/DeskRedux'
