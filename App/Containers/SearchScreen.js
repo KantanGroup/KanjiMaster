@@ -32,7 +32,7 @@ class SearchScreen extends React.Component {
 
   render () {
 
-    let tangos = require('../Fixtures/tangos.json');
+    let tangos = [];//require('../Fixtures/tangos.json');
 
     let kanjiContent = {
       hantu: "HAN",

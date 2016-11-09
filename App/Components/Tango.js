@@ -9,7 +9,6 @@ import Swiper from 'react-native-swiper';
 
 import { Images } from '../Themes'
 
-import F8Touchable from './f8/F8Touchable'
 import Star from './Star'
 import SwiperComponent from './SwiperComponent'
 
