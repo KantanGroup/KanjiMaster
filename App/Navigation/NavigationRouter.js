@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react'
 import { ToastAndroid, BackAndroid, View } from 'react-native'
 import { Actions, Scene, Router, ActionConst } from 'react-native-router-flux'

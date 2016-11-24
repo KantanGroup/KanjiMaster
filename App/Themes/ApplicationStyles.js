@@ -1,3 +1,5 @@
+// @flow
+
 import Fonts from './Fonts'
 import Metrics from './Metrics'
 import Colors from './Colors'
@@ -53,7 +55,7 @@ const ApplicationStyles = {
     padding: Metrics.smallMargin
   },
   darkLabel: {
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.type.bold,
     color: Colors.snow
   },
   groupContainer: {

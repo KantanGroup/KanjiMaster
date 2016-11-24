@@ -1,3 +1,5 @@
+// @flow
+
 import React, { PropTypes } from 'react'
 import { View, ScrollView, Text, TouchableOpacity, Image } from 'react-native'
 import { connect } from 'react-redux'
@@ -17,11 +19,6 @@ import I18n from 'react-native-i18n'
 import styles from './Styles/UsageExamplesScreenStyle'
 
 class UsageExamplesScreen extends React.Component {
-
-  constructor (props) {
-    super(props)
-    this.state = {}
-  }
 
   componentWillReceiveProps (nextProps) {
     // Request push premissions only if the user has logged in.
@@ -117,15 +114,11 @@ class UsageExamplesScreen extends React.Component {
           </Animatable.View>
         </View>
         {this.renderHeader(I18n.t('igniteGenerated'))}
-        <View>
-          <RoundedButton text='Listview' onPress={NavigationActions.listviewExample} />
-        </View>
-        <View>
-          <RoundedButton text='Listview Grid' onPress={NavigationActions.listviewGridExample} />
-        </View>
-        <View>
-          <RoundedButton text='Listview Sections' onPress={NavigationActions.listviewSectionsExample} />
-        </View>
+        <RoundedButton text='Listview' onPress={NavigationActions.listviewExample} />
+        <RoundedButton text='Listview Grid' onPress={NavigationActions.listviewGridExample} />
+        <RoundedButton text='Listview Sections' onPress={NavigationActions.listviewSectionsExample} />
+        <RoundedButton text='Listview Searching' onPress={NavigationActions.listviewSearchingExample} />
+        <RoundedButton text='Mapview' onPress={NavigationActions.mapviewExample} />
       </View>
     )
   }
@@ -164,10 +157,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(LoginActions.logout()),
-    requestTemperature: city => dispatch(TemperatureActions.temperatureRequest(city))
+    requestTemperature: (city) => dispatch(TemperatureActions.temperatureRequest(city))
   }
 }
 

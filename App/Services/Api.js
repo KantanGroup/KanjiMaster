@@ -21,7 +21,7 @@ const create = (baseURL = 'http://api.openweathermap.org/data/2.5/') => {
   })
 
   // Force OpenWeather API Key on all requests
-  api.addRequestTransform(request => {
+  api.addRequestTransform((request) => {
     request.params['APPID'] = '0e44183e8d1018fc92eb3307d885379c'
   })
 
@@ -29,7 +29,6 @@ const create = (baseURL = 'http://api.openweathermap.org/data/2.5/') => {
   // additional monitors in the future.  But only in __DEV__ and only
   // if we've attached Reactotron to console (it isn't during unit tests).
   if (__DEV__ && console.tron) {
-    console.tron.log('Hello, I\'m an example of how to log via Reactotron.')
     api.addMonitor(console.tron.apisauce)
   }
 
