@@ -3,6 +3,10 @@ package com.kanjimaster;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.rnziparchive.RNZipArchivePackage;
+import io.realm.react.RealmReactPackage;
+import com.rnfs.RNFSPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -27,6 +31,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNZipArchivePackage(),
+            new RealmReactPackage(),
+            new RNFSPackage(),
+            new RNFetchBlobPackage(),
             new ReactNativeI18n(),
             new VectorIconsPackage(),
             new RNDeviceInfo(),

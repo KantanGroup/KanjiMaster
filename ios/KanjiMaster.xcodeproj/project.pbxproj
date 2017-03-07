@@ -52,6 +52,12 @@
 		9D741B6423BC409EA491CD7F /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB08E9F870894F5B966FA0DF /* libyoga.a */; };
 		3CD9B7AADDCE4D628131CC5B /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5DA96534F94AB7BC96C736 /* libcxxreact.a */; };
 		6258BD5ED1F34AFEA9131E92 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CEB8131DE04786A9AA2F98 /* libjschelpers.a */; };
+		E4F28CC0C929452881C60EF3 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB9ABF36F74B4073B3F029AA /* libRNFetchBlob.a */; };
+		86EB83A944B047DE80A375A3 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D319B5A3FBC84646ADC822CD /* libRNFS.a */; };
+		CC48BC60D7064D559052D896 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CA0333746F47DDADA9FBDE /* libRealmReact.a */; };
+		592C4D8EC3DA43A9A1FB9F82 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2B1301D90D4EADA3F6D25C /* libc++.tbd */; };
+		D1E594EC885B471C929CEFAF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FDA8B4C32E854FFBAA58D6BF /* libz.tbd */; };
+		3F76F3E7988F4646A04502A4 /* libRNZipArchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 111A335B23524682BA954B49 /* libRNZipArchive.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -292,6 +298,16 @@
 		EB08E9F870894F5B966FA0DF /* libyoga.a */ = {isa = PBXFileReference; name = "libyoga.a"; path = "libyoga.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		3F5DA96534F94AB7BC96C736 /* libcxxreact.a */ = {isa = PBXFileReference; name = "libcxxreact.a"; path = "libcxxreact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		63CEB8131DE04786A9AA2F98 /* libjschelpers.a */ = {isa = PBXFileReference; name = "libjschelpers.a"; path = "libjschelpers.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3524715602DD412FA6A6D9CC /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		DB9ABF36F74B4073B3F029AA /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		E255D36A5343406BAA42F2E4 /* RNFS.xcodeproj */ = {isa = PBXFileReference; name = "RNFS.xcodeproj"; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D319B5A3FBC84646ADC822CD /* libRNFS.a */ = {isa = PBXFileReference; name = "libRNFS.a"; path = "libRNFS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		03937A52C4154316B9B9A0C8 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		55CA0333746F47DDADA9FBDE /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		DF2B1301D90D4EADA3F6D25C /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		FDA8B4C32E854FFBAA58D6BF /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		20962B91CEE345EA9E326808 /* RNZipArchive.xcodeproj */ = {isa = PBXFileReference; name = "RNZipArchive.xcodeproj"; path = "../node_modules/react-native-zip-archive/ios/RNZipArchive.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		111A335B23524682BA954B49 /* libRNZipArchive.a */ = {isa = PBXFileReference; name = "libRNZipArchive.a"; path = "libRNZipArchive.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +341,12 @@
 				9D741B6423BC409EA491CD7F /* libyoga.a in Frameworks */,
 				3CD9B7AADDCE4D628131CC5B /* libcxxreact.a in Frameworks */,
 				6258BD5ED1F34AFEA9131E92 /* libjschelpers.a in Frameworks */,
+				E4F28CC0C929452881C60EF3 /* libRNFetchBlob.a in Frameworks */,
+				86EB83A944B047DE80A375A3 /* libRNFS.a in Frameworks */,
+				CC48BC60D7064D559052D896 /* libRealmReact.a in Frameworks */,
+				592C4D8EC3DA43A9A1FB9F82 /* libc++.tbd in Frameworks */,
+				D1E594EC885B471C929CEFAF /* libz.tbd in Frameworks */,
+				3F76F3E7988F4646A04502A4 /* libRNZipArchive.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +517,10 @@
 				8AAE134BDEFF4AE38E1398A6 /* RNDeviceInfo.xcodeproj */,
 				C875642F8DD049C28E986FF6 /* RNVectorIcons.xcodeproj */,
 				BB39176A8CEA408BA67E1132 /* RNI18n.xcodeproj */,
+				3524715602DD412FA6A6D9CC /* RNFetchBlob.xcodeproj */,
+				E255D36A5343406BAA42F2E4 /* RNFS.xcodeproj */,
+				03937A52C4154316B9B9A0C8 /* RealmReact.xcodeproj */,
+				20962B91CEE345EA9E326808 /* RNZipArchive.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -516,6 +542,7 @@
 				00E356EF1AD99517003FC87E /* KanjiMasterTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				D3CC58FACF2A42E1B433C5D1 /* Resources */,
+				B7D5A2C4AB184D5BAFE164ED /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -547,6 +574,16 @@
 				9DCCCEBA36BC4F7A813F29F1 /* Zocial.ttf */,
 			);
 			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
+		B7D5A2C4AB184D5BAFE164ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF2B1301D90D4EADA3F6D25C /* libc++.tbd */,
+				FDA8B4C32E854FFBAA58D6BF /* libz.tbd */,
+			);
+			name = Frameworks;
 			path = "";
 			sourceTree = "<group>";
 		};
@@ -1058,6 +1095,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1065,6 +1106,10 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-zip-archive/ios/**",
 				);
 			};
 			name = Debug;
@@ -1092,6 +1137,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1099,6 +1148,10 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-zip-archive/ios/**",
 				);
 			};
 			name = Release;
@@ -1124,6 +1177,10 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-zip-archive/ios/**",
 				);
 			};
 			name = Debug;
@@ -1148,6 +1205,10 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-zip-archive/ios/**",
 				);
 			};
 			name = Release;
@@ -1184,6 +1245,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1191,6 +1256,10 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-zip-archive/ios/**",
 				);
 			};
 			name = Debug;
@@ -1227,6 +1296,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1234,6 +1307,10 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-zip-archive/ios/**",
 				);
 			};
 			name = Release;
@@ -1265,6 +1342,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1289,6 +1370,10 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
