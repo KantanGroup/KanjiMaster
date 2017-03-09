@@ -3,23 +3,21 @@ package com.kanjimaster;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.realm.react.RealmReactPackage;
 import com.rnziparchive.RNZipArchivePackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.i18n.reactnativei18n.ReactNativeI18n;
+import com.rnfs.RNFSPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-//import com.facebook.stetho.Stetho;
-import com.i18n.reactnativei18n.ReactNativeI18n;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.rnfs.RNFSPackage; // <------- add package
-//import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
+import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
-
-import io.realm.react.RealmReactPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -32,32 +30,27 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
+          new MainReactPackage(),
+            new RealmReactPackage(),
             new RNZipArchivePackage(),
-            new RNFetchBlobPackage(),
             new VectorIconsPackage(),
             new ReactNativeI18n(),
+            new RNFSPackage(),
+            new RNFetchBlobPackage(),
             new RNDeviceInfo(),
-            new RNFSPackage(), // <---------- add package
-            new ReactNativeConfigPackage(),
-            new RealmReactPackage() // ADD THIS
+            new ReactNativeConfigPackage()
       );
     }
   };
-  /*
+
+  @Override
+  public ReactNativeHost getReactNativeHost() {
+    return mReactNativeHost;
+  }
+
   @Override
   public void onCreate() {
     super.onCreate();
-
-    Stetho.initialize(
-        Stetho.newInitializerBuilder(this)
-            .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-            .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
-            .build());
-  }
-  */
-  @Override
-  public ReactNativeHost getReactNativeHost() {
-      return mReactNativeHost;
+    SoLoader.init(this, /* native exopackage */ false);
   }
 }
