@@ -1,6 +1,7 @@
 const Realm = require('realm');
 
-const KanjiMatomeSchema = {
+class KanjiMatomeSchema {}
+KanjiMatomeSchema.schema = {
   name: 'KanjiMatome',
   primaryKey: 'keyword',
   properties: {
@@ -20,7 +21,8 @@ const KanjiMatomeSchema = {
   }
 };
 
-const KanjiMatomeMeaningSchema = {
+class KanjiMatomeMeaningSchema {}
+KanjiMatomeMeaningSchema.schema = {
   name: 'KanjiMatomeMeaning',
   primaryKey: 'keyword',
   properties: {
@@ -31,7 +33,8 @@ const KanjiMatomeMeaningSchema = {
   }
 };
 
-const KanjiMatomeTangoSchema = {
+class KanjiMatomeTangoSchema {}
+KanjiMatomeTangoSchema.schema = {
   name: 'KanjiMatomeTango',
   properties: {
     keyword:      {type: 'string', indexed: true},
@@ -42,7 +45,8 @@ const KanjiMatomeTangoSchema = {
   }
 };
 
-const KanjiMatomeMeaningByLanguageSchema = {
+class KanjiMatomeMeaningByLanguageSchema {}
+KanjiMatomeMeaningByLanguageSchema.schema = {
   name: 'KanjiMatomeMeaningByLanguage',
   properties: {
     language:     {type: 'string', indexed: true},
@@ -50,7 +54,8 @@ const KanjiMatomeMeaningByLanguageSchema = {
   }
 };
 
-const DeskSchema = {
+class DeskSchema {}
+DeskSchema.schema = {
   name: "Desk",
   primaryKey: "id",
   properties: {
@@ -60,7 +65,8 @@ const DeskSchema = {
   }
 }
 
-const CardSchema = {
+class CardSchema {}
+CardSchema.schema = {
   name: "Card",
   primaryKey: "id",
   properties: {
@@ -79,7 +85,8 @@ const CardSchema = {
   }
 };
 
-const GrammarSchema = {
+class GrammarSchema {}
+GrammarSchema.schema = {
   name: "Grammar",
   primaryKey: "id",
   properties: {
@@ -90,7 +97,8 @@ const GrammarSchema = {
   }
 }
 
-const SettingSchema = {
+class SettingSchema {}
+SettingSchema.schema = {
   name: "Setting",
   primaryKey: "key",
   properties: {
