@@ -1,6 +1,29 @@
 import Database from '../Store/RealmDatabase'
 
 export default {
+
+  createKanjis: (datas) => {
+    Database.write(() => {
+      datas.map((data) => {
+        Database.create('KanjiObject', {
+          code: data.code,
+          sequenceId: data.sequenceId,
+          meaning: data.meaning,
+          onReading: data.onReading,
+          kunReading: data.kunReading,
+          kanjiRadicals: data.kanjiRadicals,
+          strokeCount: data.strokeCount,
+          jlptLevel: data.jlptLevel,
+          gradeLevel: data.gradeLevel,
+          frequency: data.frequency,
+          strokePaths: data.strokePaths,
+          koohiiStory1: data.koohiiStory1,
+          koohiiStory2: data.koohiiStory2
+        }, true);
+      })
+    });
+  },
+
   createKanjiMatome: (data) => {
     Database.write(() => {
       Database.create('KanjiMatome', {
@@ -63,6 +86,14 @@ export default {
     sortProperties.push(["rtk6th", false]);
     sortProperties.push(["rank", false]);
     let allKanji = Database.objects('KanjiMatome').sorted(sortProperties);
+    let rangeKanji = allKanji.slice(startIndex,endIndex);
+    return rangeKanji;
+  },
+
+  getKanjis: (startIndex, endIndex) => {
+    let sortProperties = [];
+    sortProperties.push(["code", true]);
+    let allKanji = Database.objects('KanjiObject').sorted(sortProperties);
     let rangeKanji = allKanji.slice(startIndex,endIndex);
     return rangeKanji;
   },

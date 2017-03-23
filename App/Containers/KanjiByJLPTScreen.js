@@ -45,7 +45,7 @@ class KanjiByJLPTScreen extends React.Component {
     ]
     */
     //const dataObjects = require('../Fixtures/hantus.json');
-    const dataObjects = KanjiService.getKanjiMatomes(this.startIndex, this.endIndex);
+    const dataObjects = KanjiService.getKanjis(this.startIndex, this.endIndex);
     const noDataObjects = []
 
     /* ***********************************************************
@@ -104,7 +104,8 @@ class KanjiByJLPTScreen extends React.Component {
   }
 
   refreshContent = (startIndex, endIndex) => {
-    const dataObjects = KanjiService.getKanjiMatomes(startIndex, endIndex);
+    const dataObjects = KanjiService.getKanjis(startIndex, endIndex);
+    console.log(dataObjects)
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(dataObjects)
     })

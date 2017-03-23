@@ -26,7 +26,8 @@ class DownloadProgess extends React.Component {
   downloadFileFromLink() {
     let sourcePath = Config.DOWNLOAD_DATA;
     let targetPath;
-
+    this.props.initiativeDatabase();
+    /*
     const dirs = RNFetchBlob.fs.dirs
     RNFetchBlob.config({ trusty : true, fileCache : true, path : dirs.DocumentDir + '/sample.zip'})
     .fetch('GET', sourcePath)
@@ -50,6 +51,7 @@ class DownloadProgess extends React.Component {
     .catch((err) => {
       Toast.show(I18n.t('pleaseCheckTheNetworkConnection'))
     })
+    */
   }
 
   render () {

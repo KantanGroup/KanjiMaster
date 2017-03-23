@@ -31,9 +31,10 @@ export function * initiativeDatabase (action) {
   let setting = DatabaseService.getSetting("importSampleDatabase");
   if (!setting || (setting && (!setting[0] || !setting[0].value))) {
     //Go to setting screen to import database
-    yield call(importDatabaseKanji)
-    yield call(importDatabaseGrammar)
-    yield call(importDatabaseKanjiTango)
+    yield call(importKanji)
+    //yield call(importDatabaseKanji)
+    //yield call(importDatabaseGrammar)
+    //yield call(importDatabaseKanjiTango)
     DatabaseService.setSetting("importSampleDatabase", true);
   } else {
     //Alert using sample database to user
@@ -44,6 +45,15 @@ export function * initiativeDatabase (action) {
   }, 100);
 }
 
+function * importKanji () {
+  const kanjis =  require('../Fixtures/kanji.json')
+  try {
+    KanjiService.createKanjis(kanjis);
+    DatabaseService.setSetting("importKanji", true);
+  } catch (err) {
+    console.log(err)
+  }
+}
 function * importDatabaseKanji () {
   const dirs = RNFetchBlob.fs.dirs
   console.log("Kanji do import database")

@@ -1,5 +1,26 @@
 const Realm = require('realm');
 
+class KanjiObject {}
+KanjiObject.schema = {
+  name: 'KanjiObject',
+  primaryKey: 'code',
+  properties: {
+    code:           {type: 'int'},
+    sequenceId:     {type: 'int', optional: true, indexed: true},
+    meaning:        {type: 'string', optional: true, indexed: true},
+    onReading:      {type: 'string', optional: true, indexed: true},
+    kunReading:     {type: 'string', optional: true, indexed: true},
+    kanjiRadicals:  {type: 'string', optional: true, indexed: true},
+    strokeCount:    {type: 'int', optional: true, indexed: true},
+    jlptLevel:      {type: 'int', optional: true, indexed: true},
+    gradeLevel:     {type: 'int', optional: true, indexed: true},
+    frequency:      {type: 'int', optional: true, indexed: true},
+    strokePaths:    {type: 'string', optional: true, indexed: true},
+    koohiiStory1:   {type: 'string', optional: true, indexed: true},
+    koohiiStory2:   {type: 'string', optional: true, indexed: true},
+  }
+};
+
 class KanjiMatomeSchema {}
 KanjiMatomeSchema.schema = {
   name: 'KanjiMatome',
@@ -107,4 +128,4 @@ SettingSchema.schema = {
   }
 };
 
-export default new Realm({path: 'kanjidaily.realm', schema: [GrammarSchema, KanjiMatomeSchema, KanjiMatomeTangoSchema, KanjiMatomeMeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
+export default new Realm({path: 'kanjidaily.realm', schema: [KanjiObject, GrammarSchema, KanjiMatomeSchema, KanjiMatomeTangoSchema, KanjiMatomeMeaningByLanguageSchema, DeskSchema, CardSchema, SettingSchema], schemaVersion: 1});
